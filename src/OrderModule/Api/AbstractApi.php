@@ -6,30 +6,27 @@ namespace Seravo\SeravoApi\OrderModule\Api;
 
 use Psr\Http\Message\ResponseInterface;
 use Seravo\SeravoApi\OrderModule\Client;
+use Seravo\SeravoApi\OrderModule\Request\AbstractRequest;
+use GuzzleHttp\Exception\RequestException;
+use Seravo\SeravoApi\OrderModule\Exception\ApiException;
 
 abstract class AbstractApi
 {
 
     public function __construct(
-        protected Client $client
+        protected readonly Client $client
     ) {
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param string $method
-     * @param array<string, mixed> $params
-     * @return ResponseInterface
-     */
-    protected function request(string $method, array $params = []): ResponseInterface
+    protected function request(string $endpoint, AbstractRequest $request): ResponseInterface
     {
-        $response = $this->client->getHttpClient()->request(method: $method, options: $params);
-        return $response;
-    }
+        try {
+            $response = $this->client->getHttpClient()->request($request->getMethod(), $endpoint, $request->getOptions());
+            return $response;
+        } catch (RequestException $e) {
+            throw new ApiException($e->getMessage(), $e->getCode(), $e);
+        }
 
-    protected function getClient(): Client
-    {
-        return $this->client;
+        // TODO: Parse response to array
     }
 }
