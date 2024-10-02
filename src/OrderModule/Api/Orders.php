@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\OrderModule\Api;
 
+use Seravo\SeravoApi\OrderModule\Request\CreateOrder\CreateOrderRequest;
+
 final class Orders extends AbstractApi
 {
     private const ENDPOINT = '/order/orders';
@@ -12,14 +14,11 @@ final class Orders extends AbstractApi
      * Create a new Order
      * @see API Reference: https://api.seravo.dev/order/docs#/Orders/create_order_orders__post
      *
-     * @return void
+     * @return array<string, mixed>
      */
-    public function create(): void
+    public function create(CreateOrderRequest $request): array
     {
-        // TODO: Implement this
-        $response = $this->client->getHttpClient()->post(self::ENDPOINT, ['debug' => true]);
-        dump($response);
-        exit;
+        return $this->request(self::ENDPOINT, $request);
     }
 
     /**
