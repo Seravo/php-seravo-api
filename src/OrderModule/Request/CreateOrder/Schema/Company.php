@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\OrderModule\Request\CreateOrder\Model;
+namespace Seravo\SeravoApi\OrderModule\Request\CreateOrder\Schema;
 
 use Seravo\SeravoApi\Concerns\CastableToArray;
 
