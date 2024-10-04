@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\OrderModule\Request\CreateOrder;
 
 use Seravo\SeravoApi\OrderModule\Request\AbstractRequest;
-use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Model\Contact;
-use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Model\Billing\BillingMethod;
-use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Model\Company;
-use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Model\Mail;
+use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Schema\Contact;
+use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Schema\Billing\BillingMethod;
+use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Schema\Company;
+use Seravo\SeravoApi\OrderModule\Request\CreateOrder\Schema\Mail;
 
 class CreateOrderRequest extends AbstractRequest
 {
@@ -26,7 +26,7 @@ class CreateOrderRequest extends AbstractRequest
         public readonly string $primaryDomain,
         public readonly string $siteLocation,
         public readonly string $priceData,
-        // public readonly BillingMethod $billing,
+        public readonly BillingMethod $billing,
         public readonly Company $company,
         public readonly Mail $mail,
         public readonly ?array $additionalDomains = [],
@@ -62,7 +62,7 @@ class CreateOrderRequest extends AbstractRequest
             'request_id'           => $this->requestId,
             'service_id'           => $this->serviceId,
             'price_data'           => $this->priceData,
-            // 'billing'              => $this->billing->toArray(),
+            'billing'              => $this->filterEmpty($this->billing->toArray()),
             'company'              => $this->filterEmpty($this->company->toArray()),
             'mail'                 => $this->mail->toArray()
         ];
