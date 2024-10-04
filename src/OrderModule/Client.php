@@ -11,11 +11,15 @@ final class Client
 {
     private HttpClient $httpClient;
 
+    private AuthProvider $authProvider;
+
     public function __construct(
         public readonly string $baseUrl,
-        public readonly string $oidcToken,
+        public readonly string $clientId,
+        public readonly string $secret,
     ) {
-        $this->httpClient = new HttpClient($this->baseUrl, $this->oidcToken);
+        $this->authProvider = new AuthProvider($this->clientId, $this->secret);
+        $this->httpClient = new HttpClient($this->baseUrl, $this->authProvider->getAccessToken());
     }
 
     public function getHttpClient(): ClientInterface
