@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\OrderModule\HttpClient\Plugin;
+namespace Seravo\SeravoApi\HttpClient\Plugin;
 
 use Http\Client\Common\Plugin;
 use Http\Promise\Promise;
