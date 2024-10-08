@@ -6,10 +6,10 @@ namespace Seravo\SeravoApi;
 
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
-use Seravo\SeravoApi\OrderModule\AuthProvider;
-use Seravo\SeravoApi\OrderModule\HttpClient\Builder;
-use Seravo\SeravoApi\OrderModule\HttpClient\Plugin\Authentication;
-use Seravo\SeravoApi\OrderModule\HttpClient\Plugin\ContentType;
+use Seravo\SeravoApi\AuthProvider;
+use Seravo\SeravoApi\HttpClient\Builder;
+use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
+use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
 
 final class SeravoAPI
 {

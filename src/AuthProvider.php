@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\OrderModule;
+namespace Seravo\SeravoApi;
 
 use InvalidArgumentException;
 use Jumbojett\OpenIDConnectClient;
@@ -19,7 +19,7 @@ class AuthProvider
         $oidc->providerConfigParam(['token_endpoint' => self::TOKEN_ENDPOINT]);
         $oidc->addScope(['openid']);
 
-        $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token;
+        $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
 
         // TODO: Check for valid JWT
         if (!$clientCredentialsToken) {
