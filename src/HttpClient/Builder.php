@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\OrderModule\HttpClient;
+namespace Seravo\SeravoApi\HttpClient;
 
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\Common\HttpMethodsClientInterface;
