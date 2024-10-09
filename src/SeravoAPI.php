@@ -23,12 +23,17 @@ final class SeravoAPI
         $this->setDefaultHttpPlugins();
     }
 
-    public function authenticate(): void
+    public function authenticate(string $authProviderUrl, string $tokenEndpoint): void
     {
         $this->getHttpClientBuilder()->removePlugin(Authentication::class);
         $this->getHttpClientBuilder()->addPlugin(
             new Authentication(
-                new AuthProvider($this->clientId, $this->secret)
+                new AuthProvider(
+                    clientId: $this->clientId,
+                    secret: $this->secret,
+                    providerUrl: $authProviderUrl,
+                    tokenEndpoint: $tokenEndpoint
+                )
             )
         );
     }
