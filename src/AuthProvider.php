@@ -11,12 +11,10 @@ class AuthProvider
 {
     private string $accessToken;
 
-    private const TOKEN_ENDPOINT = 'https://idp.seravo.dev/realms/Seravo/protocol/openid-connect/token';
-
-    public function __construct(string $clientId, string $secret)
+    public function __construct(string $clientId, string $secret, string $providerUrl, string $tokenEndpoint)
     {
-        $oidc = new OpenIDConnectClient('https://idp.seravo.dev', $clientId, $secret);
-        $oidc->providerConfigParam(['token_endpoint' => self::TOKEN_ENDPOINT]);
+        $oidc = new OpenIDConnectClient($providerUrl, $clientId, $secret);
+        $oidc->providerConfigParam(['token_endpoint' => $tokenEndpoint]);
         $oidc->addScope(['openid']);
 
         $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
