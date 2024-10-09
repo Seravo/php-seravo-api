@@ -6,6 +6,10 @@ namespace Seravo\SeravoApi;
 
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+
+use Seravo\SeravoApi\Apis\OrderAPI;
+use Seravo\SeravoApi\Apis\PublicAPI;
+
 use Seravo\SeravoApi\AuthProvider;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
@@ -13,6 +17,10 @@ use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
 
 final class SeravoAPI
 {
+    public OrderAPI $order;
+
+    public PublicAPI $public;
+
     public function __construct(
         public readonly string $baseUrl,
         public readonly string $clientId,
@@ -21,6 +29,9 @@ final class SeravoAPI
     ) {
         $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
         $this->setDefaultHttpPlugins();
+
+        $this->order = new OrderAPI($this->baseUrl, $this->getHttpClientBuilder());
+        $this->public = new PublicAPI($this->baseUrl, $this->getHttpClientBuilder());
     }
 
     public function authenticate(string $authProviderUrl, string $tokenEndpoint): void
@@ -43,17 +54,19 @@ final class SeravoAPI
         return $this->getHttpClientBuilder()->getHttpClient();
     }
 
-    protected function getHttpClientBuilder(): Builder
+    public function getHttpClientBuilder(): Builder
     {
         return $this->httpClientBuilder;
     }
 
     private function setDefaultHttpPlugins(): void
     {
-        $this->httpClientBuilder->addPlugin(new HeaderDefaultsPlugin([
+        $builder = $this->httpClientBuilder;
+
+        $builder->addPlugin(new HeaderDefaultsPlugin([
             'accept' => 'application/json'
         ]));
 
-        $this->httpClientBuilder->addPlugin(new ContentType());
+        $builder->addPlugin(new ContentType());
     }
 }
