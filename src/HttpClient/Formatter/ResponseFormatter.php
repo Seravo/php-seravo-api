@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\HttpClient\Formatter;
 
 use Psr\Http\Message\ResponseInterface;
-use Seravo\SeravoApi\OrderModule\Exception\InvalidApiResponseException;
+use Seravo\SeravoApi\Exception\InvalidApiResponseException;
 
 final class ResponseFormatter
 {
