@@ -22,4 +22,4 @@ $api->authenticate(
 
 $orders = $api->order->orders()->get();
 
-var_dump($orders);
+dd($orders);
