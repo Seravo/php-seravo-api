@@ -20,6 +20,6 @@ $api->authenticate(
     tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
 );
 
-$orders = $api->order->orders()->get();
+$order = $api->order->orders()->getById(id: 'fa8407ea-47e6-4d9a-9c1b-8f68eb9175ba');
 
-var_dump($orders);
+var_dump($order);
