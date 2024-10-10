@@ -22,4 +22,4 @@ $api->authenticate(
 
 $order = $api->order->orders()->getById(id: 'fa8407ea-47e6-4d9a-9c1b-8f68eb9175ba');
 
-var_dump($order);
+dd($order);
