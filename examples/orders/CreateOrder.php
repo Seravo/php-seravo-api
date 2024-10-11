@@ -11,6 +11,7 @@ use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
+use Seravo\SeravoApi\Exception\ValidationErrorException;
 
 $billing = new PaperInvoice(
     contactEmail: 'jonh@doe.com',
@@ -50,6 +51,8 @@ $api->authenticate(
 try {
     $result = $api->order->orders()->create($createOrderRequest);
     dd($result);
+} catch (ValidationErrorException $exception) {
+    dd(json_decode($exception->getData()));
 } catch (\Exception $exception) {
     dd($exception);
     die();
