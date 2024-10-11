@@ -11,6 +11,7 @@ use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
+use Seravo\SeravoApi\Exception\ValidationErrorException;
 
 $billing = new PaperInvoice(
     contactEmail: 'tatu@seravo.com',
@@ -43,13 +44,15 @@ $api = new SeravoAPI(
 );
 
 $api->authenticate(
-    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'], 
+    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'],
     tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
 );
 
 try {
     $result = $api->order->orders()->create($createOrderRequest);
     dd($result);
+} catch (ValidationErrorException $exception) {
+    dd(json_decode($exception->getData()));
 } catch (\Exception $exception) {
     dd($exception);
     die();
