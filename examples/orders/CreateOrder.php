@@ -31,7 +31,7 @@ $createOrderRequest = new CreateOrderRequest(
     orderTrialPeriod: 0,
     primaryDomain: 'example.fi',
     siteLocation: 'FI',
-    priceData: 'test',
+    priceData: 'ff67d517-e5a1-4826-b936-5c41cd12853f',
     billing: $billing,
     company: new Company(id: '1', name: 'John Doe'),
     mail: new Mail(option: '1'),
