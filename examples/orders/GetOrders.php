@@ -16,7 +16,7 @@ $api = new SeravoAPI(
 );
 
 $api->authenticate(
-    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'], 
+    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'],
     tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
 );
 
