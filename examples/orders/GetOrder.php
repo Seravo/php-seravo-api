@@ -16,10 +16,13 @@ $api = new SeravoAPI(
 );
 
 $api->authenticate(
-    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'], 
+    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'],
     tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
 );
 
-$order = $api->order->orders()->getById(id: 'fa8407ea-47e6-4d9a-9c1b-8f68eb9175ba');
-
-dd($order);
+try {
+    $order = $api->order->orders()->getById(id: '57e2cdd4-921c-4aa6-9926-9dd3e5ad42fb');
+    dd($order);
+} catch (Exception $exception) {
+    dd($exception);
+}
