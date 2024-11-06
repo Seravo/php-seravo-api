@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Request\CreateOrder;
 
-use Seravo\SeravoApi\Apis\Order\Request\AbstractRequest;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\BillingMethod;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
 
-class CreateOrderRequest extends AbstractRequest
+class CreateOrderRequest
 {
 
     /**
