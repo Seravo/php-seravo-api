@@ -7,19 +7,12 @@ namespace Seravo\SeravoApi\Apis;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
-use Seravo\SeravoApi\Concerns\ArrayRemoveNullValues;
 use Seravo\SeravoApi\Exception\ApiException;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Formatter\ResponseFormatter;
 
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-
 abstract class AbstractApi
 {
-    use ArrayRemoveNullValues;
-
     private UriInterface $uri;
 
     public function __construct(
@@ -52,13 +45,7 @@ abstract class AbstractApi
     public function request(string $method, string $uri, array $headers = [], mixed $body = null): array
     {
         try {
-            if (!is_null($body)) {
-                $normalizer = new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter());
-                $serializer = new Serializer([$normalizer]);
-                $body = json_encode($this->arrayFilterRecursive($serializer->normalize($body)));
-            }
-
-            $response = $this->getHttpClient()->send($method, $uri, $headers, $body);
+            $response = $this->getHttpClient()->send($method, $uri, $headers, json_encode($body));
         } catch (RequestException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }

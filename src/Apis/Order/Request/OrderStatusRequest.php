@@ -6,11 +6,17 @@ namespace Seravo\SeravoApi\Apis\Order\Request;
 
 use Seravo\SeravoApi\Enums\OrderStatus;
 
-class OrderStatusRequest
+class OrderStatusRequest implements \JsonSerializable
 {
     public function __construct(
-        public string|OrderStatus $orderStatus,
+        public OrderStatus $orderStatus,
     ) {
-        $this->orderStatus = $orderStatus->value;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'order_status' => $this->orderStatus->value
+        ];
     }
 }

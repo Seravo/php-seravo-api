@@ -8,14 +8,16 @@ use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\BillingMethod;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
+use Seravo\SeravoApi\Concerns\ArrayTransformer;
 
-class CreateOrderRequest
+class CreateOrderRequest implements \JsonSerializable
 {
+    use ArrayTransformer;
 
     /**
-    *
-    * @param array<string>|null $additionalDomains
-    */
+     *
+     * @param array<string>|null $additionalDomains
+     */
     public function __construct(
         public readonly bool $acceptServiceTerms,
         public readonly Contact $contact,
@@ -36,5 +38,14 @@ class CreateOrderRequest
         public readonly ?string $requestId = null,
         public readonly ?int $serviceId = null,
     ) {
+    }
+
+    /**
+     *
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray($this);
     }
 }
