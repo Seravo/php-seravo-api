@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
-use Seravo\SeravoApi\Apis\OrderAPI;
+use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
 
@@ -15,7 +15,7 @@ class Orders
     private string $uri;
 
     public function __construct(
-        private readonly OrderAPI $orderApi
+        private readonly OrderApi $orderApi
     ) {
         $this->uri = $this->orderApi->getUri(self::ENDPOINT_NAME);
     }

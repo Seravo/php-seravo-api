@@ -6,7 +6,7 @@ namespace Seravo\SeravoApi\Apis;
 
 use Seravo\SeravoApi\HttpClient\Builder;
 
-class PublicAPI extends BaseAPI
+class PublicApi extends AbstractApi
 {
     public const ENDPOINT_PREFIX = '/public/';
 
