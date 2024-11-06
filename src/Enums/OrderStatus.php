@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Enums;
 
-enum OrderStatusEnum: string
+enum OrderStatus: string
 {
     case New = 'new';
     case Accepted = 'accepted';

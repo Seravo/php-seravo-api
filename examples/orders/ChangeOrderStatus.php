@@ -8,7 +8,7 @@ $dotenv->load();
 use Seravo\SeravoApi\SeravoAPI;
 use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
 
-use Seravo\SeravoApi\Enums\OrderStatusEnum;
+use Seravo\SeravoApi\Enums\OrderStatus;
 
 $api = new SeravoAPI(
     baseUrl: $_ENV['SERAVO_API_URL'],
@@ -17,12 +17,12 @@ $api = new SeravoAPI(
 );
 
 $api->authenticate(
-    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'], 
+    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'],
     tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
 );
 
 $orderStatusRequest = new OrderStatusRequest(
-    orderStatus: OrderStatusEnum::New
+    orderStatus: OrderStatus::New
 );
 
 try {
