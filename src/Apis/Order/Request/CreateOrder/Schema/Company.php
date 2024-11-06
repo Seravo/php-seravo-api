@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema;
 
-use Seravo\SeravoApi\Concerns\CastableToArray;
-
 class Company
 {
-    use CastableToArray;
-
     public function __construct(
         public readonly string $id,
         public readonly string $name,

@@ -7,7 +7,7 @@ namespace Seravo\SeravoApi\Apis;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Order\Endpoint\Orders;
 
-class OrderAPI extends BaseAPI
+class OrderApi extends AbstractApi
 {
     public const ENDPOINT_PREFIX = '/order/';
 

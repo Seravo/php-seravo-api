@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-abstract class BaseAPI
+abstract class AbstractApi
 {
     use ArrayRemoveNullValues;
-  
+
     private UriInterface $uri;
 
     public function __construct(

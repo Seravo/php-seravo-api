@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi;
 
 use Seravo\SeravoApi\AuthProvider;
-use Seravo\SeravoApi\Apis\OrderAPI;
-use Seravo\SeravoApi\Apis\PublicAPI;
+use Seravo\SeravoApi\Apis\OrderApi;
+use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\HttpClient\Builder;
-use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
 use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
@@ -16,9 +15,9 @@ use Seravo\SeravoApi\HttpClient\Plugin\ExceptionHandler;
 
 final class SeravoAPI
 {
-    public OrderAPI $order;
+    public OrderApi $order;
 
-    public PublicAPI $public;
+    public PublicApi $public;
 
     public function __construct(
         public readonly string $baseUrl,
@@ -29,8 +28,8 @@ final class SeravoAPI
         $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
         $this->setDefaultHttpPlugins();
 
-        $this->order = new OrderAPI($this->baseUrl, $this->httpClientBuilder);
-        $this->public = new PublicAPI($this->baseUrl, $this->httpClientBuilder);
+        $this->order = new OrderApi($this->baseUrl, $this->httpClientBuilder);
+        $this->public = new PublicApi($this->baseUrl, $this->httpClientBuilder);
     }
 
     public function authenticate(string $authProviderUrl, string $tokenEndpoint): void
