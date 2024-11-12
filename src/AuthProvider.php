@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi;
 
-use InvalidArgumentException;
 use Jumbojett\OpenIDConnectClient;
+use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
 
 class AuthProvider
 {
@@ -19,9 +19,8 @@ class AuthProvider
 
         $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
 
-        // TODO: Check for valid JWT
         if (!$clientCredentialsToken) {
-            throw new InvalidArgumentException('Invalid Access Token');
+            throw new InvalidAccessTokenException();
         }
 
         $this->accessToken = $clientCredentialsToken;
