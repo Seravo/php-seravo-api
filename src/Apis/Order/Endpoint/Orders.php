@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
+use Seravo\SeravoApi\Enums\HttpMethod;
 
 class Orders
 {
@@ -28,7 +29,7 @@ class Orders
      */
     public function create(CreateOrderRequest $request): array
     {
-        return $this->orderApi->request(method: 'POST', uri: $this->uri, body: $request);
+        return $this->orderApi->request(method: HttpMethod::Post, uri: $this->uri, body: $request);
     }
 
     /**
@@ -39,7 +40,7 @@ class Orders
      */
     public function get(): array
     {
-        return $this->orderApi->request(method: 'GET', uri: $this->uri);
+        return $this->orderApi->request(method: HttpMethod::Get, uri: $this->uri);
     }
 
     /**
@@ -51,7 +52,7 @@ class Orders
      */
     public function getById(string $id): array
     {
-        return $this->orderApi->request(method: 'GET', uri: $this->uri . $id);
+        return $this->orderApi->request(method: HttpMethod::Get, uri: $this->uri . $id);
     }
 
     /**
@@ -63,7 +64,7 @@ class Orders
      */
     public function update(string $id, CreateOrderRequest $request): array
     {
-        return $this->orderApi->request(method: 'PUT', uri: $this->uri . $id, body: $request);
+        return $this->orderApi->request(method: HttpMethod::Put, uri: $this->uri . $id, body: $request);
     }
 
     /**
@@ -76,7 +77,7 @@ class Orders
     public function status(string $id, OrderStatusRequest $request): array
     {
         return $this->orderApi->request(
-            method: 'POST',
+            method: HttpMethod::Post,
             uri: $this->uri . $id . '/status',
             body: $request
         );

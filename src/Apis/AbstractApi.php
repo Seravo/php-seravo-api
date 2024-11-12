@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
+use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Exception\ApiException;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Formatter\ResponseFormatter;
@@ -42,10 +43,10 @@ abstract class AbstractApi
      * @param array<mixed, mixed> $headers
      * @return array<string, mixed>
      */
-    public function request(string $method, string $uri, array $headers = [], mixed $body = null): array
+    public function request(HttpMethod $method, string $uri, array $headers = [], mixed $body = null): array
     {
         try {
-            $response = $this->getHttpClient()->send($method, $uri, $headers, json_encode($body));
+            $response = $this->getHttpClient()->send($method->value, $uri, $headers, json_encode($body));
         } catch (RequestException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }
