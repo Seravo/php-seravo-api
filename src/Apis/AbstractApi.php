@@ -7,6 +7,8 @@ namespace Seravo\SeravoApi\Apis;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
+use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Exception\ApiException;
 use Seravo\SeravoApi\HttpClient\Builder;
@@ -19,9 +21,9 @@ abstract class AbstractApi
     public function __construct(
         private readonly string $baseUrl,
         private readonly Builder $httpClientBuilder,
-        private readonly string $endPointPrefix
+        private readonly ApiModule $endPointPrefix
     ) {
-        $this->setUri();
+        $this->setUri($this->endPointPrefix);
     }
 
     public function getHttpClient(): HttpMethodsClientInterface
@@ -29,14 +31,19 @@ abstract class AbstractApi
         return $this->getHttpClientBuilder()->getHttpClient();
     }
 
-    public function getUri(string $endpoint): string
-    {
-        return (string) $this->uri . $endpoint . '/';
-    }
-
     protected function getHttpClientBuilder(): Builder
     {
         return $this->httpClientBuilder;
+    }
+
+    public function setUri(ApiModule|ApiEndpoint $endpoint): string
+    {
+        $uri = $this->httpClientBuilder->getUriFactory()->createUri($this->baseUrl);
+        $uri = $uri->withPath(rtrim($uri->getPath(), '/') . $this->endPointPrefix->value . '/');
+
+        $this->uri = $uri;
+
+        return (string) $this->uri . $endpoint->value . '/';
     }
 
     /**
@@ -52,13 +59,5 @@ abstract class AbstractApi
         }
 
         return ResponseFormatter::format($response);
-    }
-
-    private function setUri(): void
-    {
-        $uri = $this->httpClientBuilder->getUriFactory()->createUri($this->baseUrl);
-        $uri = $uri->withPath(rtrim($uri->getPath(), '/') . $this->endPointPrefix);
-
-        $this->uri = $uri;
     }
 }

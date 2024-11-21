@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis;
 
+use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Order\Endpoint\Orders;
 
@@ -15,7 +16,7 @@ class OrderApi extends AbstractApi
         private readonly string $baseUrl,
         private readonly Builder $httpClientBuilder
     ) {
-        parent::__construct($this->baseUrl, $this->httpClientBuilder, self::ENDPOINT_PREFIX);
+        parent::__construct($this->baseUrl, $this->httpClientBuilder, ApiModule::Order);
     }
 
     public function orders(): Orders
