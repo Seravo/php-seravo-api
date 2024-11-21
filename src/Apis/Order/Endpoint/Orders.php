@@ -8,17 +8,16 @@ use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
 use Seravo\SeravoApi\Enums\HttpMethod;
+use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Orders
 {
-    private const ENDPOINT_NAME = 'orders';
-
     private string $uri;
 
     public function __construct(
         private readonly OrderApi $orderApi
     ) {
-        $this->uri = $this->orderApi->getUri(self::ENDPOINT_NAME);
+        $this->uri = $this->orderApi->setUri(ApiEndpoint::Orders);
     }
 
     /**
