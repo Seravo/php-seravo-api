@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi;
 
-use Http\Client\Common\HttpMethodsClientInterface;
-use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
-
+use Seravo\SeravoApi\AuthProvider;
 use Seravo\SeravoApi\Apis\OrderAPI;
 use Seravo\SeravoApi\Apis\PublicAPI;
-
-use Seravo\SeravoApi\AuthProvider;
 use Seravo\SeravoApi\HttpClient\Builder;
+use Http\Client\Common\HttpMethodsClientInterface;
+use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
 use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
+use Seravo\SeravoApi\HttpClient\Plugin\ExceptionHandler;
 
 final class SeravoAPI
 {
@@ -30,14 +29,14 @@ final class SeravoAPI
         $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
         $this->setDefaultHttpPlugins();
 
-        $this->order = new OrderAPI($this->baseUrl, $this->getHttpClientBuilder());
-        $this->public = new PublicAPI($this->baseUrl, $this->getHttpClientBuilder());
+        $this->order = new OrderAPI($this->baseUrl, $this->httpClientBuilder);
+        $this->public = new PublicAPI($this->baseUrl, $this->httpClientBuilder);
     }
 
     public function authenticate(string $authProviderUrl, string $tokenEndpoint): void
     {
-        $this->getHttpClientBuilder()->removePlugin(Authentication::class);
-        $this->getHttpClientBuilder()->addPlugin(
+        $this->httpClientBuilder->removePlugin(Authentication::class);
+        $this->httpClientBuilder->addPlugin(
             new Authentication(
                 new AuthProvider(
                     clientId: $this->clientId,
@@ -49,24 +48,16 @@ final class SeravoAPI
         );
     }
 
-    public function getHttpClient(): HttpMethodsClientInterface
-    {
-        return $this->getHttpClientBuilder()->getHttpClient();
-    }
-
-    public function getHttpClientBuilder(): Builder
-    {
-        return $this->httpClientBuilder;
-    }
-
     private function setDefaultHttpPlugins(): void
     {
         $builder = $this->httpClientBuilder;
 
         $builder->addPlugin(new HeaderDefaultsPlugin([
-            'accept' => 'application/json'
+            'accept' => 'application/json',
+            'Content-Type' => 'application/json'
         ]));
 
         $builder->addPlugin(new ContentType());
+        $builder->addPlugin(new ExceptionHandler());
     }
 }
