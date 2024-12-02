@@ -6,6 +6,7 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderAPI;
 use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
+use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
 
 class Orders
 {
@@ -27,7 +28,7 @@ class Orders
      */
     public function create(CreateOrderRequest $request): array
     {
-        return $this->orderApi->request('POST', $this->uri, [], $request->toArray());
+        return $this->orderApi->request(method: 'POST', uri: $this->uri, body: $request);
     }
 
     /**
@@ -38,7 +39,7 @@ class Orders
      */
     public function get(): array
     {
-        return $this->orderApi->request('GET', $this->uri);
+        return $this->orderApi->request(method: 'GET', uri: $this->uri);
     }
 
     /**
@@ -49,33 +50,35 @@ class Orders
      * @return array<mixed, mixed>
      */
     public function getById(string $id): array
-    {   
-        return $this->orderApi->request('GET', $this->uri . $id);
+    {
+        return $this->orderApi->request(method: 'GET', uri: $this->uri . $id);
     }
 
     /**
      * Update an Order
      * API Reference: https://api.seravo.dev/order/docs#/Orders/update_order_orders__id__put
      *
-     * @return array
+     * @param string $id - Uuid
+     * @return array<string, mixed>
      */
-    // public function update(int $id, CreateOrderRequest $request): array
-    // {
-    //     $url = self::ENDPOINT . '/' . $id;
-
-    //     return $this->request($url, $request);
-    // }
+    public function update(string $id, CreateOrderRequest $request): array
+    {
+        return $this->orderApi->request(method: 'PUT', uri: $this->uri . $id, body: $request);
+    }
 
     /**
      * Change (Update) an Orders Status
      * @see API Reference:  https://api.seravo.dev/order/docs#/Orders/order_status_order_orders__id__status_post
      *
-     * @return void
+     * @param string $id - Uuid
+     * @return array<string, mixed>
      */
-    // public function status(int $id): void
-    // {
-    //     $url = self::ENDPOINT . '/' . $id . '/status';
-    //     // TODO: Implement this
-    // }
-
+    public function status(string $id, OrderStatusRequest $request): array
+    {
+        return $this->orderApi->request(
+            method: 'POST',
+            uri: $this->uri . $id . '/status',
+            body: $request
+        );
+    }
 }
