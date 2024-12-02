@@ -12,7 +12,6 @@ use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
 
 class CreateOrderRequest extends AbstractRequest
 {
-    protected string $method = 'post';
 
     /**
     *
@@ -38,35 +37,5 @@ class CreateOrderRequest extends AbstractRequest
         public readonly ?string $requestId = null,
         public readonly ?int $serviceId = null,
     ) {
-    }
-
-    /**
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
-    {
-        $array = [
-            'accept_service_terms' => $this->acceptServiceTerms,
-            'additional_domains'   => $this->additionalDomains,
-            'contact'              => $this->contact->toArray(),
-            'migration'            => $this->migration,
-            'order_language'       => $this->orderLanguage,
-            'order_trial_period'   => $this->orderTrialPeriod,
-            'primary_domain'       => $this->primaryDomain,
-            'site_location'        => $this->siteLocation,
-            'affiliate_id'         => $this->affiliateId,
-            'external_customer_id' => $this->externalCustomerId,
-            'message'              => $this->message,
-            'miss_affiliate_id'    => $this->missAffiliateId,
-            'request_id'           => $this->requestId,
-            'service_id'           => $this->serviceId,
-            'price_data'           => $this->priceData,
-            'billing'              => $this->filterEmpty($this->billing->toArray()),
-            'company'              => $this->filterEmpty($this->company->toArray()),
-            'mail'                 => $this->mail->toArray()
-        ];
-
-        return ['form_params' => $this->filterEmpty($array)];
     }
 }
