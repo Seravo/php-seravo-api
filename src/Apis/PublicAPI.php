@@ -14,6 +14,6 @@ class PublicAPI extends BaseAPI
         private readonly string $baseUrl,
         private readonly Builder $httpClientBuilder
     ) {
-        parent::__construct($baseUrl, $httpClientBuilder, self::ENDPOINT_PREFIX);
+        parent::__construct($this->baseUrl, $this->httpClientBuilder, self::ENDPOINT_PREFIX);
     }
 }
