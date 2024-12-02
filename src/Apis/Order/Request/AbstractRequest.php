@@ -2,20 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\OrderModule\Request;
+namespace Seravo\SeravoApi\Apis\Order\Request;
 
 use Seravo\SeravoApi\Concerns\CastableToArray;
 
 abstract class AbstractRequest
 {
     use CastableToArray;
-
-    protected string $method = 'get';
-
-    public function getMethod(): string
-    {
-        return $this->method;
-    }
 
     /**
      *
