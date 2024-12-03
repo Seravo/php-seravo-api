@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis;
 
 use Seravo\SeravoApi\Enums\ApiModule;
+use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
 use Seravo\SeravoApi\HttpClient\Builder;
 
 class PublicApi extends AbstractApi
@@ -14,5 +15,10 @@ class PublicApi extends AbstractApi
         private readonly Builder $httpClientBuilder
     ) {
         parent::__construct($this->baseUrl, $this->httpClientBuilder, ApiModule::Public);
+    }
+
+    public function prices(): Prices
+    {
+        return new Prices($this);
     }
 }
