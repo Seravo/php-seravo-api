@@ -1,0 +1,52 @@
+[
+  {
+    "interval": 12,
+    "promotion": null,
+    "created_at": "2024-10-14T10:19:53",
+    "updated_at": null,
+    "id": "0bb754a5-5de6-43aa-9a14-eb7fbedd3721",
+    "total": "46.62",
+    "products": [
+      {
+        "name": "Lexicographer",
+        "code": "UQNVENCGHDI",
+        "price": "2184.0",
+        "discount": "0"
+      },
+      {
+        "name": "Engineer, water",
+        "code": "PSYDDQXQWGV",
+        "price": "2328.0",
+        "discount": "0"
+      },
+      {
+        "name": "Pro",
+        "code": "WPPRO12",
+        "price": "150",
+        "discount": "0"
+      }
+    ]
+  },
+  {
+    "interval": 12,
+    "promotion": null,
+    "created_at": "2024-10-14T10:19:53",
+    "updated_at": null,
+    "id": "0e22a2cd-8de7-43f6-91b2-89c610d2ddcd",
+    "total": "19.50",
+    "products": [
+      {
+        "name": "IT sales professional",
+        "code": "XMCAAPYZKYZ",
+        "price": "1560.0",
+        "discount": "0"
+      },
+      {
+        "name": "Proxy",
+        "code": "WPPROXY12",
+        "price": "390",
+        "discount": "0"
+      }
+    ]
+  }
+]
