@@ -6,5 +6,4 @@ namespace Seravo\SeravoApi\Exception;
 
 final class ApiException extends \Exception
 {
-
 }
