@@ -8,6 +8,7 @@ use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Products;
+use Seravo\SeravoApi\Apis\Public\Endpoint\Plans;
 
 class PublicApi extends AbstractApi
 {
@@ -26,5 +27,10 @@ class PublicApi extends AbstractApi
     public function products(): Products
     {
         return new Products($this);
+    }
+
+    public function plans(): Plans
+    {
+        return new Plans($this);
     }
 }
