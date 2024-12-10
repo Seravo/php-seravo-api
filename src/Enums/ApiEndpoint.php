@@ -8,4 +8,5 @@ enum ApiEndpoint: string
 {
     case Orders = 'orders';
     case Prices = 'prices';
+    case Products = 'products';
 }
