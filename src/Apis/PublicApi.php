@@ -6,6 +6,7 @@ namespace Seravo\SeravoApi\Apis;
 
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\HttpClient\Builder;
+use Seravo\SeravoApi\Apis\Public\Endpoint\Plans;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Products;
 
@@ -26,5 +27,10 @@ class PublicApi extends AbstractApi
     public function products(): Products
     {
         return new Products($this);
+    }
+
+    public function plans(): Plans
+    {
+        return new Plans($this);
     }
 }
