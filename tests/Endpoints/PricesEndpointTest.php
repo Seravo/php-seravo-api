@@ -2,55 +2,40 @@
 
 declare(strict_types=1);
 
-namespace Seravo\Tests\SeravoApi;
+namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
-use Seravo\SeravoApi\HttpClient\Builder;
-use Seravo\SeravoApi\SeravoAPI;
+use Seravo\SeravoApi\Enums\HttpMethod;
+use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
 
-class PricesEndpointTest extends TestCase
+class PricesEndpointTest extends BaseEndpointCase
 {
-    /**
-     *
-     * @param array<object> $requests
-     */
-    public function createClientHandler(array $requests, ?MockHandler &$mock = null): SeravoAPI
-    {
-        $mock = new MockHandler($requests);
-
-        return new SeravoAPI(
-            baseUrl: 'https://example.com',
-            clientId: 'username',
-            secret: 'password',
-            httpClientBuilder: new Builder(new Client(['handler' => Handlerstack::create($mock)]))
-        );
-    }
-
     public function testGetPrice(): void
     {
-        $data = file_get_contents(__DIR__ . '/../MockData/price.json');
+        $mockData = $this->loadMockData('prices/price.json');
+        $mockResponse = json_decode($mockData, true);
 
-        $api = $this->createClientHandler([new Response(200, ['Content-Type' => 'application/json'], $data)]);
+        $apiMock = $this->createApiMock(ApiEndpoint::Prices, HttpMethod::Get, self::BASE_URI, $mockResponse);
 
-        $response = $api->public->prices()->get();
+        $prices = new Prices($apiMock);
+        $response = $prices->get();
 
         $this->assertIsArray($response);
-        $this->assertJsonStringEqualsJsonString($data, json_encode($response));
+        $this->assertEquals($mockResponse, $response);
     }
 
     public function testGetPrices(): void
     {
-        $data = file_get_contents(__DIR__ . '/../MockData/prices.json');
+        $mockData = $this->loadMockData('prices/prices.json');
+        $mockResponse = json_decode($mockData, true);
+        $priceId = '12345';
 
-        $api = $this->createClientHandler([new Response(200, ['Content-Type' => 'application/json'], $data)]);
+        $apiMock = $this->createApiMock(ApiEndpoint::Prices, HttpMethod::Get, self::BASE_URI . $priceId, $mockResponse);
 
-        $response = $api->public->prices()->get();
+        $prices = new Prices($apiMock);
+        $response = $prices->getById($priceId);
 
         $this->assertIsArray($response);
-        $this->assertJsonStringEqualsJsonString($data, json_encode($response));
+        $this->assertEquals($mockResponse, $response);
     }
 }
