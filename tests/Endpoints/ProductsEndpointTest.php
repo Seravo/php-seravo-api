@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
+use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Products;
@@ -15,7 +16,7 @@ class ProductsEndpointTest extends BaseEndpointCase
         $mockData = $this->loadMockData('products/products.json');
         $mockResponse = json_decode($mockData, true);
 
-        $apiMock = $this->createApiMock(ApiEndpoint::Products, HttpMethod::Get, self::BASE_URI, $mockResponse);
+        $apiMock = $this->createApiMock(PublicApi::class, ApiEndpoint::Products, HttpMethod::Get, self::BASE_URI, $mockResponse);
 
         $products = new Products($apiMock);
         $response = $products->get();
@@ -31,6 +32,7 @@ class ProductsEndpointTest extends BaseEndpointCase
         $productId = '12345';
 
         $apiMock = $this->createApiMock(
+            PublicApi::class,
             ApiEndpoint::Products,
             HttpMethod::Get,
             self::BASE_URI . $productId,

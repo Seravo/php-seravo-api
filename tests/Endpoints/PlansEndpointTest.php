@@ -7,6 +7,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Plans;
+use Seravo\SeravoApi\Apis\PublicApi;
 
 class PlansEndpointTest extends BaseEndpointCase
 {
@@ -15,7 +16,7 @@ class PlansEndpointTest extends BaseEndpointCase
         $mockData = $this->loadMockData('plans/plans.json');
         $mockResponse = json_decode($mockData, true);
 
-        $apiMock = $this->createApiMock(ApiEndpoint::Plans, HttpMethod::Get, self::BASE_URI, $mockResponse);
+        $apiMock = $this->createApiMock(PublicApi::class, ApiEndpoint::Plans, HttpMethod::Get, self::BASE_URI, $mockResponse);
 
         $plans = new Plans($apiMock);
         $response = $plans->get();
@@ -30,7 +31,7 @@ class PlansEndpointTest extends BaseEndpointCase
         $mockResponse = json_decode($mockData, true);
         $planId = '12345';
 
-        $apiMock = $this->createApiMock(ApiEndpoint::Plans, HttpMethod::Get, self::BASE_URI . $planId, $mockResponse);
+        $apiMock = $this->createApiMock(PublicApi::class, ApiEndpoint::Plans, HttpMethod::Get, self::BASE_URI . $planId, $mockResponse);
 
         $plans = new Plans($apiMock);
         $response = $plans->getById($planId);
