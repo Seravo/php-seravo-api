@@ -1,0 +1,85 @@
+{
+  "accept_service_terms": true,
+  "additional_domains": [],
+  "contact": {
+    "email": "tatu@seravo.com",
+    "name": "Tatu Kulmala",
+    "phone": "0401234567"
+  },
+  "migration": false,
+  "order_language": "FI",
+  "order_trial_period": 0,
+  "primary_domain": "testdomain.fi",
+  "site_location": "FI",
+  "affiliate_id": null,
+  "external_customer_id": null,
+  "message": null,
+  "miss_affiliate_id": null,
+  "request_id": null,
+  "service_id": null,
+  "created_at": "2024-10-17T12:04:01",
+  "updated_at": "2024-11-21T12:27:17",
+  "id": "57e2cdd4-921c-4aa6-9926-9dd3e5ad42fb",
+  "billing": {
+    "contact_email": "tatu@seravo.com",
+    "contact_name": "Tatu Kulmala",
+    "contact_phone": "0401234567",
+    "option": "paper",
+    "address": "Kauppakatu 3 A 4",
+    "address2": null,
+    "city": "Tampere",
+    "email": null,
+    "invoice": null,
+    "name": "Tatu Kulmala",
+    "operator": null,
+    "postal": "33200"
+  },
+  "company": {
+    "address2": null,
+    "id": "1",
+    "address": null,
+    "city": null,
+    "email": null,
+    "location": null,
+    "name": "Tatu Kulmala",
+    "phone": null,
+    "postal": null
+  },
+  "mail": {
+    "boxes": [],
+    "forwarding_from": [],
+    "forwarding_to": [],
+    "option": "1"
+  },
+  "order_status": "new",
+  "price_data": {
+    "interval": 12,
+    "promotion": null,
+    "created_at": "2024-10-14T10:19:53",
+    "updated_at": null,
+    "id": "ff67d517-e5a1-4826-b936-5c41cd12853f",
+    "total": "31.98",
+    "products": [
+      {
+        "name": "Games developer",
+        "code": "IKPXURZMEUR",
+        "price": "936.0",
+        "discount": "0"
+      },
+      {
+        "name": "Magazine journalist",
+        "code": "VXUIZFRNHYZ",
+        "price": "2112.0",
+        "discount": "0"
+      },
+      {
+        "name": "Pro",
+        "code": "WPPRO12",
+        "price": "150",
+        "discount": "0"
+      }
+    ]
+  },
+  "promotion_code": null,
+  "services": null
+}
