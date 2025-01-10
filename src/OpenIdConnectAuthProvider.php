@@ -6,8 +6,9 @@ namespace Seravo\SeravoApi;
 
 use Jumbojett\OpenIDConnectClient;
 use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
+use Seravo\SeravoApi\Contracts\AuthProviderInterface;
 
-class AuthProvider
+class OpenIdConnectAuthProvider implements AuthProviderInterface
 {
     private string $accessToken;
 
@@ -17,13 +18,13 @@ class AuthProvider
         $oidc->providerConfigParam(['token_endpoint' => $tokenEndpoint]);
         $oidc->addScope(['openid']);
 
-        $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
+        $accessToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
 
-        if (!$clientCredentialsToken) {
+        if (!$accessToken) {
             throw new InvalidAccessTokenException();
         }
 
-        $this->accessToken = $clientCredentialsToken;
+        $this->accessToken = $accessToken;
     }
 
     public function getAccessToken(): string
