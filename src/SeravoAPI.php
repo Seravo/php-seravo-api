@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi;
 
-use Seravo\SeravoApi\AuthProvider;
+use Seravo\SeravoApi\OpenIdConnectAuthProvider;
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\HttpClient\Builder;
@@ -37,7 +37,7 @@ final class SeravoAPI
         $this->httpClientBuilder->removePlugin(Authentication::class);
         $this->httpClientBuilder->addPlugin(
             new Authentication(
-                new AuthProvider(
+                new OpenIdConnectAuthProvider(
                     clientId: $this->clientId,
                     secret: $this->secret,
                     providerUrl: $authProviderUrl,
