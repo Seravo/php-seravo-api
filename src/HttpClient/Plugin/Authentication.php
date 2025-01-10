@@ -7,12 +7,12 @@ namespace Seravo\SeravoApi\HttpClient\Plugin;
 use Http\Client\Common\Plugin;
 use Http\Promise\Promise;
 use Psr\Http\Message\RequestInterface;
-use Seravo\SeravoApi\AuthProvider;
+use Seravo\SeravoApi\Contracts\AuthProviderInterface;
 
 class Authentication implements Plugin
 {
     public function __construct(
-        private readonly AuthProvider $authProvider
+        private readonly AuthProviderInterface $authProvider
     ) {
     }
 
