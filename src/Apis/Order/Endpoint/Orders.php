@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\OrderStatusRequest;
+use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
@@ -55,13 +56,13 @@ class Orders
     }
 
     /**
-     * Update an Order
+     * Create/update an Order
      * API Reference: https://api.seravo.dev/order/docs#/Orders/update_order_orders__id__put
      *
      * @param string $id - Uuid
      * @return array<string, mixed>
      */
-    public function update(string $id, CreateOrderRequest $request): array
+    public function update(string $id, UpdateOrderRequest $request): array
     {
         return $this->orderApi->request(method: HttpMethod::Put, uri: $this->uri . $id, body: $request);
     }
