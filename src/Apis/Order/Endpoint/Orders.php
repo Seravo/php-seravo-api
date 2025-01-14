@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
-use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
+use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
+use Seravo\SeravoApi\Apis\Order\Request\Order\OrderStatusRequest;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
