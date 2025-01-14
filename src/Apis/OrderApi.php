@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis;
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Order\Endpoint\Orders;
+use Seravo\SeravoApi\Apis\Order\Endpoint\Promotions;
 
 class OrderApi extends AbstractApi
 {
@@ -22,5 +23,10 @@ class OrderApi extends AbstractApi
     public function orders(): Orders
     {
         return new Orders($this);
+    }
+
+    public function promotions(): Promotions
+    {
+        return new Promotions($this);
     }
 }
