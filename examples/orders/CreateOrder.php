@@ -6,11 +6,11 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 use Seravo\SeravoApi\SeravoAPI;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\CreateOrderRequest;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\PaperInvoice;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
+use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
 use Seravo\SeravoApi\Exception\ValidationErrorException;
 
 $billing = new PaperInvoice(

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\Apis\Order\Request\CreateOrder;
+namespace Seravo\SeravoApi\Apis\Order\Request\Order;
 
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Contact;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing\BillingMethod;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Company;
-use Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Mail;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\BillingMethod;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
 use Seravo\SeravoApi\Concerns\ArrayTransformer;
 
 class CreateOrderRequest implements \JsonSerializable
