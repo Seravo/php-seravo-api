@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema;
+namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema;
 
 class Company
 {

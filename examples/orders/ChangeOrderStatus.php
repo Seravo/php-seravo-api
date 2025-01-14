@@ -6,8 +6,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 use Seravo\SeravoApi\SeravoAPI;
-use Seravo\SeravoApi\Apis\Order\Request\OrderStatusRequest;
-
+use Seravo\SeravoApi\Apis\Order\Request\Order\OrderStatusRequest;
 use Seravo\SeravoApi\Enums\OrderStatus;
 
 $api = new SeravoAPI(

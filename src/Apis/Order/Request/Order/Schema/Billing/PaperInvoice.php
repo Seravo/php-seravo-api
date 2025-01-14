@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\Apis\Order\Request\CreateOrder\Schema\Billing;
+namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing;
 
 class PaperInvoice extends BillingMethod
 {

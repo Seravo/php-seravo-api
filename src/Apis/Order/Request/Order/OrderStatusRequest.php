@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\Apis\Order\Request;
+namespace Seravo\SeravoApi\Apis\Order\Request\Order;
 
 use Seravo\SeravoApi\Enums\OrderStatus;
 
