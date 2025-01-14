@@ -6,7 +6,7 @@ namespace Seravo\SeravoApi\Apis\Order\Request\Order;
 
 use Seravo\SeravoApi\Enums\OrderStatus;
 
-class OrderStatusRequest implements \JsonSerializable
+readonly class OrderStatusRequest implements \JsonSerializable
 {
     public function __construct(
         public OrderStatus $orderStatus,
