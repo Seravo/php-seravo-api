@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis;
 
+use Seravo\SeravoApi\Apis\Order\Endpoint\Affiliates;
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Order\Endpoint\Orders;
@@ -26,5 +27,10 @@ class OrderApi extends AbstractApi
     public function promotions(): Promotions
     {
         return new Promotions($this);
+    }
+
+    public function affiliates(): Affiliates
+    {
+        return new Affiliates($this);
     }
 }
