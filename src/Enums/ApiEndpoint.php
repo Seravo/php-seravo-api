@@ -11,4 +11,5 @@ enum ApiEndpoint: string
     case Products = 'products';
     case Plans = 'plans';
     case Promotions = 'promotions';
+    case Affiliates = 'affiliates';
 }
