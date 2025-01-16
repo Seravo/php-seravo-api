@@ -6,7 +6,6 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
-use Seravo\SeravoApi\Apis\Order\Request\Order\OrderStatusRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
@@ -65,21 +64,5 @@ class Orders
     public function update(string $id, UpdateOrderRequest $request): array
     {
         return $this->orderApi->request(method: HttpMethod::Put, uri: $this->uri . $id, body: $request);
-    }
-
-    /**
-     * Change (Update) an Orders Status
-     * @see API Reference:  https://api.seravo.dev/order/docs#/Orders/order_status_order_orders__id__status_post
-     *
-     * @param string $id - Uuid
-     * @return array<string, mixed>
-     */
-    public function status(string $id, OrderStatusRequest $request): array
-    {
-        return $this->orderApi->request(
-            method: HttpMethod::Post,
-            uri: $this->uri . $id . '/status',
-            body: $request
-        );
     }
 }
