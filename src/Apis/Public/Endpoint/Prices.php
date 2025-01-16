@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
-use Seravo\SeravoApi\Apis\Public\Request\CreatePriceRequest;
+use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;

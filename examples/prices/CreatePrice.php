@@ -6,7 +6,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 use Seravo\SeravoApi\SeravoAPI;
-use Seravo\SeravoApi\Apis\Public\Request\CreatePriceRequest;
+use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 use Seravo\SeravoApi\Exception\ValidationErrorException;
 
 $createPriceRequest = new CreatePriceRequest(

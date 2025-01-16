@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seravo\SeravoApi\Apis\Public\Request;
+namespace Seravo\SeravoApi\Apis\Public\Request\Price;
 
 use Seravo\SeravoApi\Concerns\ArrayTransformer;
 
