@@ -9,6 +9,7 @@ use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Products;
 use Seravo\SeravoApi\Apis\Public\Endpoint\Plans;
+use Seravo\SeravoApi\Apis\Public\Endpoint\ProductGroups;
 
 class PublicApi extends AbstractApi
 {
@@ -32,5 +33,10 @@ class PublicApi extends AbstractApi
     public function plans(): Plans
     {
         return new Plans($this);
+    }
+
+    public function productGroups(): ProductGroups
+    {
+        return new ProductGroups($this);
     }
 }
