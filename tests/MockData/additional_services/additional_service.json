@@ -1,0 +1,10 @@
+{
+    "transfer_keys": [
+        "test",
+        "test2",
+        "test3"
+    ],
+    "dns_zone": "testzonedataedited",
+    "created_at": "2025-01-15T13:21:08",
+    "updated_at": "2025-01-15T13:22:29"
+}
