@@ -1,0 +1,20 @@
+{
+    "name": "Kauppinen",
+    "promotion_code": "zFsIoQXPZEhnGqQ",
+    "promotion_type": "referrer",
+    "wp_admin_username": "johanneshyttinen",
+    "discount": "0.0",
+    "trial_months": 1,
+    "account_manager": "simolaine@example.net",
+    "deploy_location": null,
+    "template": null,
+    "free_migration": true,
+    "staging_shadow": true,
+    "whitelabel": "jackson.com",
+    "plans": [],
+    "reseller_id": null,
+    "created_at": "2024-09-18T08:34:40",
+    "updated_at": null,
+    "id": "0d83c053-bf27-44c2-83ac-7f7bbe27e61b",
+    "reseller": null
+}
