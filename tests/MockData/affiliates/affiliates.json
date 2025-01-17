@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Rivera, Thompson and Jones",
+    "partner_id": "4f545172-daf0-4da8-8b66-6170f5239d2d",
+    "created_at": "2024-09-18T08:34:40",
+    "updated_at": null,
+    "id": "303bcee4-5988-40d2-ad02-2c853882298b",
+    "deleted_at": null
+  },
+  {
+    "name": "Oneill-Delacruz",
+    "partner_id": "af78e9f3-0301-4dea-8ea6-d60c44ac7c32",
+    "created_at": "2024-09-18T08:34:40",
+    "updated_at": null,
+    "id": "30aa24ec-0d2b-4755-bf0c-ecc95bb7ea66",
+    "deleted_at": null
+  },
+  {
+    "name": "John Doe",
+    "partner_id": "4f545172-daf0-4da8-8b66-6170f5239d2d",
+    "created_at": "2025-01-15T09:59:45",
+    "updated_at": "2025-01-15T10:03:45",
+    "id": "4cda0607-73c2-4bbd-bb52-4f5eaa05a9ba",
+    "deleted_at": null
+  }
+]
