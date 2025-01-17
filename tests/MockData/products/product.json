@@ -1,0 +1,17 @@
+{
+  "name": "Financial trader",
+  "code": "JAUVWGYNNNO",
+  "type": "SALES",
+  "unit": "HOUR",
+  "price": 179,
+  "locale": {
+    "fi": "Yleinen edunvalvoja",
+    "se": "Veterinary surgeon"
+  },
+  "product_type": "certificate",
+  "group_id": "db63b5a6-0614-4614-bda7-d14b21afef3d",
+  "created_at": "2024-10-14T10:19:52",
+  "updated_at": null,
+  "id": "067a1083-d562-446a-9478-ad0628a31374",
+  "deleted_at": null
+}
