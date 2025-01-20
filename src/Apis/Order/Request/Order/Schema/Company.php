@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema;
 
-class Company
+readonly class Company
 {
     public function __construct(
-        public readonly string $id,
-        public readonly string $name,
-        public readonly ?string $address = null,
-        public readonly ?string $city = null,
-        public readonly ?string $email = null,
-        public readonly ?string $location = null,
-        public readonly ?string $phone = null,
-        public readonly ?string $postal = null,
-        public readonly ?string $address2 = null
+        public string $id,
+        public string $name,
+        public ?string $address = null,
+        public ?string $city = null,
+        public ?string $email = null,
+        public ?string $location = null,
+        public ?string $phone = null,
+        public ?string $postal = null,
+        public ?string $address2 = null
     ) {
     }
 }
