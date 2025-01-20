@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema;
 
-class Mail
+readonly class Mail
 {
     /**
      * Undocumented function
@@ -14,10 +14,10 @@ class Mail
      * @param array<string> $forwardingTo
      */
     public function __construct(
-        public readonly string $option,
-        public readonly array $boxes = [],
-        public readonly array $forwardingFrom = [],
-        public readonly array $forwardingTo = []
+        public string $option,
+        public array $boxes = [],
+        public array $forwardingFrom = [],
+        public array $forwardingTo = []
     ) {
     }
 }
