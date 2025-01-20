@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing;
 
+use Seravo\SeravoApi\Enums\BillingMethod as BillingMethodEnum;
+
 class PaperInvoice extends BillingMethod
 {
-    public const BILLING_METHOD = 'paper';
-
     public function __construct(
         public string $contactEmail,
         public string $contactName,
@@ -21,6 +21,6 @@ class PaperInvoice extends BillingMethod
         public ?string $operator = null,
         public ?string $address2 = null,
     ) {
-        parent::__construct($contactEmail, $contactName, $contactPhone, self::BILLING_METHOD);
+        parent::__construct($contactEmail, $contactName, $contactPhone, BillingMethodEnum::Paper->value);
     }
 }
