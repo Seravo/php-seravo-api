@@ -7,6 +7,8 @@ namespace Seravo\SeravoApi;
 use Jumbojett\OpenIDConnectClient;
 use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
 use Seravo\SeravoApi\Contracts\AuthProviderInterface;
+use Seravo\SeravoApi\Exception\AuthenticationException;
+use Seravo\SeravoApi\Exception\MissingAccessTokenException;
 
 class OpenIdConnectAuthProvider implements AuthProviderInterface
 {
@@ -16,23 +18,25 @@ class OpenIdConnectAuthProvider implements AuthProviderInterface
         private readonly string $clientId,
         private readonly string $secret,
         private readonly string $providerUrl,
-        private readonly string $tokenEndpoint,
         private ?OpenIDConnectClient $oidc = null
     ) {
         $this->oidc = $oidc ?? new OpenIDConnectClient($this->providerUrl, $this->clientId, $this->secret);
-        $this->oidc->providerConfigParam(['token_endpoint' => $this->tokenEndpoint]);
         $this->oidc->addScope(['openid']);
     }
 
     public function getAccessToken(): string
     {
-        $tokenResponse = $this->oidc->requestClientCredentialsToken() ?? null;
+        try {
+            $tokenResponse = $this->oidc->requestClientCredentialsToken();
 
-        if (!$tokenResponse) {
-            throw new InvalidAccessTokenException();
+            if (!isset($tokenResponse->access_token)) {
+                throw new MissingAccessTokenException('Access token not found in response');
+            }
+
+            $this->accessToken = $tokenResponse->access_token;
+        } catch (\Throwable $th) {
+            throw new AuthenticationException($th->getMessage());
         }
-
-        $this->accessToken = $tokenResponse->access_token;
 
         return $this->accessToken;
     }

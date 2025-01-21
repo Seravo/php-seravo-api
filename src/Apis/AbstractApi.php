@@ -39,7 +39,7 @@ abstract class AbstractApi
     public function setUri(ApiModule|ApiEndpoint $endpoint): string
     {
         $uri = $this->httpClientBuilder->getUriFactory()->createUri($this->baseUrl);
-        $uri = $uri->withPath(rtrim($uri->getPath(), '/') . $this->endPointPrefix->value . '/');
+        $uri = $uri->withPath(rtrim($uri->getPath(), '/') . '/' . $this->endPointPrefix->value . '/');
 
         $this->uri = $uri;
 

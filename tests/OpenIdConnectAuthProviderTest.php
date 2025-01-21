@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Tests;
 
-use Jumbojett\OpenIDConnectClient;
 use PHPUnit\Framework\TestCase;
+use Jumbojett\OpenIDConnectClient;
 use PHPUnit\Framework\MockObject\MockObject;
 use Seravo\SeravoApi\OpenIdConnectAuthProvider;
-use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
+use Seravo\SeravoApi\Exception\AuthenticationException;
 
 class OpenIdConnectAuthProviderTest extends TestCase
 {
     private const CLIENT_ID = 'client_id';
     private const SECRET = 'secret';
     private const PROVIDER_URL = 'https://provider.url';
-    private const TOKEN_ENDPOINT = 'https://provider.url/token';
     private const ACCESS_TOKEN = 'access_token';
 
     private MockObject&OpenIDConnectClient $oidcMock;
@@ -23,10 +22,6 @@ class OpenIdConnectAuthProviderTest extends TestCase
     protected function setUp(): void
     {
         $this->oidcMock = $this->createMock(OpenIDConnectClient::class);
-
-        $this->oidcMock->expects($this->once())
-            ->method('providerConfigParam')
-            ->with(['token_endpoint' => self::TOKEN_ENDPOINT]);
 
         $this->oidcMock->expects($this->once())
             ->method('addScope')
@@ -39,7 +34,6 @@ class OpenIdConnectAuthProviderTest extends TestCase
             self::CLIENT_ID,
             self::SECRET,
             self::PROVIDER_URL,
-            self::TOKEN_ENDPOINT,
             $this->oidcMock
         );
     }
@@ -60,14 +54,14 @@ class OpenIdConnectAuthProviderTest extends TestCase
         $this->assertEquals(self::ACCESS_TOKEN, $authProvider->getAccessToken());
     }
 
-    public function testGetAccessTokenThrowsInvalidAccessTokenExceptionWhenTokenCanNotBeRequested(): void
+    public function testGetAccessTokenThrowsAuthenticationExceptionWhenTokenCanNotBeRequested(): void
     {
         $this->oidcMock->expects($this->once())
             ->method('requestClientCredentialsToken')
             ->willReturn(null);
 
         $authProvider = $this->createAuthProvider();
-        $this->expectException(InvalidAccessTokenException::class);
+        $this->expectException(AuthenticationException::class);
         $authProvider->getAccessToken();
     }
 }

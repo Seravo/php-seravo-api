@@ -15,24 +15,28 @@ use Seravo\SeravoApi\HttpClient\Plugin\ExceptionHandler;
 
 final class SeravoAPI
 {
-    public OrderApi $order;
+    private readonly EnvironmentManager $environmentManager;
 
-    public PublicApi $public;
+    public readonly OrderApi $order;
+
+    public readonly PublicApi $public;
 
     public function __construct(
-        public readonly string $baseUrl,
         public readonly string $clientId,
         public readonly string $secret,
+        public ?string $environment = null,
         private ?Builder $httpClientBuilder = null
     ) {
+        $this->environmentManager = new EnvironmentManager($environment);
+
         $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
         $this->setDefaultHttpPlugins();
 
-        $this->order = new OrderApi($this->baseUrl, $this->httpClientBuilder);
-        $this->public = new PublicApi($this->baseUrl, $this->httpClientBuilder);
+        $this->order = new OrderApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
+        $this->public = new PublicApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
     }
 
-    public function authenticate(string $authProviderUrl, string $tokenEndpoint): void
+    public function authenticate(): void
     {
         $this->httpClientBuilder->removePlugin(Authentication::class);
         $this->httpClientBuilder->addPlugin(
@@ -40,8 +44,7 @@ final class SeravoAPI
                 new OpenIdConnectAuthProvider(
                     clientId: $this->clientId,
                     secret: $this->secret,
-                    providerUrl: $authProviderUrl,
-                    tokenEndpoint: $tokenEndpoint
+                    providerUrl: $this->environmentManager->getIdpUrl(),
                 )
             )
         );
