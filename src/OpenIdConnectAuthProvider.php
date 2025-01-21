@@ -12,10 +12,9 @@ class OpenIdConnectAuthProvider implements AuthProviderInterface
 {
     private string $accessToken;
 
-    public function __construct(string $clientId, string $secret, string $providerUrl, string $tokenEndpoint)
+    public function __construct(string $clientId, string $secret, string $providerUrl)
     {
         $oidc = new OpenIDConnectClient($providerUrl, $clientId, $secret);
-        $oidc->providerConfigParam(['token_endpoint' => $tokenEndpoint]);
         $oidc->addScope(['openid']);
 
         $accessToken = $oidc->requestClientCredentialsToken()->access_token ?? null;
