@@ -10,15 +10,11 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 $api = new SeravoAPI(
-    baseUrl: $_ENV['SERAVO_API_URL'],
     clientId: $_ENV['SERAVO_API_CLIENT_ID'],
     secret: $_ENV['SERAVO_API_SECRET']
 );
 
-$api->authenticate(
-    authProviderUrl: $_ENV['SERAVO_KEYCLOAK_PROVIDER_URL'],
-    tokenEndpoint: $_ENV['SERAVO_KEYCLOAK_TOKEN_ENDPOINT_URL']
-);
+$api->authenticate();
 
 try {
     $promotion = $api->order->promotions()->getById(id: '0d83c053-bf27-44c2-83ac-7f7bbe27e61b');
