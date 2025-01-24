@@ -13,7 +13,10 @@
         "ext-json": "*",
         "ext-curl": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^7.9"
+        "php-http/discovery": "^1.20",
+        "php-http/httplug": "^2.4",
+        "php-http/client-common": "^2.7",
+        "psr/http-message": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -30,12 +33,19 @@
         "phpstan/phpstan": "^1.12",
         "mockery/mockery": "^1.6",
         "squizlabs/php_codesniffer": "^3.10",
-        "phpcompatibility/php-compatibility": "^9.3"
+        "phpcompatibility/php-compatibility": "^9.3",
+        "guzzlehttp/guzzle": "^7.9",
+        "vlucas/phpdotenv": "^5.6"
     },
     "scripts": {
         "analyze": "vendor/bin/phpstan",
         "test": "vendor/bin/phpunit",
         "lint": "\"vendor/bin/phpcs\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\"",
         "beautify": "\"vendor/bin/phpcbf\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\""
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
