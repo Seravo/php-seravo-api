@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
+use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\Enums\HttpMethod;
@@ -47,17 +48,27 @@ abstract class AbstractApi
     }
 
     /**
-     * @param array<mixed, mixed> $headers
-     * @return array<string, mixed>
+     * @template T of SeravoResponseInterface
+     * @param class-string<T> $responseClass
+     * @param HttpMethod $method
+     * @param string $uri
+     * @param array<string, string> $headers
+     * @param mixed $body
+     * @return array<int, T> | T
      */
-    public function request(HttpMethod $method, string $uri, array $headers = [], mixed $body = null): array
-    {
+    public function request(
+        string $responseClass,
+        HttpMethod $method,
+        string $uri,
+        mixed $body = null,
+        array $headers = [],
+    ): SeravoResponseInterface|array {
         try {
             $response = $this->getHttpClient()->send($method->value, $uri, $headers, json_encode($body));
         } catch (RequestException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }
 
-        return ResponseFormatter::format($response);
+        return ResponseFormatter::format($response->getBody()->getContents(), $responseClass);
     }
 }

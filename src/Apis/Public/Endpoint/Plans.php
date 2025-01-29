@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
+use Seravo\SeravoApi\Apis\Public\Response\Plan;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
@@ -21,23 +22,29 @@ class Plans
     /**
      * Return Plans
      * @see API Reference: https://api.seravo.com/public/docs#/Plans/get_many_public_plans__get
-     *
-     * @return array<mixed, mixed>
+     * @return array<int, Plan>
      */
     public function get(): array
     {
-        return $this->api->request(method: HttpMethod::Get, uri: $this->uri);
+        return $this->api->request(
+            method: HttpMethod::Get,
+            uri: $this->uri,
+            responseClass: Plan::class
+        );
     }
 
     /**
      * Return a single Plan
      * @see API Reference: https://api.seravo.com/public/docs#/Plans/get_one_public_plans__id__get
-     *
-     * @param string $id - Uuid
-     * @return array<mixed, mixed>
+     * @param string $id - UUID
+     * @return Plan
      */
-    public function getById(string $id): array
+    public function getById(string $id): Plan
     {
-        return $this->api->request(method: HttpMethod::Get, uri: $this->uri . $id);
+        return $this->api->request(
+            method: HttpMethod::Get,
+            uri: $this->uri . $id,
+            responseClass: Plan::class
+        );
     }
 }
