@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
+use Seravo\SeravoApi\Apis\Public\Response\Product;
 use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
@@ -21,23 +22,29 @@ class Products
     /**
      * Return all Products
      * @see API Reference: https://api.seravo.com/public/docs#/Products/get_many_public_products__get
-     *
-     * @return array<mixed, mixed>
+     * @return array<int, Product>
      */
     public function get(): array
     {
-        return $this->api->request(method: HttpMethod::Get, uri: $this->uri);
+        return $this->api->request(
+            method: HttpMethod::Get,
+            uri: $this->uri,
+            responseClass: Product::class
+        );
     }
 
     /**
      * Return a single Product
      * @see API Reference: https://api.seravo.com/public/docs#/Products/get_one_public_products__id__get
-     *
-     * @param string $id - Uuid
-     * @return array<mixed, mixed>
+     * @param string $id - UUID
+     * @return Product
      */
-    public function getById(string $id): array
+    public function getById(string $id): Product
     {
-        return $this->api->request(method: HttpMethod::Get, uri: $this->uri . $id);
+        return $this->api->request(
+            method: HttpMethod::Get,
+            uri: $this->uri . $id,
+            responseClass: Product::class
+        );
     }
 }
