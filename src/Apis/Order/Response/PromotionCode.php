@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response;
 
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-/** @implements SeravoResponseInterface<PromotionCode> */
-readonly class PromotionCode implements SeravoResponseInterface
+readonly class PromotionCode extends AbstractResponse
 {
     /**
      *

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 
-readonly class Company
+use Seravo\SeravoApi\Apis\AbstractResponse;
+
+readonly class Company extends AbstractResponse
 {
     public function __construct(
         public ?string $id = null,

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response;
 
-readonly class Reseller
+use Seravo\SeravoApi\Apis\AbstractResponse;
+
+readonly class Reseller extends AbstractResponse
 {
     /**
      * @param array<string> $languages

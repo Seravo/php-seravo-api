@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 
 use DateTime;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-readonly class Mail
+readonly class Mail extends AbstractResponse
 {
     /**
      * @param array<string> $boxes
