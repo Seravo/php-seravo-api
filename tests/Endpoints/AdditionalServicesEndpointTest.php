@@ -4,86 +4,77 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Apis\Order\Endpoint\AdditionalServices;
-use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\CreateAdditionalServiceRequest;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\EditAdditionalServiceRequest;
-use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\Tests\SeravoApi\Endpoints\BaseEndpointCase;
+use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\CreateAdditionalServiceRequest;
 
-class AdditionalServicesEndpointTest extends BaseEndpointCase
+class AdditionalServicesEndpointTest extends BaseEndpointTestCase
 {
-    public function testGetAdditionalServiceById(): void
+    public function testGetAdditionalService(): void
     {
-        $mockData = $this->loadMockData('additional_services/additional_service.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Get,
-            self::BASE_URI . $id . '/services/',
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $additionalServices = new AdditionalServices($apiMock);
-        $response = $additionalServices->getById($id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(AdditionalService::class, $client->order->additionalServices()->getById($id), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->additionalServices()->getById($id);
     }
 
     public function testCreateAdditionalService(): void
     {
-        $mockData = $this->loadMockData('additional_services/additional_service.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Put,
-            self::BASE_URI . $id . '/services/',
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(201, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
         $request = new CreateAdditionalServiceRequest(
             transferKeys: ['test-key'],
-            dnsZone: 'test-dns-zone'
+            dnsZone: 'testzonedataedited'
         );
 
-        $additionalServices = new AdditionalServices($apiMock);
-        $response = $additionalServices->create($request, $id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(
+            AdditionalService::class,
+            $client->order->additionalServices()->create($request, $id),
+            $data
+        );
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->additionalServices()->create($request, $id);
     }
 
     public function testEditAdditionalService(): void
     {
-        $mockData = $this->loadMockData('additional_services/additional_service.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Patch,
-            self::BASE_URI . $id . '/services/',
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(201, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
         $request = new EditAdditionalServiceRequest(
             transferKeys: ['test-key'],
-            dnsZone: 'test-dns-zone'
+            dnsZone: 'testzonedataedited'
         );
 
-        $additionalServices = new AdditionalServices($apiMock);
-        $response = $additionalServices->edit($request, $id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(
+            AdditionalService::class,
+            $client->order->additionalServices()->edit($request, $id),
+            $data
+        );
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->additionalServices()->edit($request, $id);
     }
 }
