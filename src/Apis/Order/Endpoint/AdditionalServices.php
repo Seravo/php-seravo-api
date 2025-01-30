@@ -8,7 +8,6 @@ use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\CreateAdditionalServiceRequest;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\EditAdditionalServiceRequest;
 use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class AdditionalServices
@@ -16,9 +15,9 @@ class AdditionalServices
     private string $uri;
 
     public function __construct(
-        private readonly OrderApi $orderApi
+        private readonly OrderApi $api
     ) {
-        $this->uri = $this->orderApi->setUri(ApiEndpoint::Orders);
+        $this->uri = $this->api->setUri(ApiEndpoint::Orders);
     }
 
     /**
@@ -30,8 +29,7 @@ class AdditionalServices
      */
     public function create(CreateAdditionalServiceRequest $request, string $id): AdditionalService
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Put,
+        return $this->api->put(
             uri: $this->uri . $id . '/services/',
             body: $request,
             responseClass: AdditionalService::class
@@ -46,11 +44,7 @@ class AdditionalServices
      */
     public function getById(string $id): AdditionalService
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id . '/services/',
-            responseClass: AdditionalService::class
-        );
+        return $this->api->get(uri: $this->uri . $id . '/services/', responseClass: AdditionalService::class);
     }
 
     /**
@@ -62,8 +56,7 @@ class AdditionalServices
      */
     public function edit(EditAdditionalServiceRequest $request, string $id): AdditionalService
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Patch,
+        return $this->api->patch(
             uri: $this->uri . $id . '/services/',
             body: $request,
             responseClass: AdditionalService::class

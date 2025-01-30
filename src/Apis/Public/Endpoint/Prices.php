@@ -7,7 +7,6 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Prices
@@ -28,12 +27,7 @@ class Prices
      */
     public function create(CreatePriceRequest $request): Price
     {
-        return $this->api->request(
-            method: HttpMethod::Post,
-            uri: $this->uri,
-            body: $request,
-            responseClass: Price::class
-        );
+        return $this->api->post(uri: $this->uri, body: $request, responseClass: Price::class);
     }
 
     /**
@@ -44,10 +38,6 @@ class Prices
      */
     public function getById(string $id): Price
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: Price::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: Price::class);
     }
 }
