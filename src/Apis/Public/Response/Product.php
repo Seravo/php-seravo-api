@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Public\Response;
 
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-/** @implements SeravoResponseInterface<Product> */
-readonly class Product implements SeravoResponseInterface
+readonly class Product extends AbstractResponse
 {
     public function __construct(
         public string $id,

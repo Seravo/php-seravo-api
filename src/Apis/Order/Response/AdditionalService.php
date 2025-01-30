@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response;
 
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-/** @implements SeravoResponseInterface<AdditionalService> */
-readonly class AdditionalService implements SeravoResponseInterface
+readonly class AdditionalService extends AbstractResponse
 {
     /**
      * @param array<string> $transferKeys

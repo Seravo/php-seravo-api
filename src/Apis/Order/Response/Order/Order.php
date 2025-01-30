@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 
+use Seravo\SeravoApi\Apis\AbstractResponse;
 use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 
-/**
- * @implements SeravoResponseInterface<Order>
- */
-readonly class Order implements SeravoResponseInterface
+readonly class Order extends AbstractResponse
 {
     /**
      * @param array<string> $additionalDomains
@@ -32,6 +29,7 @@ readonly class Order implements SeravoResponseInterface
         public string $orderStatus,
         public Price $priceData,
         public array $additionalDomains = [],
+        public int $orderTrialPeriod = 0,
         public ?string $affiliateId = null,
         public ?string $externalCustomerId = null,
         public ?string $message = null,

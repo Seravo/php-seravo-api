@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Public\Response;
 
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-/** @implements SeravoResponseInterface<Price> */
-readonly class Price implements SeravoResponseInterface
+readonly class Price extends AbstractResponse
 {
     /**
      * @param PriceProduct[] $products
@@ -17,7 +16,7 @@ readonly class Price implements SeravoResponseInterface
         public int $interval,
         public string $total,
         public array $products,
-        public ?\DateTime $createdAt = null,
+        public ?\DateTime $createdAt,
         public ?\DateTime $updatedAt = null,
         public ?string $promotion = null
     ) {
