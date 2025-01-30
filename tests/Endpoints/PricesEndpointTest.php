@@ -4,47 +4,22 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Apis\PublicApi;
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\Public\Endpoint\Prices;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Public\Response\Price;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 
-class PricesEndpointTest extends BaseEndpointCase
+class PricesEndpointTest extends BaseEndpointTestCase
 {
-    public function testGetPriceById(): void
-    {
-        $mockData = $this->loadMockData('prices/price.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
-
-        $apiMock = $this->createApiMock(
-            PublicApi::class,
-            ApiEndpoint::Prices,
-            HttpMethod::Get,
-            self::BASE_URI . $id,
-            $mockResponse
-        );
-
-        $prices = new Prices($apiMock);
-        $response = $prices->getById($id);
-
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
-    }
-
     public function testCreatePrice(): void
     {
-        $mockData = $this->loadMockData('prices/price.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            PublicApi::class,
-            ApiEndpoint::Prices,
-            HttpMethod::Post,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
+
 
         $request = new CreatePriceRequest(
             interval: 1,
@@ -52,10 +27,25 @@ class PricesEndpointTest extends BaseEndpointCase
             plan: 'test-plan-id'
         );
 
-        $prices = new Prices($apiMock);
-        $response = $prices->create($request);
+        $this->testGetObject(Price::class, $client->public->prices()->create($request), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->public->prices()->create($request);
+    }
+
+    public function testGetPrice(): void
+    {
+        $data = $this->getDataProvider()->getData();
+
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
+
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(Price::class, $client->public->prices()->getById($id), $data);
+
+        $this->expectException(RuntimeException::class);
+        $client->public->prices()->getById($id);
     }
 }

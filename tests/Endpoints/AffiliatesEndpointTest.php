@@ -4,52 +4,40 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Apis\Order\Endpoint\Affiliates;
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\Tests\SeravoApi\Endpoints\BaseEndpointCase;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
 
-class AffiliatesEndpointTest extends BaseEndpointCase
+class AffiliatesEndpointTest extends BaseEndpointTestCase
 {
     public function testGetAffiliates(): void
     {
-        $mockData = $this->loadMockData('affiliates/affiliates.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Affiliates,
-            HttpMethod::Get,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $affiliates = new Affiliates($apiMock);
-        $response = $affiliates->get();
+        $this->testArrayOfObjects(Affiliate::class, $client->order->affiliates()->get(), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->affiliates()->get();
     }
 
-    public function testGetAffliateById(): void
+    public function testGetAffiliate(): void
     {
-        $mockData = $this->loadMockData('affiliates/affiliate.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Affiliates,
-            HttpMethod::Get,
-            self::BASE_URI . $id,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $affiliates = new Affiliates($apiMock);
-        $response = $affiliates->getById($id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(Affiliate::class, $client->order->affiliates()->getById($id), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->affiliates()->getById($id);
     }
 }
