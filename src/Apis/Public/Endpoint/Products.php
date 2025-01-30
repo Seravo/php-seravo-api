@@ -6,7 +6,6 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Products
@@ -26,11 +25,7 @@ class Products
      */
     public function get(): array
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: Product::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: Product::class);
     }
 
     /**
@@ -41,10 +36,6 @@ class Products
      */
     public function getById(string $id): Product
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: Product::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: Product::class);
     }
 }

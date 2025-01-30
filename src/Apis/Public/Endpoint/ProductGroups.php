@@ -7,7 +7,6 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class ProductGroups
@@ -27,11 +26,7 @@ class ProductGroups
      */
     public function get(): array
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: ProductGroup::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: ProductGroup::class);
     }
 
     /**
@@ -42,11 +37,7 @@ class ProductGroups
      */
     public function getByName(string $name): ProductGroup
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $name,
-            responseClass: ProductGroup::class
-        );
+        return $this->api->get(uri: $this->uri . $name, responseClass: ProductGroup::class);
     }
 
     /**
@@ -58,10 +49,6 @@ class ProductGroups
      */
     public function getProducts(string $name): array
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $name . '/products/',
-            responseClass: Product::class
-        );
+        return $this->api->get(uri: $this->uri . $name . '/products/', responseClass: Product::class);
     }
 }
