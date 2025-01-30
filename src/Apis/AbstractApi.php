@@ -50,13 +50,60 @@ abstract class AbstractApi
     /**
      * @template T of SeravoResponseInterface
      * @param class-string<T> $responseClass
+     * @param string $uri
+     * @return array<int, T> | T
+     */
+    public function get(string $responseClass, string $uri): SeravoResponseInterface|array
+    {
+        return $this->request($responseClass, HttpMethod::Get, $uri);
+    }
+
+    /**
+     * @template T of SeravoResponseInterface
+     * @param class-string<T> $responseClass
+     * @param string $uri
+     * @param mixed $body
+     * @return T
+     */
+    public function post(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
+    {
+        return $this->request($responseClass, HttpMethod::Post, $uri, $body);
+    }
+
+    /**
+     * @template T of SeravoResponseInterface
+     * @param class-string<T> $responseClass
+     * @param string $uri
+     * @param mixed $body
+     * @return T
+     */
+    public function put(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
+    {
+        return $this->request($responseClass, HttpMethod::Put, $uri, $body);
+    }
+
+    /**
+     * @template T of SeravoResponseInterface
+     * @param class-string<T> $responseClass
+     * @param string $uri
+     * @param mixed $body
+     * @return T
+     */
+    public function patch(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
+    {
+        return $this->request($responseClass, HttpMethod::Patch, $uri, $body);
+    }
+
+    /**
+     * @template T of SeravoResponseInterface
+     * @param class-string<T> $responseClass
      * @param HttpMethod $method
      * @param string $uri
      * @param array<string, string> $headers
      * @param mixed $body
      * @return array<int, T> | T
      */
-    public function request(
+    private function request(
         string $responseClass,
         HttpMethod $method,
         string $uri,

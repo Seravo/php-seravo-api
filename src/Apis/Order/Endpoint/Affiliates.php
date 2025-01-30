@@ -6,7 +6,6 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Affiliates
@@ -14,9 +13,9 @@ class Affiliates
     private string $uri;
 
     public function __construct(
-        private readonly OrderApi $orderApi
+        private readonly OrderApi $api
     ) {
-        $this->uri = $this->orderApi->setUri(ApiEndpoint::Affiliates);
+        $this->uri = $this->api->setUri(ApiEndpoint::Affiliates);
     }
 
     /**
@@ -26,11 +25,7 @@ class Affiliates
      */
     public function get(): array
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: Affiliate::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: Affiliate::class);
     }
 
     /**
@@ -41,10 +36,6 @@ class Affiliates
      */
     public function getById(string $id): Affiliate
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: Affiliate::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: Affiliate::class);
     }
 }

@@ -8,7 +8,6 @@ use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Orders
@@ -16,9 +15,9 @@ class Orders
     private string $uri;
 
     public function __construct(
-        private readonly OrderApi $orderApi
+        private readonly OrderApi $api
     ) {
-        $this->uri = $this->orderApi->setUri(ApiEndpoint::Orders);
+        $this->uri = $this->api->setUri(ApiEndpoint::Orders);
     }
 
     /**
@@ -29,12 +28,7 @@ class Orders
      */
     public function create(CreateOrderRequest $request): Order
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Post,
-            uri: $this->uri,
-            body: $request,
-            responseClass: Order::class
-        );
+        return $this->api->post(uri: $this->uri, body: $request, responseClass: Order::class);
     }
 
     /**
@@ -44,11 +38,7 @@ class Orders
      */
     public function get(): array
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: Order::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: Order::class);
     }
 
     /**
@@ -59,11 +49,7 @@ class Orders
      */
     public function getById(string $id): Order
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: Order::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: Order::class);
     }
 
     /**
@@ -75,11 +61,6 @@ class Orders
      */
     public function update(string $id, UpdateOrderRequest $request): Order
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Put,
-            uri: $this->uri . $id,
-            body: $request,
-            responseClass: Order::class
-        );
+        return $this->api->put(uri: $this->uri . $id, body: $request, responseClass: Order::class);
     }
 }

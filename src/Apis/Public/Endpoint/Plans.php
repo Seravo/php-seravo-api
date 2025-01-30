@@ -6,7 +6,6 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Response\Plan;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Plans
@@ -26,11 +25,7 @@ class Plans
      */
     public function get(): array
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: Plan::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: Plan::class);
     }
 
     /**
@@ -41,10 +36,6 @@ class Plans
      */
     public function getById(string $id): Plan
     {
-        return $this->api->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: Plan::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: Plan::class);
     }
 }

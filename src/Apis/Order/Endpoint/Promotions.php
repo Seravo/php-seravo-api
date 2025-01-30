@@ -6,7 +6,6 @@ namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
-use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Promotions
@@ -14,9 +13,9 @@ class Promotions
     private string $uri;
 
     public function __construct(
-        private readonly OrderApi $orderApi
+        private readonly OrderApi $api
     ) {
-        $this->uri = $this->orderApi->setUri(ApiEndpoint::Promotions);
+        $this->uri = $this->api->setUri(ApiEndpoint::Promotions);
     }
 
     /**
@@ -26,11 +25,7 @@ class Promotions
      */
     public function get(): array
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri,
-            responseClass: PromotionCode::class
-        );
+        return $this->api->get(uri: $this->uri, responseClass: PromotionCode::class);
     }
 
     /**
@@ -41,10 +36,6 @@ class Promotions
      */
     public function getById(string $id): PromotionCode
     {
-        return $this->orderApi->request(
-            method: HttpMethod::Get,
-            uri: $this->uri . $id,
-            responseClass: PromotionCode::class
-        );
+        return $this->api->get(uri: $this->uri . $id, responseClass: PromotionCode::class);
     }
 }
