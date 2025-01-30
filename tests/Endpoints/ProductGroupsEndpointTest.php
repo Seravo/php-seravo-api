@@ -4,73 +4,57 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\Public\Endpoint\ProductGroups;
-use Seravo\SeravoApi\Apis\PublicApi;
-use Seravo\Tests\SeravoApi\Endpoints\BaseEndpointCase;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Public\Response\Product;
+use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
 
-class ProductGroupsEndpointTest extends BaseEndpointCase
+class ProductGroupsEndpointTest extends BaseEndpointTestCase
 {
     public function testGetProductGroups(): void
     {
-        $mockData = $this->loadMockData('product_groups/product_groups.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            PublicApi::class,
-            ApiEndpoint::ProductGroups,
-            HttpMethod::Get,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $productGroups = new ProductGroups($apiMock);
-        $response = $productGroups->get();
+        $this->testArrayOfObjects(ProductGroup::class, $client->public->productGroups()->get(), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->public->productGroups()->get();
     }
 
-    public function testGetProductGroupByName(): void
+    public function testGetProductGroup(): void
     {
-        $mockData = $this->loadMockData('product_groups/product_group.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
+
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
+
         $name = 'domains';
+        $this->testGetObject(ProductGroup::class, $client->public->productGroups()->getByName($name), $data);
 
-        $apiMock = $this->createApiMock(
-            PublicApi::class,
-            ApiEndpoint::ProductGroups,
-            HttpMethod::Get,
-            self::BASE_URI . $name,
-            $mockResponse
-        );
-
-        $productGroups = new ProductGroups($apiMock);
-        $response = $productGroups->getByName($name);
-
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->public->productGroups()->getByName($name);
     }
 
-    public function testGetProductGroupsProductsByName(): void
+    public function testGetProductGroupsProducts(): void
     {
-        $mockData = $this->loadMockData('product_groups/product_groups_products.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
+
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
+
         $name = 'domains';
+        $this->testArrayOfObjects(Product::class, $client->public->productGroups()->getProducts($name), $data);
 
-        $apiMock = $this->createApiMock(
-            PublicApi::class,
-            ApiEndpoint::ProductGroups,
-            HttpMethod::Get,
-            self::BASE_URI . $name . '/products/',
-            $mockResponse
-        );
-
-        $productGroups = new ProductGroups($apiMock);
-        $response = $productGroups->getProducts($name);
-
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->public->productGroups()->getByName($name);
     }
 }

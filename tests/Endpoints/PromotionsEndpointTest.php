@@ -4,52 +4,40 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Apis\Order\Endpoint\Promotions;
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\Tests\SeravoApi\Endpoints\BaseEndpointCase;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 
-class PromotionsEndpointTest extends BaseEndpointCase
+class PromotionsEndpointTest extends BaseEndpointTestCase
 {
     public function testGetPromotions(): void
     {
-        $mockData = $this->loadMockData('promotions/promotions.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Promotions,
-            HttpMethod::Get,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $promotions = new Promotions($apiMock);
-        $response = $promotions->get();
+        $this->testArrayOfObjects(PromotionCode::class, $client->order->promotions()->get(), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->promotions()->get();
     }
 
-    public function testGetPromotionById(): void
+    public function testGetPromotion(): void
     {
-        $mockData = $this->loadMockData('promotions/promotion.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Promotions,
-            HttpMethod::Get,
-            self::BASE_URI . $id,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $promotions = new Promotions($apiMock);
-        $response = $promotions->getById($id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(PromotionCode::class, $client->order->promotions()->getById($id), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->promotions()->getById($id);
     }
 }

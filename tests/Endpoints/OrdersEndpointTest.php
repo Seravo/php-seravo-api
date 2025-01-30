@@ -4,75 +4,59 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\Order\Endpoint\Orders;
-use Seravo\Tests\SeravoApi\Endpoints\BaseEndpointCase;
+use RuntimeException;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
-use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
+use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 
-class OrdersEndpointTest extends BaseEndpointCase
+class OrdersEndpointTest extends BaseEndpointTestCase
 {
     public function testGetOrders(): void
     {
-        $mockData = $this->loadMockData('orders/orders.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Get,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $orders = new Orders($apiMock);
-        $response = $orders->get();
+        $this->testArrayOfObjects(Order::class, $client->order->orders()->get(), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->orders()->get();
     }
 
-    public function testGetOrderById(): void
+    public function testGetOrder(): void
     {
-        $mockData = $this->loadMockData('orders/order.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Get,
-            self::BASE_URI . $id,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $orders = new Orders($apiMock);
-        $response = $orders->getById($id);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(Order::class, $client->order->orders()->getById($id), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->orders()->getById($id);
     }
 
     public function testCreateOrder(): void
     {
-        $mockData = $this->loadMockData('orders/order.json');
-        $mockResponse = json_decode($mockData, true);
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Post,
-            self::BASE_URI,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $createOrderRequest = new CreateOrderRequest(
+        $request = new CreateOrderRequest(
             acceptServiceTerms: true,
             contact: new Contact(
                 email: 'test@test.com',
@@ -95,35 +79,29 @@ class OrdersEndpointTest extends BaseEndpointCase
             ),
             company: new Company(
                 id: '1',
-                name: 'Tatu Kulmala'
+                name: 'Test Company'
             ),
             mail: new Mail(
                 option: '1'
             ),
         );
 
-        $orders = new Orders($apiMock);
-        $response = $orders->create($createOrderRequest);
+        $this->testGetObject(Order::class, $client->order->orders()->create($request), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->orders()->create($request);
     }
 
     public function testUpdateOrder(): void
     {
-        $mockData = $this->loadMockData('orders/order.json');
-        $mockResponse = json_decode($mockData, true);
-        $id = 'test-id';
+        $data = $this->getDataProvider()->getData();
 
-        $apiMock = $this->createApiMock(
-            OrderApi::class,
-            ApiEndpoint::Orders,
-            HttpMethod::Put,
-            self::BASE_URI . $id,
-            $mockResponse
-        );
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
+            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+        ]);
 
-        $updateOrderRequest = new UpdateOrderRequest(
+        $request = new UpdateOrderRequest(
             acceptServiceTerms: true,
             contact: new Contact(
                 email: 'test@test.com',
@@ -146,17 +124,17 @@ class OrdersEndpointTest extends BaseEndpointCase
             ),
             company: new Company(
                 id: '1',
-                name: 'Tatu Kulmala'
+                name: 'Test Company'
             ),
             mail: new Mail(
                 option: '1'
             ),
         );
 
-        $orders = new Orders($apiMock);
-        $response = $orders->update($id, $updateOrderRequest);
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+        $this->testGetObject(Order::class, $client->order->orders()->update($id, $request), $data);
 
-        $this->assertIsArray($response);
-        $this->assertEquals($mockResponse, $response);
+        $this->expectException(RuntimeException::class);
+        $client->order->orders()->update($id, $request);
     }
 }
