@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response;
 
-use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
+use Seravo\SeravoApi\Apis\AbstractResponse;
 
-/** @implements SeravoResponseInterface<Affiliate> */
-readonly class Affiliate implements SeravoResponseInterface
+readonly class Affiliate extends AbstractResponse
 {
     public function __construct(
         public string $name,

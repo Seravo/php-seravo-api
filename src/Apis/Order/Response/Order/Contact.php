@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 
-readonly class Contact
+use Seravo\SeravoApi\Apis\AbstractResponse;
+
+readonly class Contact extends AbstractResponse
 {
     public function __construct(
         public string $email,
