@@ -19,7 +19,7 @@ class ProductsEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(Product::class, $client->public->products()->get(), $data);
+        $this->testCollection(Product::class, $client->public->products()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->public->products()->get();

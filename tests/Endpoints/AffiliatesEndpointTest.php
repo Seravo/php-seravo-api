@@ -19,7 +19,7 @@ class AffiliatesEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(Affiliate::class, $client->order->affiliates()->get(), $data);
+        $this->testCollection(Affiliate::class, $client->order->affiliates()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->order->affiliates()->get();

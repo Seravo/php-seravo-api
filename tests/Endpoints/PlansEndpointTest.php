@@ -19,7 +19,7 @@ class PlansEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(Plan::class, $client->public->plans()->get(), $data);
+        $this->testCollection(Plan::class, $client->public->plans()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->public->plans()->get();

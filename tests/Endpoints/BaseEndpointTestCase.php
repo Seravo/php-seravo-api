@@ -6,6 +6,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use Error;
 use PHPUnit\Framework\TestCase;
+use Seravo\SeravoApi\Contracts\CollectionInterface;
 use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 
 class BaseEndpointTestCase extends TestCase
@@ -37,19 +38,19 @@ class BaseEndpointTestCase extends TestCase
 
     /**
      * @param string $model
-     * @param array<int, SeravoResponseInterface> $response_objects
+     * @param CollectionInterface $collection
      * @param array<string, mixed> $spec_data
      * @param string $key
      * @return void
      */
-    protected function testArrayOfObjects(
+    protected function testCollection(
         string $model,
-        array $response_objects,
+        CollectionInterface $collection,
         array $spec_data,
         string $key = 'id'
     ): void {
-        $this->assertEquals(count($spec_data), count($response_objects));
-        foreach ($response_objects as $response_object) {
+        $this->assertEquals(count($spec_data), count($collection->all()));
+        foreach ($collection->all() as $response_object) {
             foreach ($spec_data as $object) {
                 if ($object[$key] !== $response_object->toArray()[$key]) {
                     continue;
