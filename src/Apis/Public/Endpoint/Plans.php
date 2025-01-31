@@ -6,6 +6,7 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Response\Plan;
+use Seravo\SeravoApi\Apis\Public\Response\PlanCollection;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Plans
@@ -21,11 +22,12 @@ class Plans
     /**
      * Return Plans
      * @see API Reference: https://api.seravo.com/public/docs#/Plans/get_many_public_plans__get
-     * @return array<int, Plan>
+     * @return PlanCollection
      */
-    public function get(): array
+    public function get(): PlanCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: Plan::class);
+        $response = $this->api->get(uri: $this->uri, responseClass: Plan::class);
+        return new PlanCollection(...$response);
     }
 
     /**

@@ -6,6 +6,7 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
+use Seravo\SeravoApi\Apis\Public\Response\ProductCollection;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Products
@@ -21,11 +22,12 @@ class Products
     /**
      * Return all Products
      * @see API Reference: https://api.seravo.com/public/docs#/Products/get_many_public_products__get
-     * @return array<int, Product>
+     * @return ProductCollection
      */
-    public function get(): array
+    public function get(): ProductCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: Product::class);
+        $response = $this->api->get(uri: $this->uri, responseClass: Product::class);
+        return new ProductCollection(...$response);
     }
 
     /**
