@@ -1,0 +1,49 @@
+---
+name: 'Run Tests'
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.2', '8.3']
+
+    steps:
+      # Checkout the repository
+      - name: Setup repository
+        uses: actions/checkout@v4
+
+      # Install PHP and tools necessary
+      - name: Setup PHP
+        uses: seravo/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: cs2pr, composer
+
+      # Print PHP version
+      - run: php --version
+
+      # Print Composer version
+      - run: composer --version 
+
+      # Validate composer.json syntax
+      - name: Validate composer.json syntax
+        run: composer validate --strict
+
+      # Install development dependencies
+      - name: Install development dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Print PHPUnit version
+      - run: vendor/bin/phpunit --version
+
+      # Run PHPUnit tests
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit
+          --no-progress
