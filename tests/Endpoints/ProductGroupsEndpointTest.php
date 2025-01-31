@@ -20,7 +20,7 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(ProductGroup::class, $client->public->productGroups()->get(), $data);
+        $this->testCollection(ProductGroup::class, $client->public->productGroups()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->public->productGroups()->get();
@@ -52,7 +52,7 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         ]);
 
         $name = 'domains';
-        $this->testArrayOfObjects(Product::class, $client->public->productGroups()->getProducts($name), $data);
+        $this->testCollection(Product::class, $client->public->productGroups()->getProducts($name), $data);
 
         $this->expectException(RuntimeException::class);
         $client->public->productGroups()->getByName($name);
