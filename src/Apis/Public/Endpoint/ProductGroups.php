@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
-use Seravo\SeravoApi\Apis\Public\Response\Product;
-use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Apis\Public\Response\Product;
+use Seravo\SeravoApi\Apis\Public\Response\ProductCollection;
+use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
+use Seravo\SeravoApi\Apis\Public\Response\ProductGroupCollection;
 
 class ProductGroups
 {
@@ -22,11 +24,12 @@ class ProductGroups
     /**
      * Return all ProductGroups
      * @see API Reference: https://api.seravo.com/public/docs#/Product%20groups/get_many_public_product_groups__get
-     * @return array<int, ProductGroup>
+     * @return ProductGroupCollection
      */
-    public function get(): array
+    public function get(): ProductGroupCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: ProductGroup::class);
+        $response = $this->api->get(uri: $this->uri, responseClass: ProductGroup::class);
+        return new ProductGroupCollection(...$response);
     }
 
     /**
@@ -45,10 +48,11 @@ class ProductGroups
      * @see API Reference:
      * https://api.seravo.com/public/docs#/Product%20groups/get_nested_public_product_groups__name__products__get
      * @param string $name
-     * @return array<int, Product>
+     * @return ProductCollection
      */
-    public function getProducts(string $name): array
+    public function getProducts(string $name): ProductCollection
     {
-        return $this->api->get(uri: $this->uri . $name . '/products/', responseClass: Product::class);
+        $response = $this->api->get(uri: $this->uri . $name . '/products/', responseClass: Product::class);
+        return new ProductCollection(...$response);
     }
 }

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Order\Endpoint;
 
 use Seravo\SeravoApi\Apis\OrderApi;
-use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
+use Seravo\SeravoApi\Apis\Order\Response\AffiliateCollection;
 
 class Affiliates
 {
@@ -21,11 +22,12 @@ class Affiliates
     /**
      * Return all Affiliates
      * @see API Reference: https://api.seravo.com/order/docs#/Affiliates/get_many_order_affiliates__get
-     * @return array<int, Affiliate>
+     * @return AffiliateCollection
      */
-    public function get(): array
+    public function get(): AffiliateCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: Affiliate::class);
+        $response = $this->api->get(uri: $this->uri, responseClass: Affiliate::class);
+        return new AffiliateCollection(...$response);
     }
 
     /**

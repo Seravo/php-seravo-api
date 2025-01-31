@@ -8,6 +8,7 @@ use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
+use Seravo\SeravoApi\Apis\Order\Response\Order\OrderCollection;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Orders
@@ -34,11 +35,12 @@ class Orders
     /**
      * Return all Orders
      * @see API Reference: https://api.seravo.dev/order/docs#/Orders/get_many_order_orders__get
-     * @return array<int, Order>
+     * @return OrderCollection
      */
-    public function get(): array
+    public function get(): OrderCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: Order::class);
+        $response = $this->api->get(uri: $this->uri, responseClass: Order::class);
+        return new OrderCollection(...$response);
     }
 
     /**
