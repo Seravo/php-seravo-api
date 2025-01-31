@@ -1,6 +1,7 @@
 {
     "name": "seravo/php-seravo-api",
     "description": "PHP Library for Seravo API",
+    "license": "MIT",
     "type": "library",
     "authors": [
         {
