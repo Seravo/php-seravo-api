@@ -19,7 +19,7 @@ class PromotionsEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(PromotionCode::class, $client->order->promotions()->get(), $data);
+        $this->testCollection(PromotionCode::class, $client->order->promotions()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->order->promotions()->get();

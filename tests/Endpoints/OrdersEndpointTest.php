@@ -25,7 +25,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             new Response(400, [], json_encode(['error' => 'Bad Request'])),
         ]);
 
-        $this->testArrayOfObjects(Order::class, $client->order->orders()->get(), $data);
+        $this->testCollection(Order::class, $client->order->orders()->get(), $data);
 
         $this->expectException(RuntimeException::class);
         $client->order->orders()->get();
