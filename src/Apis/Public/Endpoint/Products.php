@@ -26,8 +26,7 @@ class Products
      */
     public function get(): ProductCollection
     {
-        $response = $this->api->get(uri: $this->uri, responseClass: Product::class);
-        return new ProductCollection(...$response);
+        return $this->api->get(uri: $this->uri, responseClass: ProductCollection::class);
     }
 
     /**

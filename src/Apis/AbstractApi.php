@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
+use Seravo\SeravoApi\Contracts\CollectionInterface;
 use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Enums\ApiModule;
@@ -48,12 +49,12 @@ abstract class AbstractApi
     }
 
     /**
-     * @template T of SeravoResponseInterface
+     * @template T of SeravoResponseInterface|CollectionInterface
      * @param class-string<T> $responseClass
      * @param string $uri
-     * @return array<int, T> | T
+     * @return T
      */
-    public function get(string $responseClass, string $uri): SeravoResponseInterface|array
+    public function get(string $responseClass, string $uri): SeravoResponseInterface|CollectionInterface
     {
         return $this->request($responseClass, HttpMethod::Get, $uri);
     }
@@ -95,13 +96,13 @@ abstract class AbstractApi
     }
 
     /**
-     * @template T of SeravoResponseInterface
+     * @template T of SeravoResponseInterface|CollectionInterface
      * @param class-string<T> $responseClass
      * @param HttpMethod $method
      * @param string $uri
      * @param array<string, string> $headers
-     * @param mixed $body
-     * @return array<int, T> | T
+     * @param string $body
+     * @return T
      */
     private function request(
         string $responseClass,
@@ -109,9 +110,13 @@ abstract class AbstractApi
         string $uri,
         mixed $body = null,
         array $headers = [],
-    ): SeravoResponseInterface|array {
+    ): SeravoResponseInterface|CollectionInterface {
         try {
-            $response = $this->getHttpClient()->send($method->value, $uri, $headers, json_encode($body));
+            $encodedBody = json_encode($body);
+            if ($encodedBody === false) {
+                throw new ApiException('Failed to encode body to JSON');
+            }
+            $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
         } catch (RequestException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }
