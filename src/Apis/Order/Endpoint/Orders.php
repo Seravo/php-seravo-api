@@ -39,8 +39,7 @@ class Orders
      */
     public function get(): OrderCollection
     {
-        $response = $this->api->get(uri: $this->uri, responseClass: Order::class);
-        return new OrderCollection(...$response);
+        return $this->api->get(uri: $this->uri, responseClass: OrderCollection::class);
     }
 
     /**

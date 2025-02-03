@@ -12,19 +12,12 @@ use JsonMapper\Enums\TextNotation;
 use JsonMapper\JsonMapperInterface;
 use JsonMapper\Handler\PropertyMapper;
 use JsonMapper\Handler\FactoryRegistry;
+use Seravo\SeravoApi\Apis\AbstractResponse;
+use Seravo\SeravoApi\Contracts\CollectionInterface;
 use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 
 final class ResponseFormatter
 {
-    /**
-     * A class-map to dynamically invoke the correct method based on the response type
-     * @var array<string, string>
-     */
-    protected static $method = [
-        'object' => 'mapToClassFromString',
-        'array' => 'mapToClassArrayFromString',
-    ];
-
     private static function init(): JsonMapperInterface
     {
         $factoryRegistry = FactoryRegistry::withNativePhpClassesAdded();
@@ -41,18 +34,25 @@ final class ResponseFormatter
     }
 
     /**
-     *
-     * @template T of SeravoResponseInterface
+     * @template T of SeravoResponseInterface|CollectionInterface
      * @param string $json
      * @param class-string<T> $responseClass
-     * @return array<int, T>|T
+     * @return T
      */
-    public static function format(string $json, string $responseClass): array|SeravoResponseInterface
+    public static function format(string $json, string $responseClass): CollectionInterface|SeravoResponseInterface
     {
         $reflectionClass = new ReflectionClass($responseClass);
 
-        if ($reflectionClass->implementsInterface(SeravoResponseInterface::class) === false) {
-            throw new RuntimeException('Class '  . $responseClass . ' must implement SeravoResponseInterface');
+        if (
+            $reflectionClass->implementsInterface(SeravoResponseInterface::class) === false &&
+            $reflectionClass->implementsInterface(CollectionInterface::class) === false
+        ) {
+            throw new RuntimeException(sprintf(
+                'Class %s must implement %s or %s',
+                $responseClass,
+                SeravoResponseInterface::class,
+                CollectionInterface::class
+            ));
         }
 
         if ($reflectionClass->isInstantiable() === false) {
@@ -61,13 +61,53 @@ final class ResponseFormatter
 
         try {
             $responseType = gettype(json_decode($json));
-            $result = self::init()->{self::$method[$responseType]}($json, $responseClass);
+            if ($responseType === 'array') {
+                $decodedJson = json_decode($json, true);
+                $constructor = $reflectionClass->getConstructor();
+                if ($constructor === null) {
+                    throw new RuntimeException('Class ' . $responseClass . ' does not have a constructor.');
+                }
+                $reflectionParam = $constructor->getParameters()[0];
+                $reflectionType = $reflectionParam->getType();
+
+                if ($reflectionType instanceof \ReflectionNamedType) {
+                    /** @var class-string */
+                    $reflectionObj = $reflectionType->getName();
+                } else {
+                    throw new RuntimeException('Unable to determine the type of the parameter.');
+                }
+
+
+                /** @var CollectionInterface $collection */
+                $collection = new $responseClass();
+
+                $result = array_map(function (array $item) use ($collection, $reflectionObj) {
+                    $jsonItem = json_encode($item);
+
+                    if ($jsonItem === false) {
+                        throw new RuntimeException('Failed to encode item to JSON.');
+                    }
+
+                    $mappedObject = self::init()->mapToClassFromString($jsonItem, $reflectionObj);
+
+                    if (!$mappedObject instanceof AbstractResponse) {
+                        throw new RuntimeException('Mapped object is not an instance of AbstractResponse.');
+                    }
+
+                    $collection->add($mappedObject);
+                }, $decodedJson);
+
+                $result = $collection;
+            } else {
+                $result = self::init()->mapToClassFromString($json, $responseClass);
+            }
         } catch (Throwable $e) {
             throw new RuntimeException(
                 'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage()
             );
         }
 
+        /** @var T $result */
         return $result;
     }
 }
