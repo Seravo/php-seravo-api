@@ -6,12 +6,13 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use Error;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Seravo\SeravoApi\Contracts\CollectionInterface;
 use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 
 class BaseEndpointTestCase extends TestCase
 {
-    private ?DataProviderInterface $provider = null;
+    private DataProviderInterface $provider;
 
     public function __construct(string $name)
     {
@@ -24,20 +25,20 @@ class BaseEndpointTestCase extends TestCase
         $class = str_replace(['Seravo\Tests\SeravoApi\Endpoints\\', 'Test', 'Endpoint'], '', get_class($this)) . 'Data';
         $full_path = '\Seravo\Tests\SeravoApi\Data\\' . $class;
 
-        try {
-            $this->provider = new $full_path();
-        } catch (Error) {
-            $this->provider = null;
+        if (!is_subclass_of($full_path, DataProviderInterface::class)) {
+            throw new RuntimeException('Class' . $full_path . ' must implement DataProviderInterface');
         }
+
+        $this->provider = new $full_path();
     }
 
-    protected function getDataProvider(): ?DataProviderInterface
+    protected function getDataProvider(): DataProviderInterface
     {
         return $this->provider;
     }
 
     /**
-     * @param string $model
+     * @param class-string $model
      * @param CollectionInterface $collection
      * @param array<string, mixed> $spec_data
      * @param string $key
@@ -63,7 +64,7 @@ class BaseEndpointTestCase extends TestCase
     }
 
     /**
-     * @param string $model
+     * @param class-string $model
      * @param SeravoResponseInterface $response_object
      * @param array<string, mixed> $spec_data
      * @return void
@@ -74,7 +75,7 @@ class BaseEndpointTestCase extends TestCase
     }
 
     /**
-     * @param string $model
+     * @param class-string $model
      * @param SeravoResponseInterface $response_object
      * @param array<string, mixed> $spec_data
      * @return void
