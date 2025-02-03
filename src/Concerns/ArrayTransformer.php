@@ -21,6 +21,10 @@ trait ArrayTransformer
         $normalizer = new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter());
         $serializer = new Serializer([$normalizer]);
 
-        return $this->arrayFilterRecursive($serializer->normalize($input));
+        $normalizedData = $serializer->normalize($input);
+        if (!is_array($normalizedData)) {
+            $normalizedData = (array) $normalizedData;
+        }
+        return $this->arrayFilterRecursive($normalizedData);
     }
 }

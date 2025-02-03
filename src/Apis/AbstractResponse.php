@@ -29,7 +29,7 @@ abstract readonly class AbstractResponse implements SeravoResponseInterface
 
         $serializer = new Serializer($normalizers);
 
-        $array = $serializer->normalize($this);
+        $array = (array) $serializer->normalize($this);
 
         return $array;
     }
