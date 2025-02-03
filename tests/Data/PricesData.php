@@ -13,10 +13,12 @@ class PricesData extends DataProvider
      */
     public function dataCreatePrice(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/prices/price.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/prices/price.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,9 +26,11 @@ class PricesData extends DataProvider
      */
     public function dataGetPrice(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/prices/price.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/prices/price.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }

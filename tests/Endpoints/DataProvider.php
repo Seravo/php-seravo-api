@@ -34,14 +34,18 @@ abstract class DataProvider implements DataProviderInterface
             throw new InvalidArgumentException(
                 sprintf(
                     'Please specify either a data provider function %s::%s or add the json response for the test at %s',
-                    $backtrace['class'],
+                    $backtrace['class'] ?? 'unknown class',
                     $function,
                     $file
                 )
             );
         }
 
-        return json_decode(file_get_contents($file), true);
+        $fileContents = file_get_contents($file);
+        if ($fileContents === false) {
+            throw new InvalidArgumentException(sprintf('Unable to read the file at %s', $file));
+        }
+        return json_decode($fileContents, true);
     }
 
     /**
