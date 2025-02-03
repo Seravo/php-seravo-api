@@ -28,8 +28,7 @@ class ProductGroups
      */
     public function get(): ProductGroupCollection
     {
-        $response = $this->api->get(uri: $this->uri, responseClass: ProductGroup::class);
-        return new ProductGroupCollection(...$response);
+        return $this->api->get(uri: $this->uri, responseClass: ProductGroupCollection::class);
     }
 
     /**
@@ -52,7 +51,6 @@ class ProductGroups
      */
     public function getProducts(string $name): ProductCollection
     {
-        $response = $this->api->get(uri: $this->uri . $name . '/products/', responseClass: Product::class);
-        return new ProductCollection(...$response);
+        return $this->api->get(uri: $this->uri . $name . '/products/', responseClass: ProductCollection::class);
     }
 }

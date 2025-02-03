@@ -26,8 +26,7 @@ class Plans
      */
     public function get(): PlanCollection
     {
-        $response = $this->api->get(uri: $this->uri, responseClass: Plan::class);
-        return new PlanCollection(...$response);
+        return $this->api->get(uri: $this->uri, responseClass: PlanCollection::class);
     }
 
     /**
