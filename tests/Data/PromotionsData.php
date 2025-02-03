@@ -13,10 +13,12 @@ class PromotionsData extends DataProvider
      */
     public function dataGetPromotions(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/promotions/promotions.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/promotions/promotions.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,9 +26,11 @@ class PromotionsData extends DataProvider
      */
     public function dataGetPromotion(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/promotions/promotion.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/promotions/promotion.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }
