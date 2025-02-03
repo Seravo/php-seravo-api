@@ -13,10 +13,12 @@ class AffiliatesData extends DataProvider
      */
     public function dataGetAffiliates(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/affiliates/affiliates.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/affiliates/affiliates.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,9 +26,11 @@ class AffiliatesData extends DataProvider
      */
     public function dataGetAffiliate(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/affiliates/affiliate.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/affiliates/affiliate.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }

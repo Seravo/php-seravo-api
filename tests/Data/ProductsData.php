@@ -13,10 +13,12 @@ class ProductsData extends DataProvider
      */
     public function dataGetProducts(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/products/products.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/products/products.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,9 +26,11 @@ class ProductsData extends DataProvider
      */
     public function dataGetProduct(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/products/product.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/products/product.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }

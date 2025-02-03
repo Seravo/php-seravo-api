@@ -13,10 +13,12 @@ class OrdersData extends DataProvider
      */
     public function dataGetOrders(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/orders/orders.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/orders/orders.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,10 +26,12 @@ class OrdersData extends DataProvider
      */
     public function dataGetOrder(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/orders/order.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/orders/order.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -35,10 +39,12 @@ class OrdersData extends DataProvider
      */
     public function dataCreateOrder(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/orders/order.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/orders/order.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -46,9 +52,11 @@ class OrdersData extends DataProvider
      */
     public function dataUpdateOrder(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/orders/order.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/orders/order.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }

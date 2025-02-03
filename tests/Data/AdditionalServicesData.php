@@ -13,10 +13,12 @@ class AdditionalServicesData extends DataProvider
      */
     public function dataGetAdditionalService(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,10 +26,12 @@ class AdditionalServicesData extends DataProvider
      */
     public function dataCreateAdditionalService(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -35,9 +39,11 @@ class AdditionalServicesData extends DataProvider
      */
     public function dataEditAdditionalService(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/additionalservices/additional_service.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }

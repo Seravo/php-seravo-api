@@ -13,10 +13,12 @@ class PlansData extends DataProvider
      */
     public function dataGetPlans(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/plans/plans.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/plans/plans.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 
     /**
@@ -24,9 +26,11 @@ class PlansData extends DataProvider
      */
     public function dataGetPlan(): array
     {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../MockData/plans/plan.json'),
-            true
-        );
+        $json = file_get_contents(__DIR__ . '/../MockData/plans/plan.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read the JSON file');
+        }
+
+        return json_decode($json, true);
     }
 }
