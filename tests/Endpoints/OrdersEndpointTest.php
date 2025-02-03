@@ -6,6 +6,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use RuntimeException;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
@@ -21,8 +22,8 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $this->testCollection(Order::class, $client->order->orders()->get(), $data);
@@ -36,8 +37,8 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
@@ -52,8 +53,8 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $request = new CreateOrderRequest(
@@ -97,8 +98,8 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $request = new UpdateOrderRequest(

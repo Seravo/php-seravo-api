@@ -6,6 +6,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use RuntimeException;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
 
@@ -16,8 +17,8 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $this->testCollection(ProductGroup::class, $client->public->productGroups()->get(), $data);
@@ -31,8 +32,8 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $name = 'domains';
@@ -47,8 +48,8 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $name = 'domains';
