@@ -21,11 +21,13 @@ final class SeravoAPI
 
     public readonly PublicApi $public;
 
+    private Builder $httpClientBuilder;
+
     public function __construct(
         public readonly string $clientId,
         public readonly string $secret,
         public ?string $environment = null,
-        private ?Builder $httpClientBuilder = null
+        ?Builder $httpClientBuilder = null
     ) {
         $this->environmentManager = new EnvironmentManager($environment);
         $this->environmentManager->setEnvironment($this->environment);
