@@ -6,6 +6,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use RuntimeException;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 
@@ -16,8 +17,8 @@ class PricesEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
 
@@ -38,8 +39,8 @@ class PricesEndpointTest extends BaseEndpointTestCase
         $data = $this->getDataProvider()->getData();
 
         $client = $this->getDataProvider()->createClientHandler([
-            new Response(200, ['Content-Type' => 'application/json'], json_encode($data)),
-            new Response(400, [], json_encode(['error' => 'Bad Request'])),
+            new Response(200, ['Content-Type' => 'application/json'], Utils::streamFor(json_encode($data))),
+            new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
