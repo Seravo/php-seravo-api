@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi;
 
+use Seravo\SeravoApi\JwtVerifier;
 use Seravo\SeravoApi\OpenIdConnectAuthProvider;
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\PublicApi;
@@ -12,6 +13,7 @@ use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
 use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
 use Seravo\SeravoApi\HttpClient\Plugin\ExceptionHandler;
+use Seravo\SeravoApi\HttpClient\Plugin\TokenVerifier;
 
 final class SeravoAPI
 {
@@ -41,15 +43,22 @@ final class SeravoAPI
     public function authenticate(): void
     {
         $this->httpClientBuilder->removePlugin(Authentication::class);
+        $this->httpClientBuilder->removePlugin(TokenVerifier::class);
+
         $this->httpClientBuilder->addPlugin(
             new Authentication(
-                new OpenIdConnectAuthProvider(
+                $authProvider = new OpenIdConnectAuthProvider(
                     clientId: $this->clientId,
                     secret: $this->secret,
-                    providerUrl: $this->environmentManager->getIdpUrl(),
+                    providerUrl: $this->environmentManager->getIdpUrl()
                 )
             )
         );
+
+        $this->httpClientBuilder->addPlugin(new TokenVerifier(
+            new JwtVerifier($this->environmentManager),
+            $authProvider
+        ));
     }
 
     private function setDefaultHttpPlugins(): void
