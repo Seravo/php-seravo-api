@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Plan;
 
-class PlansEndpointTest extends BaseEndpointTestCase
+final class PlansEndpointTest extends BaseEndpointTestCase
 {
     public function testGetPlans(): void
     {

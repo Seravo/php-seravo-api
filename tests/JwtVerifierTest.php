@@ -12,7 +12,7 @@ use Seravo\SeravoApi\Enums\ApiEnvironment;
 use PHPUnit\Framework\MockObject\MockObject;
 use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
 
-class JwtVerifierTest extends TestCase
+final class JwtVerifierTest extends TestCase
 {
     private MockObject&JwtVerifier $jwtVerifierMock;
     private MockObject&EnvironmentManager $environmentManagerMock;

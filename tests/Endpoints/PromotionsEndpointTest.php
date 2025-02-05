@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 
-class PromotionsEndpointTest extends BaseEndpointTestCase
+final class PromotionsEndpointTest extends BaseEndpointTestCase
 {
     public function testGetPromotions(): void
     {

@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
 
-class AffiliatesEndpointTest extends BaseEndpointTestCase
+final class AffiliatesEndpointTest extends BaseEndpointTestCase
 {
     public function testGetAffiliates(): void
     {

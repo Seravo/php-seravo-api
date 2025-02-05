@@ -15,7 +15,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 
-class OrdersEndpointTest extends BaseEndpointTestCase
+final class OrdersEndpointTest extends BaseEndpointTestCase
 {
     public function testGetOrders(): void
     {

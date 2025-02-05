@@ -11,7 +11,7 @@ use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\EditAdditionalServiceRequest;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\CreateAdditionalServiceRequest;
 
-class AdditionalServicesEndpointTest extends BaseEndpointTestCase
+final class AdditionalServicesEndpointTest extends BaseEndpointTestCase
 {
     public function testGetAdditionalService(): void
     {

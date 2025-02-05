@@ -14,8 +14,11 @@ return RectorConfig::configure()
     ->withSkip([
         MyCLabsMethodCallToEnumConstRector::class,
     ])
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        typeDeclarations: true,
+        rectorPreset: true,
+    )
     // uncomment to reach your current PHP version
-    ->withPhpSets(php84: true)
-    ->withTypeCoverageLevel(100)
-    ->withDeadCodeLevel(100)
-    ->withCodeQualityLevel(100);
+    ->withPhpSets(php84: true);

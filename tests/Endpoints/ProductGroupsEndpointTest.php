@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
 
-class ProductGroupsEndpointTest extends BaseEndpointTestCase
+final class ProductGroupsEndpointTest extends BaseEndpointTestCase
 {
     public function testGetProductGroups(): void
     {

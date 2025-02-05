@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
 
-class PricesEndpointTest extends BaseEndpointTestCase
+final class PricesEndpointTest extends BaseEndpointTestCase
 {
     public function testCreatePrice(): void
     {

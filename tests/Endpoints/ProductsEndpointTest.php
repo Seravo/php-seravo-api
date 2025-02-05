@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
 
-class ProductsEndpointTest extends BaseEndpointTestCase
+final class ProductsEndpointTest extends BaseEndpointTestCase
 {
     public function testGetProducts(): void
     {
