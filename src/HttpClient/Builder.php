@@ -17,15 +17,15 @@ use Psr\Http\Message\UriFactoryInterface;
 
 class Builder
 {
-    private ClientInterface $httpClient;
+    private readonly ClientInterface $httpClient;
 
-    private RequestFactoryInterface $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    private StreamFactoryInterface $streamFactory;
+    private readonly StreamFactoryInterface $streamFactory;
 
-    private UriFactoryInterface $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
-    private ?HttpMethodsClientInterface $pluginClient;
+    private ?HttpMethodsClientInterface $pluginClient = null;
 
     /**
      * @var array<Plugin>

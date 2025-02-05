@@ -27,7 +27,7 @@ abstract class DataProvider implements DataProviderInterface
             return $this->$function();
         }
 
-        $folder = str_replace('data', '', str_replace('Seravo\Tests\SeravoApi\Data\\', '', strtolower($this::class)));
+        $folder = str_replace('data', '', str_replace('Seravo\Tests\SeravoApi\Data\\', '', strtolower(static::class)));
         $file = __DIR__ . '/MockData/' . $folder . '/' . $function . '.json';
 
         if (!file_exists($file)) {

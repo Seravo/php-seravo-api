@@ -11,7 +11,7 @@ use Seravo\SeravoApi\Apis\Order\Response\AffiliateCollection;
 
 class Affiliates
 {
-    private string $uri;
+    private readonly string $uri;
 
     public function __construct(
         private readonly OrderApi $api

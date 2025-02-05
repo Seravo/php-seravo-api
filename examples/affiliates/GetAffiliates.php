@@ -6,7 +6,7 @@ use Seravo\SeravoApi\SeravoAPI;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
 $dotenv->load();
 
 $api = new SeravoAPI(

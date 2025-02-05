@@ -17,7 +17,7 @@ class JwtVerifier implements TokenVerifierInterface
     private const JWT_ALGORITHM = 'RS256';
 
     public function __construct(
-        private EnvironmentManager $environmentManager
+        private readonly EnvironmentManager $environmentManager
     ) {
     }
 

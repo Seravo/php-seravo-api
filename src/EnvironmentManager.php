@@ -33,7 +33,7 @@ class EnvironmentManager
             throw SeravoApiException::invalidEnvironment($environment);
         }
 
-        $this->environment = \constant(sprintf('%s::%s', ApiEnvironment::class, ucfirst($environment)));
+        $this->environment = \constant(sprintf('%s::%s', ApiEnvironment::class, ucfirst((string) $environment)));
     }
 
     public function getEnvironment(): ApiEnvironment

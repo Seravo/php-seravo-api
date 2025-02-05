@@ -23,18 +23,14 @@ final class SeravoAPI
 
     public readonly PublicApi $public;
 
-    private Builder $httpClientBuilder;
-
     public function __construct(
         public readonly string $clientId,
         public readonly string $secret,
         public ?string $environment = null,
-        ?Builder $httpClientBuilder = null
+        private readonly Builder $httpClientBuilder = new Builder()
     ) {
         $this->environmentManager = new EnvironmentManager($environment);
         $this->environmentManager->setEnvironment($this->environment);
-
-        $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
         $this->setDefaultHttpPlugins();
 
         $this->order = new OrderApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);

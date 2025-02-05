@@ -13,7 +13,7 @@ use Seravo\SeravoApi\Apis\Public\Response\ProductGroupCollection;
 
 class ProductGroups
 {
-    private string $uri;
+    private readonly string $uri;
 
     public function __construct(
         private readonly PublicApi $api

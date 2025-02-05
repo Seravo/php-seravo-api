@@ -30,11 +30,11 @@ class JwtVerifierTest extends TestCase
 
     public function testPublicKeyCanBeReadSuccesfully(): void
     {
-        $str = <<<END
+        $str = <<<END_WRAP
             -----BEGIN PUBLIC KEY-----
             my very random string
             -----END PUBLIC KEY-----
-        END;
+        END_WRAP;
 
         $this->jwtVerifierMock
             ->method('getPublicKey')

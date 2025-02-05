@@ -6,11 +6,8 @@ namespace Seravo\SeravoApi\Exception;
 
 final class ValidationErrorException extends \Exception
 {
-    protected mixed $data;
-
-    public function __construct(string $message, int $code, mixed $data)
+    public function __construct(string $message, int $code, protected mixed $data)
     {
-        $this->data = $data;
         parent::__construct($message, $code);
     }
 

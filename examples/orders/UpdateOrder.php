@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
 $dotenv->load();
 
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
@@ -54,7 +54,7 @@ try {
     );
     dd($result);
 } catch (ValidationErrorException $exception) {
-    dd(json_decode($exception->getData()));
+    dd(json_decode((string) $exception->getData()));
 } catch (\Exception $exception) {
     dd($exception);
     die();

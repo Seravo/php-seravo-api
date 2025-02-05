@@ -81,7 +81,7 @@ final class ResponseFormatter
                 /** @var CollectionInterface $collection */
                 $collection = new $responseClass();
 
-                $result = array_map(function (array $item) use ($collection, $reflectionObj) {
+                $result = array_map(function (array $item) use ($collection, $reflectionObj): void {
                     $jsonItem = json_encode($item);
 
                     if ($jsonItem === false) {

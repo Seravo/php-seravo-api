@@ -22,7 +22,7 @@ class BaseEndpointTestCase extends TestCase
 
     private function initDataProvider(): void
     {
-        $class = str_replace(['Seravo\Tests\SeravoApi\Endpoints\\', 'Test', 'Endpoint'], '', get_class($this)) . 'Data';
+        $class = str_replace(['Seravo\Tests\SeravoApi\Endpoints\\', 'Test', 'Endpoint'], '', static::class) . 'Data';
         $full_path = '\Seravo\Tests\SeravoApi\Data\\' . $class;
 
         if (!is_subclass_of($full_path, DataProviderInterface::class)) {

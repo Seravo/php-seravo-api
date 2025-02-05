@@ -13,7 +13,7 @@ use Seravo\SeravoApi\Enums\ApiEndpoint;
 
 class Orders
 {
-    private string $uri;
+    private readonly string $uri;
 
     public function __construct(
         private readonly OrderApi $api
