@@ -24,7 +24,6 @@ class ProductGroups
     /**
      * Return all ProductGroups
      * @see API Reference: https://api.seravo.com/public/docs#/Product%20groups/get_many_public_product_groups__get
-     * @return ProductGroupCollection
      */
     public function get(): ProductGroupCollection
     {
@@ -34,8 +33,6 @@ class ProductGroups
     /**
      * Return a single ProductGroup
      * @see API Reference: https://api.seravo.com/public/docs#/Product%20groups/get_one_public_product_groups__name__get
-     * @param string $name
-     * @return ProductGroup
      */
     public function getByName(string $name): ProductGroup
     {
@@ -46,8 +43,6 @@ class ProductGroups
      * Get product group's products
      * @see API Reference:
      * https://api.seravo.com/public/docs#/Product%20groups/get_nested_public_product_groups__name__products__get
-     * @param string $name
-     * @return ProductCollection
      */
     public function getProducts(string $name): ProductCollection
     {

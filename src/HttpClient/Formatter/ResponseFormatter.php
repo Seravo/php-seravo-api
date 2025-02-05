@@ -21,7 +21,8 @@ final class ResponseFormatter
     private static function init(): JsonMapperInterface
     {
         $factoryRegistry = FactoryRegistry::withNativePhpClassesAdded();
-        $mapper = JsonMapperBuilder::new()
+
+        return JsonMapperBuilder::new()
             ->withCaseConversionMiddleware(TextNotation::UNDERSCORE(), TextNotation::CAMEL_CASE())
             ->withDocBlockAnnotationsMiddleware()
             ->withNamespaceResolverMiddleware()
@@ -29,13 +30,10 @@ final class ResponseFormatter
             ->withObjectConstructorMiddleware($factoryRegistry)
             ->withPropertyMapper(new PropertyMapper($factoryRegistry))
             ->build();
-
-        return $mapper;
     }
 
     /**
      * @template T of SeravoResponseInterface|CollectionInterface
-     * @param string $json
      * @param class-string<T> $responseClass
      * @return T
      */

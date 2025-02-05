@@ -22,7 +22,6 @@ class Plans
     /**
      * Return Plans
      * @see API Reference: https://api.seravo.com/public/docs#/Plans/get_many_public_plans__get
-     * @return PlanCollection
      */
     public function get(): PlanCollection
     {
@@ -33,7 +32,6 @@ class Plans
      * Return a single Plan
      * @see API Reference: https://api.seravo.com/public/docs#/Plans/get_one_public_plans__id__get
      * @param string $id - UUID
-     * @return Plan
      */
     public function getById(string $id): Plan
     {

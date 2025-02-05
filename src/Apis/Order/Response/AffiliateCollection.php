@@ -9,9 +9,6 @@ use Seravo\SeravoApi\Apis\Order\Response\Affiliate;
 
 final class AffiliateCollection extends AbstractCollection
 {
-    /**
-     * @param Affiliate ...$affiliate
-     */
     public function __construct(Affiliate ...$affiliate)
     {
         parent::__construct(...$affiliate);

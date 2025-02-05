@@ -23,9 +23,6 @@ class JwtVerifier implements TokenVerifierInterface
 
     /**
      * Get the public key from the file
-     *
-     * @param string $filePath
-     * @return string
      */
     public function getPublicKey(string $filePath): string
     {
@@ -40,9 +37,6 @@ class JwtVerifier implements TokenVerifierInterface
 
     /**
      * Verify the JWT token
-     *
-     * @param string $jwt
-     * @return boolean
      */
     public function verify(string $jwt): bool
     {
@@ -68,10 +62,6 @@ class JwtVerifier implements TokenVerifierInterface
 
     /**
      * Decode the JWT token
-     *
-     * @param string $jwt
-     * @param string $filePath
-     * @return stdClass
      */
     protected function decodeToken(string $jwt, string $filePath): stdClass
     {
@@ -88,9 +78,6 @@ class JwtVerifier implements TokenVerifierInterface
 
     /**
      * Validate the issuer
-     *
-     * @param string $issuer
-     * @return boolean
      */
     protected function validateIssuer(string $issuer): bool
     {

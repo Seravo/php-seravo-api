@@ -22,8 +22,6 @@ class Prices
     /**
      * Create a new Price
      * @see API Reference: https://api.seravo.com/public/docs#/Prices/create_public_prices__post
-     * @param CreatePriceRequest $request
-     * @return Price
      */
     public function create(CreatePriceRequest $request): Price
     {
@@ -34,7 +32,6 @@ class Prices
      * Return a single Price
      * @see API Reference: https://api.seravo.dev/public/docs#/Prices/get_one_public_prices__id__get
      * @param string $id - UUID
-     * @return Price
      */
     public function getById(string $id): Price
     {

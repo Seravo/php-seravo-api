@@ -22,7 +22,6 @@ class Promotions
     /**
      * Return all PromotionCodes
      * @see API Reference: https://api.seravo.com/order/docs#/Promotions/get_many_order_promotions__get
-     * @return PromotionCodeCollection
      */
     public function get(): PromotionCodeCollection
     {
@@ -33,7 +32,6 @@ class Promotions
      * Return a single PromotionCode
      * @see API Reference: https://api.seravo.com/order/docs#/Promotions/get_one_order_promotions__identifier__get
      * @param string $id - UUID
-     * @return PromotionCode
      */
     public function getById(string $id): PromotionCode
     {

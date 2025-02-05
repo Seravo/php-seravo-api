@@ -23,9 +23,7 @@ class AdditionalServices
     /**
      * Create a new AdditionalService
      * @see API Reference: https://api.seravo.com/order/docs#/Order%20Services/create_order_orders__id__services__put
-     * @param CreateAdditionalServiceRequest $request
      * @param string $id - UUID
-     * @return AdditionalService
      */
     public function create(CreateAdditionalServiceRequest $request, string $id): AdditionalService
     {
@@ -40,7 +38,6 @@ class AdditionalServices
      * Return a single AdditionalService
      * @see API Reference: https://api.seravo.com/order/docs#/Order%20Services/get_one_order_orders__id__services__get
      * @param string $id - UUID
-     * @return AdditionalService
      */
     public function getById(string $id): AdditionalService
     {
@@ -50,9 +47,7 @@ class AdditionalServices
     /**
      * Patch an AdditionalService
      * @see API Reference:  https://api.seravo.com/order/docs#/Order%20Services/patch_order_orders__id__services__patch
-     * @param EditAdditionalServiceRequest $request
      * @param string $id - UUID
-     * @return AdditionalService
      */
     public function edit(EditAdditionalServiceRequest $request, string $id): AdditionalService
     {

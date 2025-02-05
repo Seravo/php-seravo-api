@@ -9,9 +9,6 @@ use Seravo\SeravoApi\Apis\Public\Response\Product;
 
 final class ProductCollection extends AbstractCollection
 {
-    /**
-     * @param Product ...$product
-     */
     public function __construct(Product ...$product)
     {
         parent::__construct(...$product);

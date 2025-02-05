@@ -22,7 +22,6 @@ class Products
     /**
      * Return all Products
      * @see API Reference: https://api.seravo.com/public/docs#/Products/get_many_public_products__get
-     * @return ProductCollection
      */
     public function get(): ProductCollection
     {
@@ -33,7 +32,6 @@ class Products
      * Return a single Product
      * @see API Reference: https://api.seravo.com/public/docs#/Products/get_one_public_products__id__get
      * @param string $id - UUID
-     * @return Product
      */
     public function getById(string $id): Product
     {

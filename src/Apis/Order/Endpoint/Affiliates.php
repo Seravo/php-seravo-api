@@ -22,7 +22,6 @@ class Affiliates
     /**
      * Return all Affiliates
      * @see API Reference: https://api.seravo.com/order/docs#/Affiliates/get_many_order_affiliates__get
-     * @return AffiliateCollection
      */
     public function get(): AffiliateCollection
     {
@@ -33,7 +32,6 @@ class Affiliates
      * Return a single Affiliate
      * @see API Reference: https://api.seravo.com/order/docs#/Affiliates/get_one_order_affiliates__id__get
      * @param string $id - UUID
-     * @return Affiliate
      */
     public function getById(string $id): Affiliate
     {

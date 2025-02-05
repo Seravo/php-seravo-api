@@ -24,7 +24,6 @@ abstract class AbstractCollection implements CollectionInterface
 
     /**
      * @param AbstractResponse $item The item
-     * @return void
      */
     public function add(AbstractResponse $item): void
     {

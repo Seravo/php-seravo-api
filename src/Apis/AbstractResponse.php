@@ -29,8 +29,6 @@ abstract readonly class AbstractResponse implements SeravoResponseInterface
 
         $serializer = new Serializer($normalizers);
 
-        $array = (array) $serializer->normalize($this);
-
-        return $array;
+        return (array) $serializer->normalize($this);
     }
 }

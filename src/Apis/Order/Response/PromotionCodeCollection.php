@@ -9,9 +9,6 @@ use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 
 final class PromotionCodeCollection extends AbstractCollection
 {
-    /**
-     * @param PromotionCode ...$promotionCode
-     */
     public function __construct(PromotionCode ...$promotionCode)
     {
         parent::__construct(...$promotionCode);

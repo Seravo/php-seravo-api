@@ -45,13 +45,12 @@ abstract class AbstractApi
 
         $this->uri = $uri;
 
-        return (string) $this->uri . $endpoint->value . '/';
+        return $this->uri . $endpoint->value . '/';
     }
 
     /**
      * @template T of SeravoResponseInterface|CollectionInterface
      * @param class-string<T> $responseClass
-     * @param string $uri
      * @return T
      */
     public function get(string $responseClass, string $uri): SeravoResponseInterface|CollectionInterface
@@ -62,8 +61,6 @@ abstract class AbstractApi
     /**
      * @template T of SeravoResponseInterface
      * @param class-string<T> $responseClass
-     * @param string $uri
-     * @param mixed $body
      * @return T
      */
     public function post(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
@@ -74,8 +71,6 @@ abstract class AbstractApi
     /**
      * @template T of SeravoResponseInterface
      * @param class-string<T> $responseClass
-     * @param string $uri
-     * @param mixed $body
      * @return T
      */
     public function put(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
@@ -86,8 +81,6 @@ abstract class AbstractApi
     /**
      * @template T of SeravoResponseInterface
      * @param class-string<T> $responseClass
-     * @param string $uri
-     * @param mixed $body
      * @return T
      */
     public function patch(string $responseClass, string $uri, mixed $body): SeravoResponseInterface
@@ -98,8 +91,6 @@ abstract class AbstractApi
     /**
      * @template T of SeravoResponseInterface|CollectionInterface
      * @param class-string<T> $responseClass
-     * @param HttpMethod $method
-     * @param string $uri
      * @param array<string, string> $headers
      * @param string $body
      * @return T

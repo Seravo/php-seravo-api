@@ -9,9 +9,6 @@ use Seravo\SeravoApi\Apis\Public\Response\Plan;
 
 final class PlanCollection extends AbstractCollection
 {
-    /**
-     * @param Plan ...$plan
-     */
     public function __construct(Plan ...$plan)
     {
         parent::__construct(...$plan);

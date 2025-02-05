@@ -39,10 +39,7 @@ class BaseEndpointTestCase extends TestCase
 
     /**
      * @param class-string $model
-     * @param CollectionInterface $collection
      * @param array<string, mixed> $spec_data
-     * @param string $key
-     * @return void
      */
     protected function testCollection(
         string $model,
@@ -65,9 +62,7 @@ class BaseEndpointTestCase extends TestCase
 
     /**
      * @param class-string $model
-     * @param SeravoResponseInterface $response_object
      * @param array<string, mixed> $spec_data
-     * @return void
      */
     protected function testGetObject(string $model, SeravoResponseInterface $response_object, array $spec_data): void
     {
@@ -76,9 +71,7 @@ class BaseEndpointTestCase extends TestCase
 
     /**
      * @param class-string $model
-     * @param SeravoResponseInterface $response_object
      * @param array<string, mixed> $spec_data
-     * @return void
      */
     protected function testObject(string $model, SeravoResponseInterface $response_object, array $spec_data): void
     {
