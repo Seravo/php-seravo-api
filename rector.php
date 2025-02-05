@@ -3,16 +3,14 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\MethodCall\MyCLabsMethodCallToEnumConstRector;
+use Rector\ValueObject\PhpVersion;
+use Rector\Php84\Rector\Param\ExplicitNullableParamTypeRector;
 
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/examples',
         __DIR__ . '/src',
         __DIR__ . '/tests',
-    ])
-    ->withSkip([
-        MyCLabsMethodCallToEnumConstRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
@@ -24,4 +22,5 @@ return RectorConfig::configure()
         phpunitCodeQuality: true
     )
     // uncomment to reach your current PHP version
-    ->withPhpSets(php84: true);
+    ->withPhpVersion(PhpVersion::PHP_84)
+    ->withRules([ExplicitNullableParamTypeRector::class]);
