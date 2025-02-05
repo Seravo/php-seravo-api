@@ -41,13 +41,15 @@
         "phpcompatibility/php-compatibility": "^9.3",
         "symfony/var-dumper": "^7.1",
         "guzzlehttp/guzzle": "^7.9",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "rector/rector": "^2.0"
     },
     "scripts": {
         "analyze": "vendor/bin/phpstan",
         "test": "vendor/bin/phpunit",
         "lint": "\"vendor/bin/phpcs\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\"",
-        "beautify": "\"vendor/bin/phpcbf\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\""
+        "beautify": "\"vendor/bin/phpcbf\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\"",
+        "rector": "vendor/bin/rector process --dry-run"
     },
     "config": {
         "allow-plugins": {
