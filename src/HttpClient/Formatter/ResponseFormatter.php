@@ -101,7 +101,9 @@ final class ResponseFormatter
             }
         } catch (Throwable $e) {
             throw new RuntimeException(
-                'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage()
+                'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage(),
+                $e->getCode(),
+                $e
             );
         }
 

@@ -22,14 +22,14 @@ class ExceptionHandler implements Plugin
         return $next($request)->then(function (ResponseInterface $response): ResponseInterface {
             /* HTTP Exceptions */
             if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
-                throw self::transformMessageToException($response);
+                throw $this->transformMessageToException($response);
             }
 
             return $response;
         });
     }
 
-    private static function transformMessageToException(
+    private function transformMessageToException(
         ResponseInterface $response
     ): \RuntimeException|AuthenticationException|ValidationErrorException {
         $status = $response->getStatusCode();
