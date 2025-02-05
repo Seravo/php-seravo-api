@@ -21,6 +21,7 @@ return RectorConfig::configure()
         rectorPreset: true,
         codingStyle: true,
         privatization: true,
+        phpunitCodeQuality: true
     )
     // uncomment to reach your current PHP version
     ->withPhpSets(php84: true);

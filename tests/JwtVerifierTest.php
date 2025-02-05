@@ -16,16 +16,14 @@ final class JwtVerifierTest extends TestCase
 {
     private MockObject&JwtVerifier $jwtVerifierMock;
 
-    private MockObject&EnvironmentManager $environmentManagerMock;
-
     protected function setUp(): void
     {
-        $this->environmentManagerMock = $this->getMockBuilder(EnvironmentManager::class)
+        $environmentManagerMock = $this->getMockBuilder(EnvironmentManager::class)
             ->setConstructorArgs([ApiEnvironment::Testing->value])
             ->getMock();
 
         $this->jwtVerifierMock = $this->getMockBuilder(JwtVerifier::class)
-            ->setConstructorArgs([$this->environmentManagerMock])
+            ->setConstructorArgs([$environmentManagerMock])
             ->getMock();
     }
 
@@ -39,19 +37,19 @@ final class JwtVerifierTest extends TestCase
 
         $this->jwtVerifierMock
             ->method('getPublicKey')
-            ->with($this->equalTo('/path/to/public_key'))
+            ->with('/path/to/public_key')
             ->willReturn($str);
 
         $response = $this->jwtVerifierMock->getPublicKey('/path/to/public_key');
 
-        $this->assertEquals($str, $response);
+        $this->assertSame($str, $response);
     }
 
     public function testGetPublicKeyMethodThrowsRuntimeExceptionWhenUnableToReadPublicKey(): void
     {
         $this->jwtVerifierMock
             ->method('getPublicKey')
-            ->with($this->equalTo('/path/to/public_key'))
+            ->with('/path/to/public_key')
             ->willThrowException(new \RuntimeException('Unable to read public key file.'));
 
         $this->expectException(\RuntimeException::class);

@@ -47,7 +47,7 @@ class BaseEndpointTestCase extends TestCase
         array $spec_data,
         string $key = 'id'
     ): void {
-        $this->assertEquals(count($spec_data), count($collection->all()));
+        $this->assertCount(count($spec_data), $collection->all());
         foreach ($collection->all() as $response_object) {
             foreach ($spec_data as $object) {
                 if ($object[$key] !== $response_object->toArray()[$key]) {
@@ -91,8 +91,9 @@ class BaseEndpointTestCase extends TestCase
         }
 
         foreach (array_keys($spec_data) as $attr) {
-            $this->assertTrue(
-                array_key_exists($attr, $array),
+            $this->assertArrayHasKey(
+                $attr,
+                $array,
                 sprintf('Attribute %s failed to exist in toArray of the response object.', $attr)
             );
         }
