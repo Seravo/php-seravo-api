@@ -33,8 +33,9 @@ class ExceptionHandler implements Plugin
      * @param ResponseInterface $response
      * @return AuthenticationException|ValidationErrorException|RuntimeException
      */
-    private static function transformMessageToException(ResponseInterface $response)
-    {
+    private static function transformMessageToException(
+        ResponseInterface $response
+    ): \RuntimeException|AuthenticationException|ValidationErrorException {
         $status = $response->getStatusCode();
         $message = $response->getReasonPhrase();
 
