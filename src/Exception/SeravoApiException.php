@@ -11,7 +11,10 @@ final class SeravoApiException extends \Exception
     public static function invalidEnvironment(string $environment): self
     {
         return new self(
-            message: "Invalid environment value {$environment}. Allowed values are " . ApiEnvironment::values()
+            message: sprintf(
+                'Invalid environment value %s. Allowed values are ',
+                $environment
+            ) . ApiEnvironment::values()
         );
     }
 }

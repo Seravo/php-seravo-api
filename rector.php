@@ -19,6 +19,7 @@ return RectorConfig::configure()
         codeQuality: true,
         typeDeclarations: true,
         rectorPreset: true,
+        codingStyle: true,
     )
     // uncomment to reach your current PHP version
     ->withPhpSets(php84: true);

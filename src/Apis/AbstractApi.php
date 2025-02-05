@@ -107,9 +107,10 @@ abstract class AbstractApi
             if ($encodedBody === false) {
                 throw new ApiException('Failed to encode body to JSON');
             }
+
             $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
-        } catch (RequestException $e) {
-            throw new ApiException($e->getMessage(), $e->getCode(), $e);
+        } catch (RequestException $requestException) {
+            throw new ApiException($requestException->getMessage(), $requestException->getCode(), $requestException);
         }
 
         return ResponseFormatter::format($response->getBody()->getContents(), $responseClass);

@@ -28,8 +28,8 @@ class OpenIdConnectAuthProvider implements AuthProviderInterface
             }
 
             $this->accessToken = $accessToken;
-        } catch (InvalidAccessTokenException $e) {
-            throw new InvalidAccessTokenException($e->getMessage());
+        } catch (InvalidAccessTokenException $invalidAccessTokenException) {
+            throw new InvalidAccessTokenException($invalidAccessTokenException->getMessage());
         }
     }
 

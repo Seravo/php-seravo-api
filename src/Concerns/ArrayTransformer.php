@@ -25,6 +25,7 @@ trait ArrayTransformer
         if (!is_array($normalizedData)) {
             $normalizedData = (array) $normalizedData;
         }
+
         return $this->arrayFilterRecursive($normalizedData);
     }
 }

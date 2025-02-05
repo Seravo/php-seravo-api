@@ -24,6 +24,7 @@ abstract class DataProvider implements DataProviderInterface
             if ($param !== null) {
                 return $this->$function($param);
             }
+
             return $this->$function();
         }
 
@@ -45,6 +46,7 @@ abstract class DataProvider implements DataProviderInterface
         if ($fileContents === false) {
             throw new InvalidArgumentException(sprintf('Unable to read the file at %s', $file));
         }
+
         return json_decode($fileContents, true);
     }
 

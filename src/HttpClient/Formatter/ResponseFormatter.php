@@ -65,6 +65,7 @@ final class ResponseFormatter
                 if ($constructor === null) {
                     throw new RuntimeException('Class ' . $responseClass . ' does not have a constructor.');
                 }
+
                 $reflectionParam = $constructor->getParameters()[0];
                 $reflectionType = $reflectionParam->getType();
 
@@ -99,11 +100,11 @@ final class ResponseFormatter
             } else {
                 $result = self::init()->mapToClassFromString($json, $responseClass);
             }
-        } catch (Throwable $e) {
+        } catch (Throwable $throwable) {
             throw new RuntimeException(
-                'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage(),
-                $e->getCode(),
-                $e
+                'Failed to deserialize ' . $responseClass . ' object: ' . $throwable->getMessage(),
+                $throwable->getCode(),
+                $throwable
             );
         }
 

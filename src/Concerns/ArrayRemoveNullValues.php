@@ -20,6 +20,7 @@ trait ArrayRemoveNullValues
                 $value = $this->arrayFilterRecursive($value);
             }
         }
+
         return $array;
     }
 }

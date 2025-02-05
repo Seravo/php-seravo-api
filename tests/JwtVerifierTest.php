@@ -15,6 +15,7 @@ use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
 final class JwtVerifierTest extends TestCase
 {
     private MockObject&JwtVerifier $jwtVerifierMock;
+
     private MockObject&EnvironmentManager $environmentManagerMock;
 
     protected function setUp(): void

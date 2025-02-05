@@ -26,8 +26,8 @@ class TokenVerifier implements Plugin
     {
         try {
             $this->tokenVerifier->verify($this->authProvider->getAccessToken());
-        } catch (InvalidAccessTokenException $e) {
-            throw new InvalidAccessTokenException($e->getMessage());
+        } catch (InvalidAccessTokenException $invalidAccessTokenException) {
+            throw new InvalidAccessTokenException($invalidAccessTokenException->getMessage());
         }
 
         return $next($request);

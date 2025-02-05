@@ -83,13 +83,17 @@ class BaseEndpointTestCase extends TestCase
                 continue;
             }
 
-            $this->assertEquals($value, $spec_data[$attr], "Attribute {$attr} failed to meet comparison against spec.");
+            $this->assertEquals(
+                $value,
+                $spec_data[$attr],
+                sprintf('Attribute %s failed to meet comparison against spec.', $attr)
+            );
         }
 
         foreach (array_keys($spec_data) as $attr) {
             $this->assertTrue(
                 array_key_exists($attr, $array),
-                "Attribute {$attr} failed to exist in toArray of the response object."
+                sprintf('Attribute %s failed to exist in toArray of the response object.', $attr)
             );
         }
     }
