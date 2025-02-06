@@ -27,6 +27,10 @@ class OpenIdConnectAuthProvider implements AuthProviderInterface
     public function getAccessToken(): string
     {
         try {
+            if ($this->oidc === null) {
+                throw new AuthenticationException('OpenID Connect Client is not initialized');
+            }
+
             $tokenResponse = $this->oidc->requestClientCredentialsToken();
 
             if (!isset($tokenResponse->access_token)) {
