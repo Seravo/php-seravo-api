@@ -116,11 +116,26 @@ abstract class AbstractApi
             if ($encodedBody === false) {
                 throw new ApiException('Failed to encode body to JSON');
             }
-            $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
+
+            if (!$this->httpClientBuilder->getCacheClient()) {
+                // Redis client not found, proceed with normal request
+                $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
+                $content = $response->getBody()->getContents();
+            }
+
+            if ($this->httpClientBuilder->getCacheClient()?->exists($uri)) {
+                $content = $this->httpClientBuilder->getCacheClient()->get($uri);
+                $this->httpClientBuilder->getCacheClient()->del($uri);
+            } else {
+                $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
+                $this->httpClientBuilder->getCacheClient()?->set($uri, $response->getBody()->getContents());
+
+                $content = $response->getBody()->getContents();
+            }
         } catch (RequestException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }
 
-        return ResponseFormatter::format($response->getBody()->getContents(), $responseClass);
+        return ResponseFormatter::format($content, $responseClass);
     }
 }

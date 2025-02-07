@@ -21,7 +21,8 @@
         "symfony/serializer": "^7.2",
         "symfony/property-access": "^7.2",
         "json-mapper/json-mapper": "^2.22",
-        "firebase/php-jwt": "^6.11"
+        "firebase/php-jwt": "^6.11",
+        "predis/predis": "^2.3"
     },
     "autoload": {
         "psr-4": {

@@ -102,6 +102,7 @@ final class ResponseFormatter
                 $result = self::init()->mapToClassFromString($json, $responseClass);
             }
         } catch (Throwable $e) {
+            dd($e);
             throw new RuntimeException(
                 'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage()
             );

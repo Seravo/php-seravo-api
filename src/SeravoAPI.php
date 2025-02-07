@@ -10,6 +10,7 @@ use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use Predis\ClientInterface as CacheClient;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
 use Seravo\SeravoApi\HttpClient\Plugin\ContentType;
 use Seravo\SeravoApi\HttpClient\Plugin\ExceptionHandler;
@@ -25,19 +26,33 @@ final class SeravoAPI
 
     private Builder $httpClientBuilder;
 
+    private ?CacheClient $cacheClient;
+
     public function __construct(
         public readonly string $clientId,
         public readonly string $secret,
         public ?string $environment = null,
-        ?Builder $httpClientBuilder = null
+        ?Builder $httpClientBuilder = null,
+        ?CacheClient $cacheClient = null,
     ) {
         $this->environmentManager = new EnvironmentManager($environment);
 
-        $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
+        $this->cacheClient = $cacheClient ?? null;
+        $this->httpClientBuilder = $httpClientBuilder ?? new Builder(cacheClient: $this->cacheClient);
         $this->setDefaultHttpPlugins();
 
         $this->order = new OrderApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
         $this->public = new PublicApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
+    }
+
+    public static function create(
+        string $clientId,
+        string $secret,
+        ?string $environment = null,
+        ?Builder $httpClientBuilder = null,
+        ?CacheClient $cacheClient = null,
+    ): self {
+        return new self($clientId, $secret, $environment, $httpClientBuilder, $cacheClient);
     }
 
     public function authenticate(): void

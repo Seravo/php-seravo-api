@@ -9,9 +9,10 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
 $dotenv->load();
 
-$api = new SeravoAPI(
+$api = SeravoAPI::create(
     clientId: $_ENV['SERAVO_API_CLIENT_ID'],
-    secret: $_ENV['SERAVO_API_SECRET']
+    secret: $_ENV['SERAVO_API_SECRET'],
+    cacheClient: new Predis\Client(),
 );
 
 $api->authenticate();

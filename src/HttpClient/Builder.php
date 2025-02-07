@@ -10,6 +10,7 @@ use Http\Client\Common\Plugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Predis\ClientInterface as PredisClientInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -27,6 +28,8 @@ class Builder
 
     private ?HttpMethodsClientInterface $pluginClient;
 
+    private ?PredisClientInterface $cacheClient;
+
     /**
      * @var array<Plugin>
      */
@@ -36,12 +39,19 @@ class Builder
         ClientInterface $httpClient = null,
         RequestFactoryInterface $requestFactory = null,
         StreamFactoryInterface $streamFactory = null,
-        UriFactoryInterface $uriFactory = null
+        UriFactoryInterface $uriFactory = null,
+        PredisClientInterface $cacheClient = null
     ) {
         $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
         $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
         $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
+        $this->cacheClient = $cacheClient ?? null;
+    }
+
+    public function getCacheClient(): ?PredisClientInterface
+    {
+        return $this->cacheClient;
     }
 
     public function getHttpClient(): HttpMethodsClientInterface
