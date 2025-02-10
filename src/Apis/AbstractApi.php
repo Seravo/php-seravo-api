@@ -15,10 +15,13 @@ use Seravo\SeravoApi\Enums\HttpMethod;
 use Seravo\SeravoApi\Exception\ApiException;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Formatter\ResponseFormatter;
+use Seravo\SeravoApi\JsonResponseMapper;
 
 abstract class AbstractApi
 {
     private UriInterface $uri;
+
+    private ResponseFormatter $responseFormatter;
 
     public function __construct(
         private readonly string $baseUrl,
@@ -26,6 +29,7 @@ abstract class AbstractApi
         private readonly ApiModule $endPointPrefix
     ) {
         $this->setUri($this->endPointPrefix);
+        $this->responseFormatter = new ResponseFormatter(new JsonResponseMapper());
     }
 
     public function getHttpClient(): HttpMethodsClientInterface
@@ -121,6 +125,6 @@ abstract class AbstractApi
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
         }
 
-        return ResponseFormatter::format($response->getBody()->getContents(), $responseClass);
+        return $this->responseFormatter->format($response->getBody()->getContents(), $responseClass);
     }
 }
