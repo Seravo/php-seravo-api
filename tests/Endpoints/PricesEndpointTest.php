@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class PricesEndpointTest extends BaseEndpointTestCase
 {
@@ -30,7 +30,7 @@ class PricesEndpointTest extends BaseEndpointTestCase
 
         $this->testGetObject(Price::class, $client->public->prices()->create($request), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->prices()->create($request);
     }
 
@@ -46,7 +46,7 @@ class PricesEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(Price::class, $client->public->prices()->getById($id), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->prices()->getById($id);
     }
 }

@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi;
 
 use Jumbojett\OpenIDConnectClient;
-use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
 use Seravo\SeravoApi\Contracts\AuthProviderInterface;
-use Seravo\SeravoApi\Exception\AuthenticationException;
-use Seravo\SeravoApi\Exception\MissingAccessTokenException;
+use Seravo\SeravoApi\Exceptions\AuthenticationException;
+use Seravo\SeravoApi\Exceptions\MissingAccessTokenException;
 
 class OpenIdConnectAuthProvider implements AuthProviderInterface
 {

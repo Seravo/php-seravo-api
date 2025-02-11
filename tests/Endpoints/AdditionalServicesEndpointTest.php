@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
+use GuzzleHttp\Psr7\Response;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\EditAdditionalServiceRequest;
 use Seravo\SeravoApi\Apis\Order\Request\AdditionalService\CreateAdditionalServiceRequest;
@@ -25,7 +25,7 @@ class AdditionalServicesEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(AdditionalService::class, $client->order->additionalServices()->getById($id), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->additionalServices()->getById($id);
     }
 
@@ -50,7 +50,7 @@ class AdditionalServicesEndpointTest extends BaseEndpointTestCase
             $data
         );
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->additionalServices()->create($request, $id);
     }
 
@@ -75,7 +75,7 @@ class AdditionalServicesEndpointTest extends BaseEndpointTestCase
             $data
         );
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->additionalServices()->edit($request, $id);
     }
 }

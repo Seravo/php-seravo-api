@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class ProductGroupsEndpointTest extends BaseEndpointTestCase
 {
@@ -23,7 +23,7 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
 
         $this->testCollection(ProductGroup::class, $client->public->productGroups()->get(), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->productGroups()->get();
     }
 
@@ -39,7 +39,7 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         $name = 'domains';
         $this->testGetObject(ProductGroup::class, $client->public->productGroups()->getByName($name), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->productGroups()->getByName($name);
     }
 
@@ -55,7 +55,7 @@ class ProductGroupsEndpointTest extends BaseEndpointTestCase
         $name = 'domains';
         $this->testCollection(Product::class, $client->public->productGroups()->getProducts($name), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->productGroups()->getByName($name);
     }
 }

@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\HttpClient\Plugin;
 
-use Http\Client\Common\Plugin;
+use RuntimeException;
 use Http\Promise\Promise;
+use Http\Client\Common\Plugin;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
-use Seravo\SeravoApi\Exception\AuthenticationException;
-use Seravo\SeravoApi\Exception\ValidationErrorException;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
+use Seravo\SeravoApi\Exceptions\HttpException;
+use Seravo\SeravoApi\Exceptions\UnauthorizedException;
+use Seravo\SeravoApi\Exceptions\ValidationErrorException;
 
 class ExceptionHandler implements Plugin
 {
@@ -19,6 +21,7 @@ class ExceptionHandler implements Plugin
      */
     public function handleRequest(RequestInterface $request, callable $next, callable $first): Promise
     {
+
         return $next($request)->then(function (ResponseInterface $response): ResponseInterface {
             /* HTTP Exceptions */
             if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
@@ -31,23 +34,24 @@ class ExceptionHandler implements Plugin
 
     /**
      * @param ResponseInterface $response
-     * @return AuthenticationException|ValidationErrorException|RuntimeException
+     * @return HttpException|RuntimeException
      */
     private static function transformMessageToException(ResponseInterface $response)
     {
         $status = $response->getStatusCode();
         $message = $response->getReasonPhrase();
+        $context = json_decode($response->getBody()->getContents(), true);
 
         if (400 === $status) {
-            return new RuntimeException($message, $status);
+            return new BadRequestException($message, $status, $context);
         }
 
         if (403 === $status || 401 === $status) {
-            return new AuthenticationException($message, $status);
+            return new UnauthorizedException($message, $status, $context);
         }
 
         if (422 === $status) {
-            return new ValidationErrorException($message, $status, $response->getBody()->__toString());
+            return new ValidationErrorException($message, $status, $context);
         }
 
         return new RuntimeException($message, $status);

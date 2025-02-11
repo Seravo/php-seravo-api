@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Seravo\SeravoApi\EnvironmentManager;
 use Seravo\SeravoApi\Enums\ApiEnvironment;
-use Seravo\SeravoApi\Exception\SeravoApiException;
+use Seravo\SeravoApi\Exceptions\SeravoApiException;
 
 final class EnvironmentManagerTest extends TestCase
 {

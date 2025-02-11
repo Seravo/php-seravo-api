@@ -10,7 +10,6 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
-use Seravo\SeravoApi\Exception\ValidationErrorException;
 use Seravo\SeravoApi\SeravoAPI;
 
 $billing = new PaperInvoice(
@@ -53,8 +52,6 @@ try {
         request: $updateOrderRequest
     );
     dd($result);
-} catch (ValidationErrorException $exception) {
-    dd(json_decode($exception->getData()));
 } catch (\Exception $exception) {
     dd($exception);
     die();

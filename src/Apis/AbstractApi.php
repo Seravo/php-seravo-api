@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Apis;
 
+use RuntimeException;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\UriInterface;
@@ -12,7 +13,7 @@ use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\Enums\HttpMethod;
-use Seravo\SeravoApi\Exception\ApiException;
+use Seravo\SeravoApi\Exceptions\InvalidApiResponseException;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Formatter\ResponseFormatter;
 use Seravo\SeravoApi\JsonResponseMapper;
@@ -118,11 +119,11 @@ abstract class AbstractApi
         try {
             $encodedBody = json_encode($body);
             if ($encodedBody === false) {
-                throw new ApiException('Failed to encode body to JSON');
+                throw new RuntimeException('Failed to encode body to JSON');
             }
             $response = $this->getHttpClient()->send($method->value, $uri, $headers, $encodedBody);
         } catch (RequestException $e) {
-            throw new ApiException($e->getMessage(), $e->getCode(), $e);
+            throw new InvalidApiResponseException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $this->responseFormatter->format($response->getBody()->getContents(), $responseClass);

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
@@ -14,6 +13,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class OrdersEndpointTest extends BaseEndpointTestCase
 {
@@ -28,7 +28,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
 
         $this->testCollection(Order::class, $client->order->orders()->get(), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->orders()->get();
     }
 
@@ -44,7 +44,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(Order::class, $client->order->orders()->getById($id), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->orders()->getById($id);
     }
 
@@ -89,7 +89,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
 
         $this->testGetObject(Order::class, $client->order->orders()->create($request), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->orders()->create($request);
     }
 
@@ -135,7 +135,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(Order::class, $client->order->orders()->update($id, $request), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->orders()->update($id, $request);
     }
 }

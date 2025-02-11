@@ -5,6 +5,6 @@ parameters:
         - tests
     ignoreErrors:
         -
-            message: '#^Property Seravo\\SeravoApi\\Exception\\(.*)\:\:\$message has no type specified.$#'
-            path: src/Exception/*
+            message: '#^Property Seravo\\SeravoApi\\Exceptions\\(.*)\:\:\$message has no type specified.$#'
+            path: src/Exceptions/*
 

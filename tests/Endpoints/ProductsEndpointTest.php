@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Public\Response\Product;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class ProductsEndpointTest extends BaseEndpointTestCase
 {
@@ -22,7 +22,7 @@ class ProductsEndpointTest extends BaseEndpointTestCase
 
         $this->testCollection(Product::class, $client->public->products()->get(), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->products()->get();
     }
 
@@ -38,7 +38,7 @@ class ProductsEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(Product::class, $client->public->products()->getById($id), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->public->products()->getById($id);
     }
 }

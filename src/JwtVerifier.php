@@ -10,7 +10,7 @@ use LogicException;
 use stdClass;
 use UnexpectedValueException;
 use Seravo\SeravoApi\Contracts\TokenVerifierInterface;
-use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
+use Seravo\SeravoApi\Exceptions\InvalidAccessTokenException;
 
 class JwtVerifier implements TokenVerifierInterface
 {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Seravo\Tests\SeravoApi\Endpoints;
 
-use RuntimeException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
+use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class PromotionsEndpointTest extends BaseEndpointTestCase
 {
@@ -22,7 +22,7 @@ class PromotionsEndpointTest extends BaseEndpointTestCase
 
         $this->testCollection(PromotionCode::class, $client->order->promotions()->get(), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->promotions()->get();
     }
 
@@ -38,7 +38,7 @@ class PromotionsEndpointTest extends BaseEndpointTestCase
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
         $this->testGetObject(PromotionCode::class, $client->order->promotions()->getById($id), $data);
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadRequestException::class);
         $client->order->promotions()->getById($id);
     }
 }

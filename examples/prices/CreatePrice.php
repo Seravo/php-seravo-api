@@ -7,7 +7,6 @@ $dotenv->load();
 
 use Seravo\SeravoApi\SeravoAPI;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
-use Seravo\SeravoApi\Exception\ValidationErrorException;
 
 $createPriceRequest = new CreatePriceRequest(
     interval: 1,
@@ -26,8 +25,6 @@ $api->authenticate();
 try {
     $result = $api->public->prices()->create($createPriceRequest);
     dd($result);
-} catch (ValidationErrorException $exception) {
-    dd(json_decode($exception->getData()));
 } catch (\Exception $exception) {
     dd($exception);
     die();

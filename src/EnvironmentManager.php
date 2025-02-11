@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi;
 
 use Seravo\SeravoApi\Enums\ApiEnvironment;
-use Seravo\SeravoApi\Exception\SeravoApiException;
+use Seravo\SeravoApi\Exceptions\SeravoApiException;
 
 class EnvironmentManager
 {

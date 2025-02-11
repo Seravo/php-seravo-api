@@ -9,7 +9,7 @@ use Http\Client\Common\Plugin;
 use Psr\Http\Message\RequestInterface;
 use Seravo\SeravoApi\Contracts\AuthProviderInterface;
 use Seravo\SeravoApi\Contracts\TokenVerifierInterface;
-use Seravo\SeravoApi\Exception\InvalidAccessTokenException;
+use Seravo\SeravoApi\Exceptions\InvalidAccessTokenException;
 
 class TokenVerifier implements Plugin
 {

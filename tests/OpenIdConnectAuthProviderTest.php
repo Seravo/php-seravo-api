@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Jumbojett\OpenIDConnectClient;
 use PHPUnit\Framework\MockObject\MockObject;
 use Seravo\SeravoApi\OpenIdConnectAuthProvider;
-use Seravo\SeravoApi\Exception\AuthenticationException;
+use Seravo\SeravoApi\Exceptions\AuthenticationException;
 
 class OpenIdConnectAuthProviderTest extends TestCase
 {
