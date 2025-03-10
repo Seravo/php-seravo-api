@@ -1,58 +1,58 @@
 {
-    "name": "seravo/php-seravo-api",
-    "description": "PHP Library for Seravo API",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Tatu Kulmala",
-            "email": "tatu@seravo.com"
-        }
-    ],
-    "require": {
-        "php": ">=8.2",
-        "ext-json": "*",
-        "ext-curl": "*",
-        "ext-mbstring": "*",
-        "php-http/discovery": "^1.20",
-        "php-http/httplug": "^2.4",
-        "php-http/client-common": "^2.7",
-        "psr/http-message": "^2.0",
-        "jumbojett/openid-connect-php": "^1.0",
-        "symfony/serializer": "^7.2",
-        "symfony/property-access": "^7.2",
-        "json-mapper/json-mapper": "^2.22",
-        "firebase/php-jwt": "^6.11"
-    },
-    "autoload": {
-        "psr-4": {
-            "Seravo\\SeravoApi\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Seravo\\Tests\\SeravoApi\\": "tests/"
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^11.3",
-        "phpstan/phpstan": "^1.12",
-        "mockery/mockery": "^1.6",
-        "squizlabs/php_codesniffer": "^3.10",
-        "phpcompatibility/php-compatibility": "^9.3",
-        "symfony/var-dumper": "^7.1",
-        "guzzlehttp/guzzle": "^7.9",
-        "vlucas/phpdotenv": "^5.6"
-    },
-    "scripts": {
-        "analyze": "vendor/bin/phpstan",
-        "test": "vendor/bin/phpunit",
-        "lint": "\"vendor/bin/phpcs\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\"",
-        "beautify": "\"vendor/bin/phpcbf\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\""
-    },
-    "config": {
-        "allow-plugins": {
-            "php-http/discovery": true
-        }
+  "name": "seravo/php-seravo-api",
+  "description": "PHP Library for Seravo API",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Tatu Kulmala",
+      "email": "tatu@seravo.com"
     }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-mbstring": "*",
+    "php-http/discovery": "^1.20",
+    "php-http/httplug": "^2.4",
+    "php-http/client-common": "^2.7",
+    "psr/http-message": "^2.0",
+    "jumbojett/openid-connect-php": "^1.0",
+    "symfony/serializer": "^7.2",
+    "symfony/property-access": "^7.2",
+    "json-mapper/json-mapper": "^2.22",
+    "firebase/php-jwt": "^6.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Seravo\\SeravoApi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Seravo\\Tests\\SeravoApi\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.3",
+    "phpstan/phpstan": "^1.12",
+    "mockery/mockery": "^1.6",
+    "squizlabs/php_codesniffer": "^3.10",
+    "phpcompatibility/php-compatibility": "^9.3",
+    "symfony/var-dumper": "^7.1",
+    "guzzlehttp/guzzle": "^7.9",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "scripts": {
+    "analyze": "vendor/bin/phpstan",
+    "test": "vendor/bin/phpunit",
+    "lint": "\"vendor/bin/phpcs\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\"",
+    "beautify": "\"vendor/bin/phpcbf\" src tests --extensions=\"php\" --encoding=\"UTF-8\" --standard=\"PSR12\""
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
 }
