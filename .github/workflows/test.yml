@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4']
 
     steps:
       # Checkout the repository
@@ -30,7 +30,7 @@ jobs:
       - run: php --version
 
       # Print Composer version
-      - run: composer --version 
+      - run: composer --version
 
       # Validate composer.json syntax
       - name: Validate composer.json syntax
