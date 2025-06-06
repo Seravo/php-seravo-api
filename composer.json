@@ -18,7 +18,7 @@
     "php-http/httplug": "^2.4",
     "php-http/client-common": "^2.7",
     "psr/http-message": "^2.0",
-    "jumbojett/openid-connect-php": "^1.0",
+    "jumbojett/openid-connect-php": "dev-master",
     "symfony/serializer": "^7.2",
     "symfony/property-access": "^7.2",
     "json-mapper/json-mapper": "^2.22",
