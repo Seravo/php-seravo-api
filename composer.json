@@ -42,7 +42,8 @@
     "phpcompatibility/php-compatibility": "^9.3",
     "symfony/var-dumper": "^7.1",
     "guzzlehttp/guzzle": "^7.9",
-    "vlucas/phpdotenv": "^5.6"
+    "vlucas/phpdotenv": "^5.6",
+    "rector/rector": "^2.0"
   },
   "scripts": {
     "analyze": "vendor/bin/phpstan",
