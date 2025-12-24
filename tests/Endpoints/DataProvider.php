@@ -51,7 +51,7 @@ abstract class DataProvider implements DataProviderInterface
     /**
      * @param array<int, mixed>|null $requests
      */
-    public function createClientHandler(?array $requests = [], ?MockHandler &$mock = null): SeravoApiClient
+    public function createClientHandler(?array $requests = [], ?MockHandler $mock = null): SeravoApiClient
     {
         $mock = new MockHandler($requests);
         return new SeravoApiClient(
