@@ -117,7 +117,7 @@ abstract class AbstractApi
         array $headers = [],
     ): SeravoResponseInterface|CollectionInterface {
         try {
-            $encodedBody = json_encode($body);
+            $encodedBody = $body ? json_encode($body) : null;
             if ($encodedBody === false) {
                 throw new RuntimeException('Failed to encode body to JSON');
             }
