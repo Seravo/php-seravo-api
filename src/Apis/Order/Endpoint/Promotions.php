@@ -26,7 +26,7 @@ class Promotions
      */
     public function get(): PromotionCodeCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: PromotionCodeCollection::class);
+        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: PromotionCodeCollection::class);
     }
 
     /**
