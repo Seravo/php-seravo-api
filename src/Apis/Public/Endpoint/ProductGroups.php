@@ -28,7 +28,7 @@ class ProductGroups
      */
     public function get(): ProductGroupCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: ProductGroupCollection::class);
+        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: ProductGroupCollection::class);
     }
 
     /**

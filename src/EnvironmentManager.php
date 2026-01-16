@@ -67,6 +67,6 @@ class EnvironmentManager
 
     private function validateEnvironment(?string $environment): bool
     {
-        return isset($environment) && $environment !== null && in_array($environment, ApiEnvironment::asArray());
+        return isset($environment) && in_array($environment, ApiEnvironment::asArray());
     }
 }

@@ -20,7 +20,7 @@ class ProductsEndpointTest extends BaseEndpointTestCase
             new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
-        $this->testCollection(Product::class, $client->public->products()->get(), $data);
+        $this->testCollection(Product::class, $client->public->products()->get(), $data['results']);
 
         $this->expectException(BadRequestException::class);
         $client->public->products()->get();

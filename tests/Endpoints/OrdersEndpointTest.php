@@ -26,7 +26,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
-        $this->testCollection(Order::class, $client->order->orders()->get(), $data);
+        $this->testCollection(Order::class, $client->order->orders()->get(), $data['results']);
 
         $this->expectException(BadRequestException::class);
         $client->order->orders()->get();

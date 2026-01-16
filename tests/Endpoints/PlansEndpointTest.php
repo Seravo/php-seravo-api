@@ -20,7 +20,7 @@ class PlansEndpointTest extends BaseEndpointTestCase
             new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
-        $this->testCollection(Plan::class, $client->public->plans()->get(), $data);
+        $this->testCollection(Plan::class, $client->public->plans()->get(), $data['results']);
 
         $this->expectException(BadRequestException::class);
         $client->public->plans()->get();

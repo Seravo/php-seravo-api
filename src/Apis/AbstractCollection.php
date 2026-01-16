@@ -26,11 +26,9 @@ abstract class AbstractCollection implements CollectionInterface
      * @param AbstractResponse $item The item
      * @return void
      */
-    public function add(mixed $item): void
+    public function add(AbstractResponse $item): void
     {
-        if ($item instanceof AbstractResponse) {
-            $this->items[] = $item;
-        }
+        $this->items[] = $item;
     }
 
     /**
