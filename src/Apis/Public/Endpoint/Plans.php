@@ -26,7 +26,7 @@ class Plans
      */
     public function get(): PlanCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: PlanCollection::class);
+        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: PlanCollection::class);
     }
 
     /**

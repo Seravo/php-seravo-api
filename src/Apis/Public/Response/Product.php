@@ -20,7 +20,8 @@ readonly class Product extends AbstractResponse
         public \DateTime $createdAt,
         public ?\DateTime $updatedAt = null,
         public ?\DateTime $deletedAt = null,
-        public ?string $groupId = null
+        public ?string $groupId = null,
+        public ?\stdClass $metadata = null
     ) {
     }
 }

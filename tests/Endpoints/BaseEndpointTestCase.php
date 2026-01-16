@@ -14,10 +14,10 @@ class BaseEndpointTestCase extends TestCase
 {
     private DataProviderInterface $provider;
 
-    public function __construct(string $name)
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->initDataProvider();
-        parent::__construct($name);
     }
 
     private function initDataProvider(): void

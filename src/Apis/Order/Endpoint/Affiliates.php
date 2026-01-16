@@ -26,7 +26,7 @@ class Affiliates
      */
     public function get(): AffiliateCollection
     {
-        return $this->api->get(uri: $this->uri, responseClass: AffiliateCollection::class);
+        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: AffiliateCollection::class);
     }
 
     /**
