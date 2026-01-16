@@ -1,28 +1,42 @@
 {
-  "interval": 12,
+  "interval": 1,
   "promotion": null,
-  "created_at": "2024-10-14T10:19:53",
+  "created_at": "2026-01-13T09:43:12",
   "updated_at": null,
-  "id": "0bb754a5-5de6-43aa-9a14-eb7fbedd3721",
-  "total": "46.62",
+  "id": "00498ac8-6ca2-45c6-91f9-fb38a1cf3936",
+  "total": "325.00",
   "products": [
     {
-      "name": "Lexicographer",
-      "code": "UQNVENCGHDI",
-      "price": "2184.0",
-      "discount": "0"
+      "name": "Domain (fi)",
+      "code": "WP_DOMAIN_FI_13012026",
+      "price": "25.00",
+      "discount": "0.00000",
+      "id": "8c0c7793-70df-4cd4-8c57-1966e209ddbc"
     },
     {
-      "name": "Engineer, water",
-      "code": "PSYDDQXQWGV",
-      "price": "2328.0",
-      "discount": "0"
-    },
-    {
-      "name": "Pro",
-      "code": "WPPRO12",
-      "price": "150",
-      "discount": "0"
+      "name": "Domain (fr)",
+      "code": "WP_DOMAIN_FR_13012026",
+      "price": "25.00",
+      "discount": "0.00000",
+      "id": "169fc3cc-4ece-453d-9882-adb37cbb3f64"
     }
-  ]
+  ],
+  "domains": [
+    {
+      "name": "a.guru",
+      "primary": true,
+      "type": "registration",
+      "id": "d7e8f9a1-3b4c-4d1e-6f2a-7c8b5d9e2f3a",
+      "price": "150.00",
+      "code": "WP_DOMAIN_GURU_13012026",
+      "discount": "0.00000"
+    }
+  ],
+  "plan": {
+    "id": "fda78ded-9ea7-4920-ba88-1a97b306ab0b",
+    "name": "Staff",
+    "code": "WPSTAFF1",
+    "price": "125.00",
+    "discount": "0.00000"
+  }
 }
