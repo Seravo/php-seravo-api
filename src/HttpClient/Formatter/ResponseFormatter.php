@@ -44,12 +44,22 @@ final class ResponseFormatter
         }
 
         try {
-            $responseType = gettype(json_decode($json));
-            $result = match ($responseType) {
-                'array' => $this->responseMapper->mapToCollection($json, $responseClass),
-                'object' => $this->responseMapper->mapToResponse($json, $responseClass),
-                default => throw new RuntimeException('Response type must be an array or an object'),
-            };
+            $decodedJson = json_decode($json, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new RuntimeException('Invalid JSON: ' . json_last_error_msg());
+            }
+
+            if (is_array($decodedJson) && array_key_exists('results', $decodedJson)) {
+                // Response is a collection
+                $result = $this->responseMapper->mapToCollection(
+                    json_encode($decodedJson['results'], JSON_THROW_ON_ERROR),
+                    $responseClass
+                );
+            } else {
+                // Response is a single object
+                $result = $this->responseMapper->mapToResponse($json, $responseClass);
+            }
         } catch (Throwable $e) {
             throw new RuntimeException(
                 'Failed to deserialize ' . $responseClass . ' object: ' . $e->getMessage()
