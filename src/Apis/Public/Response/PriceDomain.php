@@ -6,14 +6,16 @@ namespace Seravo\SeravoApi\Apis\Public\Response;
 
 use Seravo\SeravoApi\Apis\AbstractResponse;
 
-readonly class PriceProduct extends AbstractResponse
+readonly class PriceDomain extends AbstractResponse
 {
     public function __construct(
         public string $name,
-        public string $code,
+        public bool $primary,
+        public string $id,
         public string $price,
-        public ?string $discount,
-        public ?string $id = null,
+        public string $code,
+        public ?string $type,
+        public ?string $discount
     ) {
     }
 }
