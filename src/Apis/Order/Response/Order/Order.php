@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 
 use Seravo\SeravoApi\Apis\AbstractResponse;
-use Seravo\SeravoApi\Apis\Order\Response\AdditionalService;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
 
@@ -37,8 +36,7 @@ readonly class Order extends AbstractResponse
         public ?string $requestId = null,
         public ?int $serviceId = null,
         public ?\DateTime $updatedAt = null,
-        public ?PromotionCode $promotionCode = null,
-        public ?AdditionalService $services = null
+        public ?PromotionCode $promotionCode = null
     ) {
     }
 }
