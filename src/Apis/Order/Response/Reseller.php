@@ -29,6 +29,7 @@ readonly class Reseller extends AbstractResponse
         public ?string $internalNotes = null,
         public ?\DateTime $updatedAt = null,
         public ?\DateTime $deletedAt = null,
+        public ?\stdClass $contactInformation = null,
     ) {
     }
 }
