@@ -7,18 +7,19 @@ namespace Seravo\SeravoApi\Apis\Order\Response\Order;
 use Seravo\SeravoApi\Apis\AbstractResponse;
 use Seravo\SeravoApi\Apis\Order\Response\PromotionCode;
 use Seravo\SeravoApi\Apis\Public\Response\Price;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 
 readonly class Order extends AbstractResponse
 {
     /**
-     * @param array<string> $additionalDomains
+     * @param Domain[] $domains
      */
     public function __construct(
         public bool $acceptServiceTerms,
+        public array $domains,
         public Contact $contact,
         public bool $migration,
         public string $orderLanguage,
-        public string $primaryDomain,
         public string $siteLocation,
         public \DateTime $createdAt,
         public string $id,
@@ -27,7 +28,6 @@ readonly class Order extends AbstractResponse
         public Mail $mail,
         public string $orderStatus,
         public Price $priceData,
-        public array $additionalDomains = [],
         public int $orderTrialPeriod = 0,
         public ?string $affiliateId = null,
         public ?string $externalCustomerId = null,
@@ -36,7 +36,8 @@ readonly class Order extends AbstractResponse
         public ?string $requestId = null,
         public ?int $serviceId = null,
         public ?\DateTime $updatedAt = null,
-        public ?PromotionCode $promotionCode = null
+        public ?PromotionCode $promotionCode = null,
+        public ?string $paymentUrl = null
     ) {
     }
 }
