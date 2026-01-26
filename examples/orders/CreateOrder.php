@@ -11,6 +11,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 
 $billing = new PaperInvoice(
     contactEmail: 'jonh@doe.com',
@@ -24,13 +25,13 @@ $billing = new PaperInvoice(
 
 $createOrderRequest = new CreateOrderRequest(
     acceptServiceTerms: true,
+    domains: [ new Domain(name: 'mydomainexample123.fi', primary: true) ],
     contact: new Contact(email: 'john@doe.com', name: 'John Doe', phone: '0401234567'),
     migration: false,
-    orderLanguage: 'FI',
+    orderLanguage: 'fi', // 'fi', 'en_US', 'sv_SE'
     orderTrialPeriod: 0,
-    primaryDomain: 'example.fi',
     siteLocation: 'FI',
-    priceData: 'ff67d517-e5a1-4826-b936-5c41cd12853f',
+    priceData: 'd289afc7-b02e-44b5-918b-da66aa3d8858',
     billing: $billing,
     company: new Company(id: '1', name: 'John Doe'),
     mail: new Mail(option: '1'),

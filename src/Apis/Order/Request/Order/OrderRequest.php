@@ -9,6 +9,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\BillingMethod;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 
 abstract readonly class OrderRequest implements \JsonSerializable
 {
@@ -16,20 +17,19 @@ abstract readonly class OrderRequest implements \JsonSerializable
 
     /**
      *
-     * @param array<string>|null $additionalDomains
+     * @param array<Domain> $domains
      */
     public function __construct(
         public bool $acceptServiceTerms,
+        public array $domains,
         public Contact $contact,
         public bool $migration,
         public string $orderLanguage,
-        public string $primaryDomain,
         public string $siteLocation,
         public string $priceData,
         public BillingMethod $billing,
         public Company $company,
         public Mail $mail,
-        public ?array $additionalDomains = [],
         public ?int $orderTrialPeriod = 0,
         public ?string $affiliateId = null,
         public ?string $externalCustomerId = null,

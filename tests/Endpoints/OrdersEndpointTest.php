@@ -13,6 +13,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\CreateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class OrdersEndpointTest extends BaseEndpointTestCase
@@ -66,7 +67,12 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             ),
             migration: false,
             orderLanguage: 'en',
-            primaryDomain: 'test.com',
+            domains: [
+                new Domain(
+                    name: 'test.com',
+                    primary: true
+                )
+            ],
             siteLocation: 'eu',
             priceData: '1234',
             billing: new PaperInvoice(
@@ -111,7 +117,12 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             ),
             migration: false,
             orderLanguage: 'en',
-            primaryDomain: 'test.com',
+            domains: [
+                new Domain(
+                    name: 'test.com',
+                    primary: true
+                )
+            ],
             siteLocation: 'eu',
             priceData: '1234',
             billing: new PaperInvoice(
