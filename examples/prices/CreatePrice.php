@@ -7,11 +7,16 @@ $dotenv->load();
 
 use Seravo\SeravoApi\SeravoAPI;
 use Seravo\SeravoApi\Apis\Public\Request\Price\CreatePriceRequest;
+use Seravo\SeravoApi\Apis\Public\Request\Price\Domain;
+use Seravo\SeravoApi\Enums\DomainType;
 
 $createPriceRequest = new CreatePriceRequest(
     interval: 1,
     products: [],
     plan: '0e6bb9d4-2c90-4ae7-b876-4e17d5e8ff11',
+    domains: [
+        new Domain(name: 'mydomainexample123.fi', primary: true, type: DomainType::Registration->value),
+    ],
     promotion: null,
 );
 
