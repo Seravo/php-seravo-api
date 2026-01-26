@@ -9,4 +9,5 @@ enum BillingMethod: string
     case Paper = 'paper';
     case Email = 'email';
     case EInvoice = 'einvoice';
+    case CCInvoice = 'credit_card';
 }
