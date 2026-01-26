@@ -54,7 +54,7 @@ The following environment variables are required to be set before using the libr
 Optionally, you may pass these environment variables as well:
 
 - `SERAVO_ENVIRONMENT`
-    - Defines the API environment (`testing`, `staging`, `production`) to be used. Defaults to `production` if omitted from `.env` and/or constructor.
+  - Defines the API environment (`testing`, `staging`, `production`) to be used. Defaults to `production` if omitted from `.env` and/or constructor.
 
 These values must be set in the `/.env` file. See `.env.example`.
 
@@ -146,11 +146,12 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 
 $billing = new PaperInvoice(
-    contactEmail: 'jonh@doe.com',
-    contactName: 'John Doe',
-    contactPhone: '0401234567',
+    contact_email: 'john@doe.com',
+    contact_name: 'John Doe',
+    contact_phone: '0401234567',
     address: 'Testikatu 1',
     city: 'Helsinki',
     postal: '00100',
@@ -158,14 +159,14 @@ $billing = new PaperInvoice(
 );
 
 $createOrderRequest = new CreateOrderRequest(
-    acceptServiceTerms: true,
+    accept_service_terms: true,
+    domains: [ new Domain(name: 'mydomainexample123.fi', primary: true) ],
     contact: new Contact(email: 'john@doe.com', name: 'John Doe', phone: '0401234567'),
     migration: false,
-    orderLanguage: 'FI',
-    orderTrialPeriod: 0,
-    primaryDomain: 'example.fi',
-    siteLocation: 'FI',
-    priceData: 'ff67d517-e5a1-4826-b936-5c41cd12853f',
+    order_language: 'fi', // 'fi', 'en_US', 'sv_SE'
+    order_trial_period: 0,
+    site_location: 'FI',
+    price_data: 'd289afc7-b02e-44b5-918b-da66aa3d8858',
     billing: $billing,
     company: new Company(id: '1', name: 'John Doe'),
     mail: new Mail(option: '1'),

@@ -9,9 +9,9 @@ use Seravo\SeravoApi\Enums\BillingMethod as BillingMethodEnum;
 class EmailInvoice extends BillingMethod
 {
     public function __construct(
-        public string $contactEmail,
-        public string $contactName,
-        public string $contactPhone,
+        public string $contact_email,
+        public string $contact_name,
+        public string $contact_phone,
         public string $email,
         public ?string $invoice = null,
         public ?string $operator = null,
@@ -21,6 +21,6 @@ class EmailInvoice extends BillingMethod
         public ?string $name = null,
         public ?string $postal = null
     ) {
-        parent::__construct($contactEmail, $contactName, $contactPhone, BillingMethodEnum::Email->value);
+        parent::__construct($contact_email, $contact_name, $contact_phone, BillingMethodEnum::Email->value);
     }
 }

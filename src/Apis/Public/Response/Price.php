@@ -20,8 +20,8 @@ readonly class Price extends AbstractResponse
         public array $products,
         public PricePlan $plan,
         public array $domains,
-        public ?\DateTime $createdAt,
-        public ?\DateTime $updatedAt = null,
+        public ?\DateTime $created_at,
+        public ?\DateTime $updated_at = null,
         public ?string $promotion = null
     ) {
     }

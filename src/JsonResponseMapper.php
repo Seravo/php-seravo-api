@@ -30,7 +30,6 @@ class JsonResponseMapper implements ResponseMapperInterface
         $factoryRegistry = FactoryRegistry::withNativePhpClassesAdded();
 
         return JsonMapperBuilder::new()
-            ->withCaseConversionMiddleware(TextNotation::UNDERSCORE(), TextNotation::CAMEL_CASE())
             ->withDocBlockAnnotationsMiddleware()
             ->withNamespaceResolverMiddleware()
             ->withTypedPropertiesMiddleware()

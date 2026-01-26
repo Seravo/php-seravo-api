@@ -20,23 +20,23 @@ abstract readonly class OrderRequest implements \JsonSerializable
      * @param array<Domain> $domains
      */
     public function __construct(
-        public bool $acceptServiceTerms,
+        public bool $accept_service_terms,
         public array $domains,
         public Contact $contact,
         public bool $migration,
-        public string $orderLanguage,
-        public string $siteLocation,
-        public string $priceData,
+        public string $order_language,
+        public string $site_location,
+        public string $price_data,
         public BillingMethod $billing,
         public Company $company,
         public Mail $mail,
-        public ?int $orderTrialPeriod = 0,
-        public ?string $affiliateId = null,
-        public ?string $externalCustomerId = null,
+        public ?int $order_trial_period = 0,
+        public ?string $affiliate_id = null,
+        public ?string $external_customer_id = null,
         public ?string $message = null,
-        public ?string $missAffiliateId = null,
-        public ?string $requestId = null,
-        public ?int $serviceId = null,
+        public ?string $miss_affiliate_id = null,
+        public ?string $request_id = null,
+        public ?int $service_id = null,
     ) {
     }
 

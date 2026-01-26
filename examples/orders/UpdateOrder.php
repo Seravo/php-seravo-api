@@ -10,12 +10,13 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Company;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Contact;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Mail;
+use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 use Seravo\SeravoApi\SeravoAPI;
 
 $billing = new PaperInvoice(
-    contactEmail: 'john@doe.com',
-    contactName: 'John Doe',
-    contactPhone: '0401234567',
+    contact_email: 'john@doe.com',
+    contact_name: 'John Doe',
+    contact_phone: '0401234567',
     address: 'Testikatu 1',
     city: 'Helsinki',
     postal: '00100',
@@ -24,18 +25,23 @@ $billing = new PaperInvoice(
 
 $updateOrderRequest = new UpdateOrderRequest(
     ...[
-        'acceptServiceTerms' => true,
+        'accept_service_terms' => true,
         'contact' => new Contact(email: 'john@doe.com', name: 'John Doe', phone: '0401234567'),
         'migration' => false,
-        'orderLanguage' => 'FI',
-        'orderTrialPeriod' => 12,
-        'primaryDomain' => 'example.fi',
-        'siteLocation' => 'FI',
-        'priceData' => 'ff67d517-e5a1-4826-b936-5c41cd12853f',
+        'order_language' => 'fi', // 'fi', 'en_US', 'sv_SE'
+        'order_trial_period' => 12,
+        'domains' => [
+            new Domain(
+                name: 'mydomainexample123.fi',
+                primary: true
+            )
+        ],
+        'site_location' => 'FI',
+        'price_data' => 'd289afc7-b02e-44b5-918b-da66aa3d8858',
         'billing' => $billing,
         'company' => new Company(id: '1', name: 'John Doe'),
         'mail' => new Mail(option: '1'),
-        'id' => 'e608fd78-a0e0-4a9d-98db-8e38de79acb7'
+        'id' => '1d3c9e84-9c71-40c7-ba62-fbc5d9b59e96'
     ]
 );
 
@@ -48,7 +54,7 @@ $api->authenticate();
 
 try {
     $result = $api->order->orders()->update(
-        id: 'e608fd78-a0e0-4a9d-98db-8e38de79acb7',
+        id: '1d3c9e84-9c71-40c7-ba62-fbc5d9b59e96',
         request: $updateOrderRequest
     );
     dd($result);

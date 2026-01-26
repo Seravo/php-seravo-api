@@ -10,14 +10,14 @@ readonly class Mail
      * Undocumented function
      *
      * @param array<string> $boxes
-     * @param array<string> $forwardingFrom
-     * @param array<string> $forwardingTo
+     * @param array<string> $forwarding_from
+     * @param array<string> $forwarding_to
      */
     public function __construct(
         public string $option,
         public array $boxes = [],
-        public array $forwardingFrom = [],
-        public array $forwardingTo = []
+        public array $forwarding_from = [],
+        public array $forwarding_to = []
     ) {
     }
 }

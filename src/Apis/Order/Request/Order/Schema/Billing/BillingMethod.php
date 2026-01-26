@@ -7,9 +7,9 @@ namespace Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing;
 abstract class BillingMethod
 {
     public function __construct(
-        public string $contactEmail,
-        public string $contactName,
-        public string $contactPhone,
+        public string $contact_email,
+        public string $contact_name,
+        public string $contact_phone,
         public string $option,
     ) {
     }

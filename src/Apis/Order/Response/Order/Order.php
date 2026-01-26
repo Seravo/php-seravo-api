@@ -15,29 +15,29 @@ readonly class Order extends AbstractResponse
      * @param Domain[] $domains
      */
     public function __construct(
-        public bool $acceptServiceTerms,
+        public bool $accept_service_terms,
         public array $domains,
         public Contact $contact,
         public bool $migration,
-        public string $orderLanguage,
-        public string $siteLocation,
-        public \DateTime $createdAt,
+        public string $order_language,
+        public string $site_location,
+        public \DateTime $created_at,
         public string $id,
         public Billing $billing,
         public Company $company,
         public Mail $mail,
-        public string $orderStatus,
-        public Price $priceData,
-        public int $orderTrialPeriod = 0,
-        public ?string $affiliateId = null,
-        public ?string $externalCustomerId = null,
+        public string $order_status,
+        public Price $price_data,
+        public int $order_trial_period = 0,
+        public ?string $affiliate_id = null,
+        public ?string $external_customer_id = null,
         public ?string $message = null,
-        public ?string $missAffiliateId = null,
-        public ?string $requestId = null,
-        public ?int $serviceId = null,
-        public ?\DateTime $updatedAt = null,
-        public ?PromotionCode $promotionCode = null,
-        public ?string $paymentUrl = null
+        public ?string $miss_affiliate_id = null,
+        public ?string $request_id = null,
+        public ?int $service_id = null,
+        public ?\DateTime $updated_at = null,
+        public ?PromotionCode $promotion_code = null,
+        public ?string $payment_url = null
     ) {
     }
 }

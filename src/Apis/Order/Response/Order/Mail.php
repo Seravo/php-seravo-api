@@ -11,13 +11,13 @@ readonly class Mail extends AbstractResponse
 {
     /**
      * @param array<string> $boxes
-     * @param array<string> $forwardingFrom
-     * @param array<string> $forwardingTo
+     * @param array<string> $forwarding_from
+     * @param array<string> $forwarding_to
      */
     public function __construct(
         public array $boxes = [],
-        public array $forwardingFrom = [],
-        public array $forwardingTo = [],
+        public array $forwarding_from = [],
+        public array $forwarding_to = [],
         public ?string $option = null,
     ) {
     }

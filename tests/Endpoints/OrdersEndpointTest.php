@@ -59,26 +59,26 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         ]);
 
         $request = new CreateOrderRequest(
-            acceptServiceTerms: true,
+            accept_service_terms: true,
             contact: new Contact(
                 email: 'test@test.com',
                 name: 'Test',
                 phone: '1234567890'
             ),
             migration: false,
-            orderLanguage: 'en',
+            order_language: 'en',
             domains: [
                 new Domain(
                     name: 'test.com',
                     primary: true
                 )
             ],
-            siteLocation: 'eu',
-            priceData: '1234',
+            site_location: 'eu',
+            price_data: '1234',
             billing: new PaperInvoice(
-                contactEmail: 'test@test.com',
-                contactName: 'Test',
-                contactPhone: '1234567890',
+                contact_email: 'test@test.com',
+                contact_name: 'Test',
+                contact_phone: '1234567890',
                 address: 'Test Address',
                 city: 'Test City',
                 name: 'Test Name',
@@ -109,26 +109,26 @@ class OrdersEndpointTest extends BaseEndpointTestCase
         ]);
 
         $request = new UpdateOrderRequest(
-            acceptServiceTerms: true,
+            accept_service_terms: true,
             contact: new Contact(
                 email: 'test@test.com',
                 name: 'Test',
                 phone: '1234567890'
             ),
             migration: false,
-            orderLanguage: 'en',
+            order_language: 'en',
             domains: [
                 new Domain(
                     name: 'test.com',
                     primary: true
                 )
             ],
-            siteLocation: 'eu',
-            priceData: '1234',
+            site_location: 'eu',
+            price_data: '1234',
             billing: new PaperInvoice(
-                contactEmail: 'test@test.com',
-                contactName: 'Test',
-                contactPhone: '1234567890',
+                contact_email: 'test@test.com',
+                contact_name: 'Test',
+                contact_phone: '1234567890',
                 address: 'Test Address',
                 city: 'Test City',
                 name: 'Test Name',

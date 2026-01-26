@@ -12,8 +12,8 @@ readonly class ProductGroup extends AbstractResponse
         public string $id,
         public string $name,
         public string $type,
-        public \DateTime $createdAt,
-        public ?\DateTime $updatedAt = null,
+        public \DateTime $created_at,
+        public ?\DateTime $updated_at = null,
     ) {
     }
 }

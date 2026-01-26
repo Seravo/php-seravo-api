@@ -10,11 +10,11 @@ readonly class Affiliate extends AbstractResponse
 {
     public function __construct(
         public string $name,
-        public string $partnerId,
-        public \DateTime $createdAt,
+        public string $partner_id,
+        public \DateTime $created_at,
         public string $id,
-        public ?\DateTime $updatedAt = null,
-        public ?\DateTime $deletedAt = null,
+        public ?\DateTime $updated_at = null,
+        public ?\DateTime $deleted_at = null,
     ) {
     }
 }

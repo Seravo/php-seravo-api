@@ -9,9 +9,9 @@ use Seravo\SeravoApi\Apis\AbstractResponse;
 readonly class Billing extends AbstractResponse
 {
     public function __construct(
-        public ?string $contactEmail = null,
-        public ?string $contactName = null,
-        public ?string $contactPhone = null,
+        public ?string $contact_email = null,
+        public ?string $contact_name = null,
+        public ?string $contact_phone = null,
         public ?string $option = null,
         public ?string $address = null,
         public ?string $address2 = null,

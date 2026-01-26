@@ -11,8 +11,8 @@ readonly class Domain extends AbstractResponse
     public function __construct(
         public string $name,
         public bool $primary,
-        public ?string $dnsZone = null,
-        public ?string $transferKey = null,
+        public ?string $dns_zone = null,
+        public ?string $transfer_key = null,
     ) {
     }
 }

@@ -10,26 +10,26 @@ readonly class Reseller extends AbstractResponse
 {
     /**
      * @param array<string> $languages
-     * @param array<string> $officeLocations
+     * @param array<string> $office_locations
      * @param array<string> $webhooks
      */
     public function __construct(
         public string $name,
         public string $email,
-        public string $businessId,
+        public string $business_id,
         public string $domain,
-        public string $organisationId,
-        public \DateTime $createdAt,
+        public string $organisation_id,
+        public \DateTime $created_at,
         public string $id,
         public array $webhooks,
-        public ?string $projectSize,
+        public ?string $project_size,
         public array $languages = [],
-        public array $officeLocations = [],
+        public array $office_locations = [],
         public ?string $expertise = null,
-        public ?string $internalNotes = null,
-        public ?\DateTime $updatedAt = null,
-        public ?\DateTime $deletedAt = null,
-        public ?\stdClass $contactInformation = null,
+        public ?string $internal_notes = null,
+        public ?\DateTime $updated_at = null,
+        public ?\DateTime $deleted_at = null,
+        public ?\stdClass $contact_information = null,
     ) {
     }
 }

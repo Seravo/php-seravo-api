@@ -16,11 +16,11 @@ readonly class Product extends AbstractResponse
         public string $type,
         public string $unit,
         public \stdClass $locale,
-        public string $productType,
-        public \DateTime $createdAt,
-        public ?\DateTime $updatedAt = null,
-        public ?\DateTime $deletedAt = null,
-        public ?string $groupId = null,
+        public string $product_type,
+        public \DateTime $created_at,
+        public ?\DateTime $updated_at = null,
+        public ?\DateTime $deleted_at = null,
+        public ?string $group_id = null,
         public ?\stdClass $metadata = null
     ) {
     }
