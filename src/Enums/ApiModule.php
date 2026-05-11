@@ -8,4 +8,5 @@ enum ApiModule: string
 {
     case Order = 'order';
     case Public = 'public';
+    case Swd = 'swd';
 }

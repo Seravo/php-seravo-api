@@ -1,0 +1,38 @@
+{
+  "count": 2,
+  "page": 1,
+  "previous_page": null,
+  "next_page": null,
+  "results": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "name": "hel-test",
+      "full_name": "hel-test.seravo.dev",
+      "cluster_domain": "hel-test.seravo.dev",
+      "country": "fi",
+      "records": {
+        "A": ["192.0.2.1"],
+        "AAAA": ["2001:db8::1"],
+        "CNAME": "hel-test.seravo.dev"
+      },
+      "statuspage_id": "abc123",
+      "created_at": "2026-05-11T10:00:42",
+      "updated_at": null
+    },
+    {
+      "id": "d6f8c3b6-7c0c-4ec2-9eb0-1b9b3aa6d111",
+      "name": "ams-prod",
+      "full_name": "ams-prod.seravo.com",
+      "cluster_domain": "ams-prod.seravo.com",
+      "country": "nl",
+      "records": {
+        "A": ["192.0.2.2"],
+        "AAAA": ["2001:db8::2"],
+        "CNAME": "ams-prod.seravo.com"
+      },
+      "statuspage_id": null,
+      "created_at": "2026-05-11T10:00:42",
+      "updated_at": "2026-05-11T11:00:42"
+    }
+  ]
+}

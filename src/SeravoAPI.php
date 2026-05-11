@@ -8,6 +8,7 @@ use Seravo\SeravoApi\JwtVerifier;
 use Seravo\SeravoApi\OpenIdConnectAuthProvider;
 use Seravo\SeravoApi\Apis\OrderApi;
 use Seravo\SeravoApi\Apis\PublicApi;
+use Seravo\SeravoApi\Apis\SwdApi;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Seravo\SeravoApi\HttpClient\Plugin\Authentication;
@@ -22,6 +23,8 @@ final class SeravoAPI
     public readonly OrderApi $order;
 
     public readonly PublicApi $public;
+
+    public readonly SwdApi $swd;
 
     private Builder $httpClientBuilder;
 
@@ -38,6 +41,7 @@ final class SeravoAPI
 
         $this->order = new OrderApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
         $this->public = new PublicApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
+        $this->swd = new SwdApi($this->environmentManager->getApiUrl(), $this->httpClientBuilder);
     }
 
     public function authenticate(): void
