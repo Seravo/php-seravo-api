@@ -6,7 +6,7 @@ namespace Seravo\SeravoApi\Apis\Public\Endpoint;
 
 use Seravo\SeravoApi\Apis\PublicApi;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
-use Seravo\SeravoApi\Apis\Public\Response\Product;
+use Seravo\SeravoApi\Enums\SortDirection;
 use Seravo\SeravoApi\Apis\Public\Response\ProductCollection;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroup;
 use Seravo\SeravoApi\Apis\Public\Response\ProductGroupCollection;
@@ -24,11 +24,31 @@ class ProductGroups
     /**
      * Return all ProductGroups
      * @see API Reference: https://api.seravo.com/public/docs#/Product%20groups/get_many_public_product_groups__get
+     *
+     * @param int                 $page    Page number (defaults to 1)
+     * @param int                 $limit   Number of items per page; 0 disables paging
+     * @param string|null         $name    Optional name filter
+     * @param array<string, SortDirection>  $sort    Optional sort fields
      * @return ProductGroupCollection
      */
-    public function get(): ProductGroupCollection
-    {
-        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: ProductGroupCollection::class);
+    public function get(
+        int $page = 1,
+        int $limit = 0,
+        ?string $name = null,
+        array $sort = []
+    ): ProductGroupCollection {
+
+        $query = [
+            'page' => $page,
+            'limit' => $limit,
+        ];
+
+        if ($name !== null) {
+            $query['name'] = $name;
+        }
+
+        $uri = $this->api->buildUriWithParams(baseUri: $this->uri, query: $query, sort: $sort);
+        return $this->api->get(uri: $uri, responseClass: ProductGroupCollection::class);
     }
 
     /**
