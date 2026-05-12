@@ -10,6 +10,8 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Order;
 use Seravo\SeravoApi\Apis\Order\Response\Order\OrderCollection;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Enums\OrderStatus;
+use Seravo\SeravoApi\Enums\SortDirection;
 
 class Orders
 {
@@ -33,13 +35,38 @@ class Orders
     }
 
     /**
-     * Return all Orders
+     * Return Orders
      * @see API Reference: https://api.seravo.dev/order/docs#/Orders/get_many_order_orders__get
+     *
+     * @param int                 $page    Page number (defaults to 1)
+     * @param int                 $limit   Number of items per page; 0 disables paging
+     * @param string|null         $site_location    Optional site location filter
+     * @param OrderStatus|null    $order_status Optional order status filter
+     * @param array<string, SortDirection>  $sort    Optional sort fields
      * @return OrderCollection
      */
-    public function get(): OrderCollection
-    {
-        return $this->api->get(uri: $this->uri . '?limit=0', responseClass: OrderCollection::class);
+    public function get(
+        int $page = 1,
+        int $limit = 0,
+        ?string $site_location = null,
+        ?OrderStatus $order_status = null,
+        array $sort = []
+    ): OrderCollection {
+        $query = [
+            'page' => $page,
+            'limit' => $limit,
+        ];
+
+        if ($site_location !== null) {
+            $query['site_location'] = $site_location;
+        }
+
+        if ($order_status !== null) {
+            $query['order_status'] = $order_status->value;
+        }
+
+        $uri = $this->api->buildUriWithParams(baseUri: $this->uri, query: $query, sort: $sort);
+        return $this->api->get(uri: $uri, responseClass: OrderCollection::class);
     }
 
     /**
