@@ -13,6 +13,7 @@ use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
 use Seravo\SeravoApi\Enums\ApiModule;
 use Seravo\SeravoApi\Enums\HttpMethod;
+use Seravo\SeravoApi\Enums\SortDirection;
 use Seravo\SeravoApi\Exceptions\InvalidApiResponseException;
 use Seravo\SeravoApi\HttpClient\Builder;
 use Seravo\SeravoApi\HttpClient\Formatter\ResponseFormatter;
@@ -51,6 +52,52 @@ abstract class AbstractApi
         $this->uri = $uri;
 
         return (string) $this->uri . $endpoint->value . '/';
+    }
+
+    /**
+     * Build a URI with query parameters and sorting options
+     *
+     * @param string $baseUri - The base URI to which query parameters will be appended
+     * @param array<string, mixed> $query - Associative array of query parameters
+     * @param array<string, mixed> $sort - Associative array of sort fields and directions
+     * @return string
+     */
+    public function buildUriWithParams(string $baseUri, array $query, array $sort): string
+    {
+        $uri = $this->httpClientBuilder->getUriFactory()->createUri($baseUri);
+        $queryParts = [];
+        $queryString = http_build_query($query, "", '&', PHP_QUERY_RFC3986);
+
+        if ($queryString !== '') {
+            $queryParts[] = $queryString;
+        }
+
+        foreach ($sort as $key => $direction) {
+            if (!$direction instanceof SortDirection) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Sort direction for key "%s" must be instance of %s, %s given.',
+                        $key,
+                        SortDirection::class,
+                        is_object($direction) ? get_class($direction) : gettype($direction)
+                    )
+                );
+            }
+            $queryParts[] = 'sort=' . rawurlencode($key . ':' . $direction->value);
+        }
+
+        if ($queryParts === []) {
+            return $baseUri;
+        }
+
+        $existingQuery = $uri->getQuery();
+        $newQuery = implode('&', $queryParts);
+
+        if ($existingQuery !== '') {
+            $newQuery = $existingQuery . '&' . $newQuery;
+        }
+
+        return (string) $uri->withQuery($newQuery);
     }
 
     /**
