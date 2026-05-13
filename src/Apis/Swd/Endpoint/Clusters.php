@@ -7,6 +7,7 @@ namespace Seravo\SeravoApi\Apis\Swd\Endpoint;
 use Seravo\SeravoApi\Apis\Swd\Response\ClusterCollection;
 use Seravo\SeravoApi\Apis\SwdApi;
 use Seravo\SeravoApi\Enums\ApiEndpoint;
+use Seravo\SeravoApi\Enums\SortDirection;
 
 class Clusters
 {
@@ -19,7 +20,7 @@ class Clusters
     }
 
     /**
-     * Return all Clusters.
+     * Return Clusters
      *
      * Mirrors the swd /clusters/ GET endpoint and supports the same
      * pagination and filter query parameters.
@@ -30,7 +31,7 @@ class Clusters
      * @param int                 $limit   Number of items per page; 0 disables paging
      * @param string|null         $name    Optional name filter
      * @param string|null         $country Optional country filter
-     * @param array<int, string>  $sort    Optional sort fields
+     * @param array<string, SortDirection>  $sort    Optional sort fields
      */
     public function get(
         int $page = 1,
@@ -52,12 +53,7 @@ class Clusters
             $query['country'] = $country;
         }
 
-        if ($sort !== []) {
-            $query['sort'] = $sort;
-        }
-
-        $uri = $this->uri . '?' . http_build_query($query);
-
+        $uri = $this->api->buildUriWithParams($this->uri, $query, $sort);
         return $this->api->get(uri: $uri, responseClass: ClusterCollection::class);
     }
 }
