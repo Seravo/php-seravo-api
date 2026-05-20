@@ -94,6 +94,6 @@ class JwtVerifier implements TokenVerifierInterface
      */
     protected function validateIssuer(string $issuer): bool
     {
-        return $issuer === $this->environmentManager->getIdpUrl();
+        return $issuer === $this->environmentManager->getIdpUrlWithRealm();
     }
 }

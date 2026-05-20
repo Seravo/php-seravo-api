@@ -28,17 +28,17 @@ final class EnvironmentManagerTest extends TestCase
             ApiEnvironment::Production->value => [
                 'env' => ApiEnvironment::Production->value,
                 'apiUrl' => 'https://api.seravo.com',
-                'idpUrl' => 'https://id.seravo.com/realms/Seravo'
+                'idpUrl' => 'https://id.seravo.com',
             ],
             ApiEnvironment::Staging->value => [
                 'env' => ApiEnvironment::Staging->value,
                 'apiUrl' => 'https://api.seravo.co',
-                'idpUrl' => 'https://id.seravo.co/realms/Seravo'
+                'idpUrl' => 'https://id.seravo.co',
             ],
             ApiEnvironment::Testing->value => [
                 'env' => ApiEnvironment::Testing->value,
                 'apiUrl' => 'https://api.seravo.dev',
-                'idpUrl' => 'https://id.seravo.dev/realms/Seravo'
+                'idpUrl' => 'https://id.seravo.dev',
             ]
         ];
     }
@@ -61,7 +61,7 @@ final class EnvironmentManagerTest extends TestCase
     }
 
     #[DataProvider('environmentProvider')]
-    public function testGetIdpUrlReturnsTheCorrectIdpUrl(string $env, string $apiUrl, string $idpUrl): void
+    public function testGetBaseIdpUrlReturnsTheCorrectIdpUrl(string $env, string $apiUrl, string $idpUrl): void
     {
         $environmentManager = new EnvironmentManager($env);
         $this->assertEquals($idpUrl, $environmentManager->getIdpUrl());
@@ -78,5 +78,11 @@ final class EnvironmentManagerTest extends TestCase
     {
         $this->expectException(SeravoApiException::class);
         new EnvironmentManager('invalid-environment');
+    }
+
+    public function testEnvironmentManagerReturnsIdpUrlWithRealm(): void
+    {
+        $environmentManager = new EnvironmentManager(ApiEnvironment::Production->value);
+        $this->assertEquals('https://id.seravo.com/realms/Seravo', $environmentManager->getIdpUrlWithRealm());
     }
 }

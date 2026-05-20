@@ -18,11 +18,11 @@
     "php-http/httplug": "^2.4",
     "php-http/client-common": "^2.7",
     "psr/http-message": "^2.0",
-    "jumbojett/openid-connect-php": "^1.0",
     "symfony/serializer": "^7.2",
     "symfony/property-access": "^7.2",
     "json-mapper/json-mapper": "^2.22",
-    "firebase/php-jwt": "^7.0"
+    "firebase/php-jwt": "^7.0",
+    "stevenmaguire/oauth2-keycloak": "^6.1"
   },
   "autoload": {
     "psr-4": {

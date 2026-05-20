@@ -11,6 +11,10 @@ class EnvironmentManager
 {
     private ApiEnvironment $environment;
 
+    private const REALM = 'Seravo';
+
+    private const REALM_PATH = '/realms/' . self::REALM;
+
     /**
      *
      * @var array<string, string>
@@ -26,9 +30,9 @@ class EnvironmentManager
      * @var array<string, string>
      */
     private array $idpUrl = [
-        ApiEnvironment::Production->value => 'https://id.seravo.com/realms/Seravo',
-        ApiEnvironment::Staging->value => 'https://id.seravo.co/realms/Seravo',
-        ApiEnvironment::Testing->value => 'https://id.seravo.dev/realms/Seravo'
+        ApiEnvironment::Production->value => 'https://id.seravo.com',
+        ApiEnvironment::Staging->value => 'https://id.seravo.co',
+        ApiEnvironment::Testing->value => 'https://id.seravo.dev'
     ];
 
     public function __construct(private ?string $env = null)
@@ -63,6 +67,16 @@ class EnvironmentManager
     public function getIdpUrl(): string
     {
         return $this->idpUrl[$this->environment->value];
+    }
+
+    public function getRealm(): string
+    {
+        return self::REALM;
+    }
+
+    public function getIdpUrlWithRealm(): string
+    {
+        return $this->getIdpUrl() . self::REALM_PATH;
     }
 
     private function validateEnvironment(?string $environment): bool
