@@ -6,5 +6,8 @@ namespace Seravo\SeravoApi\Exceptions;
 
 class InvalidAccessTokenException extends \Exception
 {
-    protected $message = 'Invalid Access Token';
+    public function __construct(string $message = 'Invalid Access Token')
+    {
+        parent::__construct($message);
+    }
 }

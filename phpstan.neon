@@ -3,8 +3,3 @@ parameters:
     paths:
         - src
         - tests
-    ignoreErrors:
-        -
-            message: '#^Property Seravo\\SeravoApi\\Exceptions\\(.*)\:\:\$message has no type specified.$#'
-            path: src/Exceptions/*
-
