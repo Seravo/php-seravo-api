@@ -10,6 +10,9 @@ jobs:
   lint-php-style:
     name: 'Lint style'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.2', '8.3', '8.4']
 
     steps:
       # Checkout the repository
@@ -20,7 +23,7 @@ jobs:
       - name: Setup PHP
         uses: seravo/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php-versions }}
           tools: cs2pr, composer
 
       # Print Composer version
