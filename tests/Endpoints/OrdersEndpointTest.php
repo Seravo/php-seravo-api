@@ -15,6 +15,7 @@ use Seravo\SeravoApi\Apis\Order\Request\Order\UpdateOrderRequest;
 use Seravo\SeravoApi\Apis\Order\Request\Order\Schema\Billing\PaperInvoice;
 use Seravo\SeravoApi\Apis\Order\Response\Order\Domain;
 use Seravo\SeravoApi\Exceptions\BadRequestException;
+use Seravo\SeravoApi\Exceptions\HttpException;
 
 class OrdersEndpointTest extends BaseEndpointTestCase
 {
@@ -47,6 +48,24 @@ class OrdersEndpointTest extends BaseEndpointTestCase
 
         $this->expectException(BadRequestException::class);
         $client->order->orders()->getById($id);
+    }
+
+    public function testGetOrderThrowsHttpExceptionForServerError(): void
+    {
+        $client = $this->getDataProvider()->createClientHandler([
+            new Response(500, [], Utils::streamFor(json_encode(['error' => 'Internal Server Error']))),
+        ]);
+
+        $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';
+
+        try {
+            $client->order->orders()->getById($id);
+            $this->fail('Expected HttpException to be thrown.');
+        } catch (HttpException $exception) {
+            $this->assertSame(500, $exception->getCode());
+            $this->assertSame(['error' => 'Internal Server Error'], $exception->getContext());
+        }
+
     }
 
     public function testCreateOrder(): void

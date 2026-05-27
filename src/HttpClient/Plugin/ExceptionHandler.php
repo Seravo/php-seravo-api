@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\HttpClient\Plugin;
 
-use RuntimeException;
 use Http\Promise\Promise;
 use Http\Client\Common\Plugin;
 use Psr\Http\Message\RequestInterface;
@@ -24,7 +23,7 @@ class ExceptionHandler implements Plugin
 
         return $next($request)->then(function (ResponseInterface $response): ResponseInterface {
             /* HTTP Exceptions */
-            if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
+            if ($response->getStatusCode() >= 400) {
                 throw self::transformMessageToException($response);
             }
 
@@ -34,13 +33,15 @@ class ExceptionHandler implements Plugin
 
     /**
      * @param ResponseInterface $response
-     * @return HttpException|RuntimeException
+     * @return HttpException
      */
-    private static function transformMessageToException(ResponseInterface $response)
+    private static function transformMessageToException(ResponseInterface $response): HttpException
     {
         $status = $response->getStatusCode();
         $message = $response->getReasonPhrase();
-        $context = json_decode($response->getBody()->getContents(), true);
+        $rawBody = $response->getBody()->getContents();
+        $decodedContext = json_decode($rawBody, true);
+        $context = is_array($decodedContext) ? $decodedContext : ['rawBody' => $rawBody];
 
         if (400 === $status) {
             return new BadRequestException($message, $status, $context);
@@ -54,6 +55,6 @@ class ExceptionHandler implements Plugin
             return new ValidationErrorException($message, $status, $context);
         }
 
-        return new RuntimeException($message, $status);
+        return new HttpException($message, $status, $context);
     }
 }
