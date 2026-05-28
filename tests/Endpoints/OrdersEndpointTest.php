@@ -65,7 +65,6 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             $this->assertSame(500, $exception->getCode());
             $this->assertSame(['error' => 'Internal Server Error'], $exception->getContext());
         }
-
     }
 
     public function testCreateOrder(): void
