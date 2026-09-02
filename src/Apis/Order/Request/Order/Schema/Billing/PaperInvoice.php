@@ -20,6 +20,7 @@ class PaperInvoice extends BillingMethod
         public ?string $invoice = null,
         public ?string $operator = null,
         public ?string $address2 = null,
+        public ?string $reference = null,
     ) {
         parent::__construct($contact_email, $contact_name, $contact_phone, BillingMethodEnum::Paper->value);
     }

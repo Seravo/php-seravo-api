@@ -1,4 +1,13 @@
 {
+  "code": "WPBUSINESS1",
+  "group_id": null,
+  "locale": {
+    "fi": "Paketti",
+    "en": "Plan"
+  },
+  "product_type": "plan",
+  "unit": "eur",
+  "type": "casd",
   "account_manager": false,
   "disklimit": 15,
   "emails_sent": 9000,
@@ -18,5 +27,31 @@
   "woocommerce": false,
   "created_at": "2024-10-14T10:19:53",
   "updated_at": null,
-  "id": "0e6bb9d4-2c90-4ae7-b876-4e17d5e8ff11"
+  "id": "0e6bb9d4-2c90-4ae7-b876-4e17d5e8ff11",
+  "formatted_prices": {
+    "EUR": {
+      "price": 60,
+      "formatted_price": "60,00 €",
+      "annual_price": 720,
+      "formatted_annual_price": "720,00 €",
+      "annual_price_month": 60,
+      "formatted_annual_price_month": "60,00 €"
+    },
+    "SEK": {
+      "price": 60,
+      "formatted_price": "60,00 SEK",
+      "annual_price": 720,
+      "formatted_annual_price": "720,00 SEK",
+      "annual_price_month": 60,
+      "formatted_annual_price_month": "60,00 SEK"
+    },
+    "PLN": {
+      "price": 60,
+      "formatted_price": "60,00 PLN",
+      "annual_price": 720,
+      "formatted_annual_price": "720,00 PLN",
+      "annual_price_month": 60,
+      "formatted_annual_price_month": "60,00 PLN"
+    }
+  }
 }

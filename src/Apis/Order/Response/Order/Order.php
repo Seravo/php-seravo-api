@@ -20,7 +20,6 @@ readonly class Order extends AbstractResponse
         public Contact $contact,
         public bool $migration,
         public string $order_language,
-        public string $site_location,
         public \DateTime $created_at,
         public string $id,
         public Billing $billing,
@@ -29,6 +28,7 @@ readonly class Order extends AbstractResponse
         public string $order_status,
         public Price $price_data,
         public int $order_trial_period = 0,
+        public ?string $site_location = null,
         public ?string $affiliate_id = null,
         public ?string $external_customer_id = null,
         public ?string $message = null,
@@ -37,7 +37,12 @@ readonly class Order extends AbstractResponse
         public ?int $service_id = null,
         public ?\DateTime $updated_at = null,
         public ?PromotionCode $promotion_code = null,
-        public ?string $payment_url = null
+        public ?string $payment_url = null,
+        public ?string $organisation_id = null,
+        public ?string $revises_id = null,
+        public ?string $revised_by_id = null,
+        public ?string $site_name = null,
+        public ?string $site_uuid = null
     ) {
     }
 }

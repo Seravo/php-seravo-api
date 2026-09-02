@@ -5,6 +5,15 @@
   "next_page": null,
   "results": [
     {
+      "code": "WPBUSINESS1",
+      "group_id": null,
+      "locale": {
+        "fi": "Paketti",
+        "en": "Plan"
+      },
+      "product_type": "plan",
+      "unit": "eur",
+      "type": "casd",
       "account_manager": false,
       "disklimit": 15,
       "emails_sent": 9000,
@@ -24,9 +33,44 @@
       "woocommerce": false,
       "created_at": "2024-10-14T10:19:53",
       "updated_at": null,
-      "id": "0e6bb9d4-2c90-4ae7-b876-4e17d5e8ff11"
+      "id": "0e6bb9d4-2c90-4ae7-b876-4e17d5e8ff11",
+      "formatted_prices": {
+        "EUR": {
+          "price": 60,
+          "formatted_price": "60,00 €",
+          "annual_price": 720,
+          "formatted_annual_price": "720,00 €",
+          "annual_price_month": 60,
+          "formatted_annual_price_month": "60,00 €"
+        },
+        "SEK": {
+          "price": 60,
+          "formatted_price": "60,00 SEK",
+          "annual_price": 720,
+          "formatted_annual_price": "720,00 SEK",
+          "annual_price_month": 60,
+          "formatted_annual_price_month": "60,00 SEK"
+        },
+        "PLN": {
+          "price": 60,
+          "formatted_price": "60,00 PLN",
+          "annual_price": 720,
+          "formatted_annual_price": "720,00 PLN",
+          "annual_price_month": 60,
+          "formatted_annual_price_month": "60,00 PLN"
+        }
+      }
     },
     {
+      "code": "WPCORPORATE1",
+      "group_id": null,
+      "locale": {
+        "fi": "Paketti",
+        "en": "Plan"
+      },
+      "product_type": "plan",
+      "unit": "eur",
+      "type": "casd",
       "account_manager": true,
       "disklimit": 30,
       "emails_sent": 9000,
@@ -46,9 +90,44 @@
       "woocommerce": false,
       "created_at": "2024-10-14T10:19:53",
       "updated_at": null,
-      "id": "3b3e163b-fd61-49a9-af7c-73aadd8349e9"
+      "id": "3b3e163b-fd61-49a9-af7c-73aadd8349e9",
+      "formatted_prices": {
+        "EUR": {
+          "price": 35,
+          "formatted_price": "35,00 €",
+          "annual_price": 420,
+          "formatted_annual_price": "420,00 €",
+          "annual_price_month": 35,
+          "formatted_annual_price_month": "35,00 €"
+        },
+        "SEK": {
+          "price": 35,
+          "formatted_price": "35,00 SEK",
+          "annual_price": 420,
+          "formatted_annual_price": "420,00 SEK",
+          "annual_price_month": 35,
+          "formatted_annual_price_month": "35,00 SEK"
+        },
+        "PLN": {
+          "price": 35,
+          "formatted_price": "35,00 PLN",
+          "annual_price": 420,
+          "formatted_annual_price": "420,00 PLN",
+          "annual_price_month": 35,
+          "formatted_annual_price_month": "35,00 PLN"
+        }
+      }
     },
     {
+      "code": "WPPRO1",
+      "group_id": null,
+      "locale": {
+        "fi": "Paketti",
+        "en": "Plan"
+      },
+      "product_type": "plan",
+      "unit": "eur",
+      "type": "casd",
       "account_manager": false,
       "disklimit": 15,
       "emails_sent": 3000,
@@ -68,7 +147,33 @@
       "woocommerce": true,
       "created_at": "2024-10-14T10:19:53",
       "updated_at": null,
-      "id": "4f289b91-844d-4210-8ddb-0d9af0b427b4"
+      "id": "4f289b91-844d-4210-8ddb-0d9af0b427b4",
+      "formatted_prices": {
+        "EUR": {
+          "price": 15,
+          "formatted_price": "15,00 €",
+          "annual_price": 180,
+          "formatted_annual_price": "180,00 €",
+          "annual_price_month": 15,
+          "formatted_annual_price_month": "15,00 €"
+        },
+        "SEK": {
+          "price": 15,
+          "formatted_price": "15,00 SEK",
+          "annual_price": 180,
+          "formatted_annual_price": "180,00 SEK",
+          "annual_price_month": 15,
+          "formatted_annual_price_month": "15,00 SEK"
+        },
+        "PLN": {
+          "price": 15,
+          "formatted_price": "15,00 PLN",
+          "annual_price": 180,
+          "formatted_annual_price": "180,00 PLN",
+          "annual_price_month": 15,
+          "formatted_annual_price_month": "15,00 PLN"
+        }
+      }
     }
   ]
 }

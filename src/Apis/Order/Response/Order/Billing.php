@@ -21,6 +21,7 @@ readonly class Billing extends AbstractResponse
         public ?string $name = null,
         public ?string $operator = null,
         public ?string $postal = null,
+        public ?string $reference = null,
     ) {
     }
 }
