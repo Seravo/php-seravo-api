@@ -13,7 +13,10 @@ readonly class PricePlan extends AbstractResponse
         public string $name,
         public string $code,
         public string $price,
-        public ?string $discount
+        public ?string $discount,
+        public \stdClass $locale,
+        public \stdClass $formatted_prices,
+        public ?string $price_without_discount = "0",
     ) {
     }
 }

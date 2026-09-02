@@ -15,7 +15,10 @@ readonly class PriceDomain extends AbstractResponse
         public string $price,
         public string $code,
         public ?string $type,
-        public ?string $discount
+        public ?string $discount,
+        public ?\stdClass $locale,
+        public ?\stdClass $formatted_prices,
+        public ?string $price_without_discount = "0",
     ) {
     }
 }

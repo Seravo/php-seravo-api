@@ -14,15 +14,18 @@ readonly class Price extends AbstractResponse
      * @param PriceProduct[] $products
      */
     public function __construct(
-        public string $id,
         public int $interval,
         public string $total,
         public array $products,
+        public string $currency,
         public PricePlan $plan,
         public array $domains,
         public ?\DateTime $created_at,
+        public ?\stdClass $total_formatted_prices = null,
         public ?\DateTime $updated_at = null,
-        public ?string $promotion = null
+        public ?string $promotion = null,
+        public ?string $id = null,
+        public ?\stdClass $errors = null,
     ) {
     }
 }
