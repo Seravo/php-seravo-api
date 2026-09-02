@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Seravo\SeravoApi\Apis;
 
 use Symfony\Component\Serializer\Serializer;
+use Seravo\SeravoApi\Concerns\StdClassSafeNameConverter;
 use Seravo\SeravoApi\Contracts\SeravoResponseInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 abstract readonly class AbstractResponse implements SeravoResponseInterface
 {
@@ -24,7 +24,7 @@ abstract readonly class AbstractResponse implements SeravoResponseInterface
                 [
                 DateTimeNormalizer::FORMAT_KEY => self::FORMAT_KEY]
             ),
-            new ObjectNormalizer(nameConverter: new CamelCaseToSnakeCaseNameConverter())
+            new ObjectNormalizer(nameConverter: new StdClassSafeNameConverter())
         ];
 
         $serializer = new Serializer($normalizers);
