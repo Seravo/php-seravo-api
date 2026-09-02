@@ -9,11 +9,16 @@ use Seravo\SeravoApi\Apis\AbstractResponse;
 readonly class PriceProduct extends AbstractResponse
 {
     public function __construct(
+        public string $id,
         public string $name,
         public string $code,
         public string $price,
         public ?string $discount,
-        public ?string $id = null,
+        public ?\stdClass $locale,
+        public ?\stdClass $formatted_prices,
+        public ?string $price_without_discount = "0",
+        public ?int $count = 1,
+        public ?string $product_type = "unknown"
     ) {
     }
 }

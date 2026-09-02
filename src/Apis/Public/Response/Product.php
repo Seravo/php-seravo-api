@@ -18,10 +18,11 @@ readonly class Product extends AbstractResponse
         public \stdClass $locale,
         public string $product_type,
         public \DateTime $created_at,
+        public ?\stdClass $formatted_prices,
         public ?\DateTime $updated_at = null,
         public ?\DateTime $deleted_at = null,
         public ?string $group_id = null,
-        public ?\stdClass $metadata = null
+        public ?\stdClass $metadata = null,
     ) {
     }
 }

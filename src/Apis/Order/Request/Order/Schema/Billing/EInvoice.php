@@ -20,6 +20,7 @@ class EInvoice extends BillingMethod
         public ?string $email = null,
         public ?string $name = null,
         public ?string $postal = null,
+        public ?string $reference = null,
     ) {
         parent::__construct($contact_email, $contact_name, $contact_phone, BillingMethodEnum::EInvoice->value);
     }

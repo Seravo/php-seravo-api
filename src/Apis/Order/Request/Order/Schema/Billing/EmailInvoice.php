@@ -19,7 +19,8 @@ class EmailInvoice extends BillingMethod
         public ?string $address2 = null,
         public ?string $city = null,
         public ?string $name = null,
-        public ?string $postal = null
+        public ?string $postal = null,
+        public ?string $reference = null,
     ) {
         parent::__construct($contact_email, $contact_name, $contact_phone, BillingMethodEnum::Email->value);
     }

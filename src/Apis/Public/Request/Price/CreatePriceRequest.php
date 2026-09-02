@@ -20,6 +20,7 @@ readonly class CreatePriceRequest implements \JsonSerializable
         public int $interval,
         public array $products,
         public string $plan,
+        public string $currency,
         public array $domains = [],
         public ?string $promotion = null,
     ) {

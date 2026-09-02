@@ -10,6 +10,10 @@ readonly class Plan extends AbstractResponse
 {
     public function __construct(
         public string $id,
+        public string $code,
+        public string $product_type,
+        public string $type,
+        public string $unit,
         public bool $account_manager,
         public int $disklimit,
         public int $emails_sent,
@@ -28,7 +32,10 @@ readonly class Plan extends AbstractResponse
         public int $visitors_per_month,
         public bool $woocommerce,
         public \DateTime $created_at,
+        public ?\stdClass $locale,
+        public ?string $group_id = null,
         public ?\DateTime $updated_at = null,
+        public ?\stdClass $formatted_prices = null
     ) {
     }
 }
