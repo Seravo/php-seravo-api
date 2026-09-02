@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Seravo\SeravoApi\Concerns;
 
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -18,7 +17,7 @@ trait ArrayTransformer
      */
     public function toArray(mixed $input): array
     {
-        $normalizer = new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter());
+        $normalizer = new ObjectNormalizer(null, new StdClassSafeNameConverter());
         $serializer = new Serializer([$normalizer]);
 
         $normalizedData = $serializer->normalize($input);
