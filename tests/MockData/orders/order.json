@@ -38,7 +38,8 @@
     "invoice": null,
     "name": null,
     "operator": null,
-    "postal": null
+    "postal": null,
+    "reference": null
   },
   "company": {
     "address2": "Autem et nesciunt n",
@@ -74,7 +75,56 @@
         "id": "877c794d-8a3f-4e15-8dbf-68d008ac166f",
         "price": "324.00",
         "code": "WP_DOMAIN_FI_13012026",
-        "discount": "0.00000"
+        "discount": "0.00000",
+        "locale": {},
+        "price_without_discount": "720.00",
+        "formatted_prices": {
+          "SEK": {
+            "price": "730.00",
+            "formatted_price": "730,00 SEK",
+            "discount": "0.00000",
+            "price_without_discount": "730.00",
+            "formatted_price_without_discount": "730,00 SEK",
+            "annual_price": "7880.00",
+            "formatted_annual_price": "7 880,00 SEK",
+            "annual_price_month": "656.67",
+            "formatted_annual_price_month": "656,67 SEK",
+            "annual_price_without_discount": "7880.00",
+            "formatted_annual_price_without_discount": "7 880,00 SEK",
+            "annual_price_month_without_discount": "656.67",
+            "formatted_annual_price_month_without_discount": "656,67 SEK"
+          },
+          "PLN": {
+            "price": "285.00",
+            "formatted_price": "285,00 PLN",
+            "discount": "0.00000",
+            "price_without_discount": "285.00",
+            "formatted_price_without_discount": "285,00 PLN",
+            "annual_price": "3070.00",
+            "formatted_annual_price": "3 070,00 PLN",
+            "annual_price_month": "255.83",
+            "formatted_annual_price_month": "255,83 PLN",
+            "annual_price_without_discount": "3070.00",
+            "formatted_annual_price_without_discount": "3 070,00 PLN",
+            "annual_price_month_without_discount": "255.83",
+            "formatted_annual_price_month_without_discount": "255,83 PLN"
+          },
+          "EUR": {
+            "price": "324.00",
+            "formatted_price": "324,00 €",
+            "discount": "0.00000",
+            "price_without_discount": "324.00",
+            "formatted_price_without_discount": "324,00 €",
+            "annual_price": "720.00",
+            "formatted_annual_price": "720,00 €",
+            "annual_price_month": "60.00",
+            "formatted_annual_price_month": "60,00 €",
+            "annual_price_without_discount": "720.00",
+            "formatted_annual_price_without_discount": "720,00 €",
+            "annual_price_month_without_discount": "60.00",
+            "formatted_annual_price_month_without_discount": "60,00 €"
+          }
+        }
       }
     ],
     "plan": {
@@ -82,9 +132,89 @@
       "name": "Corporate",
       "code": "WPCORPORATE12",
       "price": "160.00",
-      "discount": "0.00000"
+      "discount": "0.00000",
+      "locale": {},
+      "price_without_discount": "720.00",
+      "formatted_prices": {
+        "SEK": {
+          "price": "730.00",
+          "formatted_price": "730,00 SEK",
+          "discount": "0.00000",
+          "price_without_discount": "730.00",
+          "formatted_price_without_discount": "730,00 SEK",
+          "annual_price": "7880.00",
+          "formatted_annual_price": "7 880,00 SEK",
+          "annual_price_month": "656.67",
+          "formatted_annual_price_month": "656,67 SEK",
+          "annual_price_without_discount": "7880.00",
+          "formatted_annual_price_without_discount": "7 880,00 SEK",
+          "annual_price_month_without_discount": "656.67",
+          "formatted_annual_price_month_without_discount": "656,67 SEK"
+        },
+        "PLN": {
+          "price": "285.00",
+          "formatted_price": "285,00 PLN",
+          "discount": "0.00000",
+          "price_without_discount": "285.00",
+          "formatted_price_without_discount": "285,00 PLN",
+          "annual_price": "3070.00",
+          "formatted_annual_price": "3 070,00 PLN",
+          "annual_price_month": "255.83",
+          "formatted_annual_price_month": "255,83 PLN",
+          "annual_price_without_discount": "3070.00",
+          "formatted_annual_price_without_discount": "3 070,00 PLN",
+          "annual_price_month_without_discount": "255.83",
+          "formatted_annual_price_month_without_discount": "255,83 PLN"
+        },
+        "EUR": {
+          "price": "67.00",
+          "formatted_price": "67,00 €",
+          "discount": "0.00000",
+          "price_without_discount": "67.00",
+          "formatted_price_without_discount": "67,00 €",
+          "annual_price": "720.00",
+          "formatted_annual_price": "720,00 €",
+          "annual_price_month": "60.00",
+          "formatted_annual_price_month": "60,00 €",
+          "annual_price_without_discount": "720.00",
+          "formatted_annual_price_without_discount": "720,00 €",
+          "annual_price_month_without_discount": "60.00",
+          "formatted_annual_price_month_without_discount": "60,00 €"
+        }
+      }
+    },
+    "currency": "EUR",
+    "errors": null,
+    "total_formatted_prices": {
+      "SEK": {
+        "price": "7880.00",
+        "formatted_price": "7 880,00 SEK",
+        "discount": "0.00000",
+        "price_without_discount": "7880.00",
+        "formatted_price_without_discount": "7 880,00 SEK"
+      },
+      "PLN": {
+        "price": "3070.00",
+        "formatted_price": "3 070,00 PLN",
+        "discount": "0.00000",
+        "price_without_discount": "3070.00",
+        "formatted_price_without_discount": "3 070,00 PLN"
+      },
+      "EUR": {
+        "price": "484.00",
+        "formatted_price": "484,00 €",
+        "discount": "0.00000",
+        "price_without_discount": "484.00",
+        "formatted_price_without_discount": "484,00 €"
+      }
     }
   },
+
   "promotion_code": null,
-  "payment_url": null
+  "payment_url": null,
+  "organisation_id": null,
+  "revises_id": null,
+  "revised_by_id": null,
+  "site_name": null,
+  "site_uuid": null
 }
