@@ -1,6 +1,7 @@
 {
   "interval": 1,
   "promotion": null,
+  "currency": "EUR",
   "created_at": "2026-01-13T09:43:12",
   "updated_at": null,
   "id": "00498ac8-6ca2-45c6-91f9-fb38a1cf3936",
@@ -11,14 +12,74 @@
       "code": "WP_DOMAIN_FI_13012026",
       "price": "25.00",
       "discount": "0.00000",
-      "id": "8c0c7793-70df-4cd4-8c57-1966e209ddbc"
+      "id": "8c0c7793-70df-4cd4-8c57-1966e209ddbc",
+      "product_type": "domain",
+      "count": 1,
+      "locale": {
+        "fi": "Verkkotunnus",
+        "en": "Domain"
+      },
+      "price_without_discount": "25.00",
+      "formatted_prices": {
+        "SEK": {
+          "price": "25.00",
+          "formatted_price": "25,00 SEK",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 SEK"
+        },
+        "PLN": {
+          "price": "25.00",
+          "formatted_price": "25,00 PLN",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 PLN"
+        },
+        "EUR": {
+          "price": "25.00",
+          "formatted_price": "25,00 €",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 €"
+        }
+      }
     },
     {
       "name": "Domain (fr)",
       "code": "WP_DOMAIN_FR_13012026",
       "price": "25.00",
       "discount": "0.00000",
-      "id": "169fc3cc-4ece-453d-9882-adb37cbb3f64"
+      "id": "169fc3cc-4ece-453d-9882-adb37cbb3f64",
+      "product_type": "domain",
+      "count": 1,
+      "locale": {
+        "fi": "Verkkotunnus",
+        "en": "Domain"
+      },
+      "price_without_discount": "25.00",
+      "formatted_prices": {
+        "SEK": {
+          "price": "25.00",
+          "formatted_price": "25,00 SEK",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 SEK"
+        },
+        "PLN": {
+          "price": "25.00",
+          "formatted_price": "25,00 PLN",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 PLN"
+        },
+        "EUR": {
+          "price": "25.00",
+          "formatted_price": "25,00 €",
+          "discount": "0.00000",
+          "price_without_discount": "25.00",
+          "formatted_price_without_discount": "25,00 €"
+        }
+      }
     }
   ],
   "domains": [
@@ -29,7 +90,59 @@
       "id": "d7e8f9a1-3b4c-4d1e-6f2a-7c8b5d9e2f3a",
       "price": "150.00",
       "code": "WP_DOMAIN_GURU_13012026",
-      "discount": "0.00000"
+      "discount": "0.00000",
+      "locale": {
+        "fi": "Verkkotunnus",
+        "en": "Domain"
+      },
+      "price_without_discount": "720.00",
+      "formatted_prices": {
+        "SEK": {
+          "price": "730.00",
+          "formatted_price": "730,00 SEK",
+          "discount": "0.00000",
+          "price_without_discount": "730.00",
+          "formatted_price_without_discount": "730,00 SEK",
+          "annual_price": "7880.00",
+          "formatted_annual_price": "7 880,00 SEK",
+          "annual_price_month": "656.67",
+          "formatted_annual_price_month": "656,67 SEK",
+          "annual_price_without_discount": "7880.00",
+          "formatted_annual_price_without_discount": "7 880,00 SEK",
+          "annual_price_month_without_discount": "656.67",
+          "formatted_annual_price_month_without_discount": "656,67 SEK"
+        },
+        "PLN": {
+          "price": "285.00",
+          "formatted_price": "285,00 PLN",
+          "discount": "0.00000",
+          "price_without_discount": "285.00",
+          "formatted_price_without_discount": "285,00 PLN",
+          "annual_price": "3070.00",
+          "formatted_annual_price": "3 070,00 PLN",
+          "annual_price_month": "255.83",
+          "formatted_annual_price_month": "255,83 PLN",
+          "annual_price_without_discount": "3070.00",
+          "formatted_annual_price_without_discount": "3 070,00 PLN",
+          "annual_price_month_without_discount": "255.83",
+          "formatted_annual_price_month_without_discount": "255,83 PLN"
+        },
+        "EUR": {
+          "price": "324.00",
+          "formatted_price": "324,00 €",
+          "discount": "0.00000",
+          "price_without_discount": "324.00",
+          "formatted_price_without_discount": "324,00 €",
+          "annual_price": "720.00",
+          "formatted_annual_price": "720,00 €",
+          "annual_price_month": "60.00",
+          "formatted_annual_price_month": "60,00 €",
+          "annual_price_without_discount": "720.00",
+          "formatted_annual_price_without_discount": "720,00 €",
+          "annual_price_month_without_discount": "60.00",
+          "formatted_annual_price_month_without_discount": "60,00 €"
+        }
+      }
     }
   ],
   "plan": {
@@ -37,6 +150,34 @@
     "name": "Staff",
     "code": "WPSTAFF1",
     "price": "125.00",
-    "discount": "0.00000"
+    "discount": "0.00000",
+    "price_without_discount": "125.00",
+    "locale": {
+      "fi": "Paketti",
+      "en": "Plan"
+    },
+    "formatted_prices": {
+      "SEK": {
+        "price": "125.00",
+        "formatted_price": "125,00 SEK",
+        "discount": "0.00000",
+        "price_without_discount": "125.00",
+        "formatted_price_without_discount": "125,00 SEK"
+      },
+      "PLN": {
+        "price": "125.00",
+        "formatted_price": "125,00 PLN",
+        "discount": "0.00000",
+        "price_without_discount": "125.00",
+        "formatted_price_without_discount": "125,00 PLN"
+      },
+      "EUR": {
+        "price": "125.00",
+        "formatted_price": "125,00 €",
+        "discount": "0.00000",
+        "price_without_discount": "125.00",
+        "formatted_price_without_discount": "125,00 €"
+      }
+    }
   }
 }
