@@ -21,7 +21,33 @@
       "updated_at": null,
       "id": "00049ff1-8c98-40a6-b350-add94b235869",
       "deleted_at": null,
-      "metadata": null
+      "metadata": null,
+      "formatted_prices": {
+        "EUR": {
+          "price": "52.00",
+          "formatted_price": "€52.00",
+          "annual_price": "52.00",
+          "formatted_annual_price": "€52.00",
+          "annual_price_month": "4.33",
+          "formatted_annual_price_month": "€4.33"
+        },
+        "SEK": {
+          "price": "52.00",
+          "formatted_price": "kr52.00",
+          "annual_price": "52.00",
+          "formatted_annual_price": "kr52.00",
+          "annual_price_month": "4.33",
+          "formatted_annual_price_month": "kr4.33"
+        },
+        "PLN": {
+          "price": "52.00",
+          "formatted_price": "zł52.00",
+          "annual_price": "52.00",
+          "formatted_annual_price": "zł52.00",
+          "annual_price_month": "4.33",
+          "formatted_annual_price_month": "zł4.33"
+        }
+      }
     },
     {
       "name": "Domain (xn--4dbrk0ce)",
@@ -40,7 +66,33 @@
       "updated_at": null,
       "id": "0064b9d3-9db0-45de-9d60-1886a966ceb1",
       "deleted_at": null,
-      "metadata": null
+      "metadata": null,
+      "formatted_prices": {
+        "EUR": {
+          "price": "90.00",
+          "formatted_price": "€90.00",
+          "annual_price": "90.00",
+          "formatted_annual_price": "€90.00",
+          "annual_price_month": "7.50",
+          "formatted_annual_price_month": "€7.50"
+        },
+        "SEK": {
+          "price": "90.00",
+          "formatted_price": "kr90.00",
+          "annual_price": "90.00",
+          "formatted_annual_price": "kr90.00",
+          "annual_price_month": "7.50",
+          "formatted_annual_price_month": "kr7.50"
+        },
+        "PLN": {
+          "price": "90.00",
+          "formatted_price": "zł90.00",
+          "annual_price": "90.00",
+          "formatted_annual_price": "zł90.00",
+          "annual_price_month": "7.50",
+          "formatted_annual_price_month": "zł7.50"
+        }
+      }
     }
   ]
 }
