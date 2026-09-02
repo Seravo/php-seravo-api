@@ -25,7 +25,8 @@ class PricesEndpointTest extends BaseEndpointTestCase
         $request = new CreatePriceRequest(
             interval: 1,
             products: ['test-product-1', 'test-product2'],
-            plan: 'test-plan-id'
+            plan: 'test-plan-id',
+            currency: 'EUR',
         );
 
         $this->testGetObject(Price::class, $client->public->prices()->create($request), $data);

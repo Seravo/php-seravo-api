@@ -18,6 +18,7 @@ $createPriceRequest = new CreatePriceRequest(
         new Domain(name: 'mydomainexample123.fi', primary: true, type: DomainType::Registration->value),
     ],
     promotion: null,
+    currency: 'EUR',
 );
 
 $api = new SeravoAPI(
