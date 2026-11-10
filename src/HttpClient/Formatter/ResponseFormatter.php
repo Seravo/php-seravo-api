@@ -52,6 +52,13 @@ final class ResponseFormatter
                     json_encode($decodedJson['results'], JSON_THROW_ON_ERROR),
                     $responseClass
                 );
+            } elseif (
+                is_array($decodedJson) &&
+                array_is_list($decodedJson) &&
+                $reflectionClass->implementsInterface(CollectionInterface::class)
+            ) {
+                // Response is a plain list (e.g. ["fi", "se"])
+                $result = $this->responseMapper->mapToCollection($json, $responseClass);
             } else {
                 // Response is a single object
                 $result = $this->responseMapper->mapToResponse($json, $responseClass);

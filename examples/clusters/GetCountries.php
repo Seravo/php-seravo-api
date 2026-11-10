@@ -16,6 +16,6 @@ $api = new SeravoAPI(
 
 $api->authenticate();
 
-$clusters = $api->swd->clusters()->get();
+$clusters = $api->swd->clusters()->getCountries();
 
 dd($clusters);

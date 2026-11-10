@@ -6,7 +6,7 @@ namespace Seravo\Tests\SeravoApi\Endpoints;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Seravo\SeravoApi\Apis\Swd\Response\Cluster;
+use Seravo\SeravoApi\Apis\Swd\Response\ClusterCountry;
 use Seravo\SeravoApi\Exceptions\BadRequestException;
 
 class ClustersEndpointTest extends BaseEndpointTestCase
@@ -20,9 +20,14 @@ class ClustersEndpointTest extends BaseEndpointTestCase
             new Response(400, [], Utils::streamFor(json_encode(['error' => 'Bad Request']))),
         ]);
 
-        $this->testCollection(Cluster::class, $client->swd->clusters()->get(), $data['results']);
+        $this->testCollection(
+            ClusterCountry::class,
+            $client->swd->clusters()->getCountries(),
+            array_map(fn (string $country) => ['country' => $country], $data),
+            'country'
+        );
 
         $this->expectException(BadRequestException::class);
-        $client->swd->clusters()->get();
+        $client->swd->clusters()->getCountries();
     }
 }

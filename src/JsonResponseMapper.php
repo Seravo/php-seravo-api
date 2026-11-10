@@ -66,7 +66,18 @@ class JsonResponseMapper implements ResponseMapperInterface
         /** @var CollectionInterface $collection */
         $collection = new $responseClass();
 
-        $result = array_map(function (array $item) use ($collection, $reflectionObj) {
+        $result = array_map(function (mixed $item) use ($collection, $reflectionObj) {
+            if (!is_array($item)) {
+                // Scalar items are mapped to the first constructor parameter of the item class
+                $itemConstructor = (new ReflectionClass($reflectionObj))->getConstructor();
+
+                if ($itemConstructor === null || $itemConstructor->getNumberOfParameters() === 0) {
+                    throw new RuntimeException('Unable to map scalar value to ' . $reflectionObj . '.');
+                }
+
+                $item = [$itemConstructor->getParameters()[0]->getName() => $item];
+            }
+
             $jsonItem = json_encode($item);
 
             if ($jsonItem === false) {
