@@ -29,6 +29,7 @@ abstract readonly class OrderRequest implements \JsonSerializable
         public BillingMethod $billing,
         public Company $company,
         public Mail $mail,
+        public string $site_name,
         public ?int $order_trial_period = 0,
         public ?string $site_location = null,
         public ?string $affiliate_id = null,
@@ -39,7 +40,6 @@ abstract readonly class OrderRequest implements \JsonSerializable
         public ?int $service_id = null,
         public bool $subscribed_to_newsletter = false,
         public ?string $revises_id = null,
-        public ?string $site_name = null
     ) {
     }
 

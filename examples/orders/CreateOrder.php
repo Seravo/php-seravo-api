@@ -35,6 +35,7 @@ $createOrderRequest = new CreateOrderRequest(
     billing: $billing,
     company: new Company(id: '1', name: 'John Doe'),
     mail: new Mail(option: '1'),
+    site_name: 'example-site',
 );
 
 $api = new SeravoAPI(

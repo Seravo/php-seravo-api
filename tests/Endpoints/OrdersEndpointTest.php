@@ -109,6 +109,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             mail: new Mail(
                 option: '1'
             ),
+            site_name: 'example-site'
         );
 
         $this->testGetObject(Order::class, $client->order->orders()->create($request), $data);
@@ -159,6 +160,7 @@ class OrdersEndpointTest extends BaseEndpointTestCase
             mail: new Mail(
                 option: '1'
             ),
+            site_name: 'example-site'
         );
 
         $id = 'b27c543d-d388-4e26-a3aa-877cb914cbc4';

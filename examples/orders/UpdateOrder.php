@@ -41,7 +41,8 @@ $updateOrderRequest = new UpdateOrderRequest(
         'billing' => $billing,
         'company' => new Company(id: '1', name: 'John Doe'),
         'mail' => new Mail(option: '1'),
-        'id' => '1d3c9e84-9c71-40c7-ba62-fbc5d9b59e96'
+        'id' => '1d3c9e84-9c71-40c7-ba62-fbc5d9b59e96',
+        'site_name' => 'example-site'
     ]
 );
 
