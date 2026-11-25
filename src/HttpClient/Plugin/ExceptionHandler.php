@@ -40,21 +40,22 @@ class ExceptionHandler implements Plugin
         $status = $response->getStatusCode();
         $message = $response->getReasonPhrase();
         $rawBody = $response->getBody()->getContents();
+        $headerRequestId = $response->getHeaderLine('x-seravo-request-id');
         $decodedContext = json_decode($rawBody, true);
         $context = is_array($decodedContext) ? $decodedContext : ['rawBody' => $rawBody];
 
         if (400 === $status) {
-            return new BadRequestException($message, $status, $context);
+            return new BadRequestException($message, $status, $context, $headerRequestId);
         }
 
         if (403 === $status || 401 === $status) {
-            return new UnauthorizedException($message, $status, $context);
+            return new UnauthorizedException($message, $status, $context, $headerRequestId);
         }
 
         if (422 === $status) {
-            return new ValidationErrorException($message, $status, $context);
+            return new ValidationErrorException($message, $status, $context, $headerRequestId);
         }
 
-        return new HttpException($message, $status, $context);
+        return new HttpException($message, $status, $context, $headerRequestId);
     }
 }

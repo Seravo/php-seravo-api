@@ -7,9 +7,10 @@ namespace Seravo\SeravoApi\Exceptions;
 class HttpException extends \Exception
 {
     /** @param array<string, mixed> $context */
-    public function __construct(string $message, int $code, protected array $context)
+    public function __construct(string $message, int $code, protected array $context, protected string $request_id)
     {
         $this->context = $context;
+        $this->request_id = $request_id;
         parent::__construct($message, $code);
     }
 
@@ -17,5 +18,11 @@ class HttpException extends \Exception
     public function getContext(): array
     {
         return $this->context;
+    }
+
+    /** Returns the x-seravo-request-id header value */
+    public function getRequestId(): string
+    {
+        return $this->request_id;
     }
 }
